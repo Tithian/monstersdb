@@ -1,0 +1,9 @@
+Django==3.1.5
+django-extensions==3.1.0
+Werkzeug==1.0.1
+requests
+
+coverage==5.3.1
+flake8==3.8.4
+ipdb==0.13.4
+ipython==7.19.0
