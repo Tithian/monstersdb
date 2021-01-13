@@ -15,10 +15,12 @@ class SRD35_HTMLParser(HTMLParser):
         self.in_table = False
         self.in_key = False
         self.in_value = False
+        self.in_content = False
         self.in_key_content = False
         self.in_value_content = False
         # Temps
         self.temp_table = {}
+        self.temp_content = {}
         self.temp_key = ''
         self.temp_value = ''
         self.temp_key_content = ''
@@ -36,9 +38,10 @@ class SRD35_HTMLParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         css = attrs.get('class', '')
+        id = attrs.get('id', '')
         if tag == 'table' and 'monstats' in css:
-                self.temp_table = {}
-                self.in_table = True
+            self.temp_table = {}
+            self.in_table = True
 
         elif self.in_table and tag == 'th':
             self.temp_key = ''
@@ -48,42 +51,73 @@ class SRD35_HTMLParser(HTMLParser):
             self.temp_value = ''
             self.in_value = True
 
-        # elif not self.in_table and tag == 'p':
-        #     self.temp_key_content = ''
-        #     self.temp_value_content = ''
-        #     self.in_key_content = True
-        #     self.in_value_content = True
+        elif tag == 'span' and id == 'COMBAT':
+            self.temp_content = {}
+            self.in_content = True
+
+        elif self.in_content and tag == 'span':
+            self.temp_key_content = ''
+            self.in_key_content = True
+
+        elif self.in_content and tag == 'p':
+            self.temp_value_content = ''
+            self.in_value_content = True
+
+        # elif self.in_table == False:
+        #     if tag == 'p':
+        #         self.temp_value_content = ''
+        #         self.in_value_content = True
 
     def handle_endtag(self, tag):
         if self.in_table and tag == 'table':
             self.in_table = False
+
         elif self.in_key and tag == 'th':
             self.in_key = False
+
         elif self.in_value and tag == 'td':
             self.in_value = False
+
         elif tag == 'tr':
             if self.temp_key.endswith(':'):
                 self.temp_key = self.temp_key[:-1]
             self.table[self.temp_key] = self.temp_value
             self.table.pop('','')
 
-        # elif not self.in_table and tag == 'p':
-        #     self.content['Descripción'] = self.temp_value_content
-        #     self.in_key_content = False
-        #     self.in_value_content = False
+        elif self.in_content and tag == 'h3':
+            self.in_content = False
+
+        elif self.in_key_content and tag == 'span':
+            self.in_key_content = False
+
+        elif self.in_value_content and tag == 'p':
+            self.in_value_content = False
+            self.content[self.temp_key_content] = self.temp_value_content
+
+        # elif self.in_table == False: # Haciéndolo así solo me pilla el último párrafo y el "See Also"
+        #     if tag == 'h3':
+        #         self.in_value_content = False
+        #         self.content['Descripción'] = self.temp_value_content
 
 
     def handle_data(self, data):
         data = data.replace('\n', '')
+
         if self.in_table and self.in_key:
             self.temp_key += data
+
         elif self.in_table and self.in_value:
             self.temp_value += data
 
-        # elif not self.in_table and self.in_key_content:
-        #     self.temp_key_content += data
-        # elif not self.in_table and self.in_value_content:
-        #     self.temp_value_content += data
+        elif self.in_content and self.in_key_content:
+            self.temp_key_content += data
+
+        elif self.in_content and self.in_value_content:
+            self.temp_value_content += data
+
+        # elif self.in_table == False:
+        #     if self.in_value_content:
+        #         self.temp_value_content += data
 
 
 
@@ -114,7 +148,7 @@ def parse_url(parser, url):
 
 def main():
     srd_parser = SRD35_HTMLParser()
-    creature_url = 'https://www.dandwiki.com/wiki/SRD:Elf'
+    creature_url = 'https://www.dandwiki.com/wiki/SRD:Aboleth'
     print(creature_url)
     parse_url(srd_parser, creature_url)
     print(srd_parser.table)
