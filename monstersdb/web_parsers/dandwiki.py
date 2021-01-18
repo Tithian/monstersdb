@@ -58,6 +58,9 @@ class SRD35_HTMLParser(HTMLParser):
             self.temp_value = ''
             self.in_value = True
 
+        elif tag == 'table' and css == 'd20':
+            self.in_content = False
+
         elif tag == 'span' and 'headline' in css:
             css = attrs.get('id', '')
             if tag == 'span' and 'COMBAT' in css:
@@ -132,7 +135,7 @@ def parse_url(parser, url):
 
 def main():
     srd_parser = SRD35_HTMLParser()
-    creature_url = 'https://www.dandwiki.com/wiki/SRD:Aboleth'
+    creature_url = 'https://www.dandwiki.com/wiki/SRD:Air_Elemental'
     print(creature_url)
     parse_url(srd_parser, creature_url)
     srd_parser.table.pop('', '')
