@@ -6,6 +6,8 @@ import requests
 class SRD35_HTMLParser(HTMLParser):
     def __init__(self, *arg, **kwargs):
         super(SRD35_HTMLParser, self).__init__(*arg, **kwargs)
+        # import ipdb; ipdb.set_trace()  # debugging manual
+
         self.start = False
         # Informacion
         self.monster = []
@@ -88,7 +90,7 @@ class SRD35_HTMLParser(HTMLParser):
             if self.temp_key.endswith(':'):
                 self.temp_key = self.temp_key[:-1]
             self.table[self.temp_key] = self.temp_value
-            self.table.pop('','')
+            self.table.pop('', '')
 
         elif self.in_key_content and tag == 'span':
             self.in_key_content = False
@@ -99,7 +101,8 @@ class SRD35_HTMLParser(HTMLParser):
         elif self.in_content and tag == 'h3':
             self.in_h3 = False
             self.in_content = False
-            self.content[self.temp_key_content] = self.temp_value_content
+            if self.temp_key_content or self.temp_value_content:
+                self.content[self.temp_key_content] = self.temp_value_content
 
         # elif self.in_table == False: # Haciéndolo así solo me pilla el último párrafo y el "See Also"
         #     if tag == 'h3':
