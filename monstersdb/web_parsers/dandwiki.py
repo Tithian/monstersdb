@@ -20,7 +20,8 @@ class SRD35_HTMLParser(HTMLParser):
         self.in_content = False
         self.in_key_content = False
         self.in_value_content = False
-        self.in_h3 = False
+        self.in_p = False
+        self.finish = False
         # Temps
         self.temp_table = {}
         self.temp_content = {}
@@ -39,7 +40,7 @@ class SRD35_HTMLParser(HTMLParser):
         self.in_value = False
         self.in_key_content = False
         self.in_value_content = False
-        self.in_h3 = False
+        self.in_p = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -57,24 +58,16 @@ class SRD35_HTMLParser(HTMLParser):
             self.temp_value = ''
             self.in_value = True
 
-        elif tag == 'h3':
-            self.in_h3 = True
-            self.in_content = True
-            self.temp_content = {}
+        elif tag == 'span' and 'headline' in css:
+            css = attrs.get('id', '')
+            if tag == 'span' and 'COMBAT' in css:
+                self.in_content = True
+            elif tag == 'span' and 'Also' in css:
+                self.in_content = False
+                self.finish = True
 
-
-        elif self.in_h3 and tag == 'span' and css == 'mw-headline':
-            self.temp_key_content = ''
-            self.in_key_content = True
-
-        elif self.in_h3 and tag == 'p':
-            self.temp_value_content = ''
-            self.in_value_content = True
-
-        # elif self.in_table == False:
-        #     if tag == 'p':
-        #         self.temp_value_content = ''
-        #         self.in_value_content = True
+        elif self.in_content and tag == 'p':
+            self.in_p = True
 
     def handle_endtag(self, tag):
         if self.in_table and tag == 'table':
@@ -90,25 +83,12 @@ class SRD35_HTMLParser(HTMLParser):
             if self.temp_key.endswith(':'):
                 self.temp_key = self.temp_key[:-1]
             self.table[self.temp_key] = self.temp_value
-            self.table.pop('', '')
 
-        elif self.in_key_content and tag == 'span':
-            self.in_key_content = False
+        elif self.in_content and tag == 'p':
+            self.in_p = False
 
-        elif self.in_value_content and tag == 'p':
-            self.in_value_content = False
-
-        elif self.in_content and tag == 'h3':
-            self.in_h3 = False
-            self.in_content = False
-            if self.temp_key_content or self.temp_value_content:
-                self.content[self.temp_key_content] = self.temp_value_content
-
-        # elif self.in_table == False: # Haciéndolo así solo me pilla el último párrafo y el "See Also"
-        #     if tag == 'h3':
-        #         self.in_value_content = False
-        #         self.content['Descripción'] = self.temp_value_content
-
+        elif self.finish:
+            self.content[self.temp_key_content] = self.temp_value_content
 
     def handle_data(self, data):
         data = data.replace('\n', '')
@@ -119,17 +99,11 @@ class SRD35_HTMLParser(HTMLParser):
         elif self.in_table and self.in_value:
             self.temp_value += data
 
-        elif self.in_content and self.in_key_content:
-            self.temp_key_content += data
+        elif not self.in_p and self.in_content:
+            self.temp_key_content +=data
 
-        elif self.in_content and self.in_value_content:
+        elif self.in_p:
             self.temp_value_content += data
-
-        # elif self.in_table == False:
-        #     if self.in_value_content:
-        #         self.temp_value_content += data
-
-
 
 class ListCreaturesHTMLParser(HTMLParser):
     def __init__(self, *arg, **kwargs):
@@ -161,6 +135,7 @@ def main():
     creature_url = 'https://www.dandwiki.com/wiki/SRD:Aboleth'
     print(creature_url)
     parse_url(srd_parser, creature_url)
+    srd_parser.table.pop('', '')
     print(srd_parser.table)
     print(srd_parser.content)
     print(srd_parser.monster)
