@@ -1,4 +1,5 @@
 import os
+import shutil
 import json
 import glob
 from pathlib import Path
@@ -328,10 +329,13 @@ def parse_url(parser, url):
     if response.status_code == 200:
         parser.feed(response.text)
 
+
 def dumper_html(folder):
     """
     Esta función vuelca el contenido de los html a un directorio
     """
+    print('Se están recogiendo los siguientes HTML: ')
+
 
     if not os.path.isdir(folder): # Si el directorio pasado como argumento no existe:
         os.mkdir(folder) # Crea el directorio pasado como argumento
@@ -349,63 +353,214 @@ def dumper_html(folder):
                                                             # reemplazando los espacios por guiones bajos
 
         response = requests.get('https://www.dandwiki.com{}'.format(path))
-        filename = os.path.join(folder, filename)
+        html_folder = os.path.join(folder, 'HTML')
+        if not os.path.isdir(html_folder):  # Si el directorio pasado como argumento no existe:
+            os.mkdir(html_folder)  # Crea el directorio pasado como argumento
+        filename = os.path.join(html_folder, filename)
         with open(filename, 'wb') as f:
             print(filename)
             f.write(response.content)
+    print('¡Proceso completado!')
 
 
 def html2jsondumper(folder):
-    for path in glob.glob('{}/*.html'.format(folder)):
+    print('Creando ficheros JSON...')
+    for path in glob.glob('{}\*.html'.format(folder)):
         parser = SRD35_HTMLParser()
-        with open(path, 'r', encoding='utf-8') as f1:
+        with open(path, 'r+', encoding='utf-8') as f1:
             parser.feed(f1.read())
-            response = json.dumps(parser.monster)
-            print(os.path.basename(path))
-            print(response)
-
-            with open(path.replace('.html', '.json'), 'w') as f2:
+            response = json.dumps(parser.monster, indent=2)
+            json_folder = os.path.join(folder, '../JSON')
+            if not os.path.isdir(json_folder):  # Si el directorio pasado como argumento no existe:
+                os.mkdir(json_folder)  # Crea el directorio pasado como argumento
+            filename = os.path.basename(path)
+            filename = os.path.join(json_folder, filename)
+            with open(filename.replace('.html', '.json'), 'w') as f2:
+                print(filename)
                 f2.write(response)
-                print(os.path.basename(path))
-                print(response)
+    print('¡Proceso Completado!')
 
-def checking_all_files(folder):
-    CLAVES = {'Nombre', 'Monstruo y Nivel', 'Size/Type', 'Hit Dice', 'Initiative', 'Speed', 'Armor Class',
+
+def excluyendo_ficheros(folder):
+    '''Compara el primer diccionario para ver si tiene claves útiles, los archivos que no las tengan son movidos
+    al directorio EXCLUDED. Salvo 3 excepciones, Demon, Devil y Dire_Animal'''
+    print('Los siguientes ficheros han sido movidos a la carpeta EXCLUDED: ')
+    files_to_exclude = []
+    for path in glob.glob('{}/*.json'.format(folder)):
+            with open(path, 'r+') as f:
+                data = json.load(f)
+                found = False
+                if 'Demon' in path:
+                    found = True
+                if 'Devil' in path:
+                    found = True
+                if 'Dire_Animal' in path:
+                    found = True
+                enumerated_data = enumerate(data)
+                for index, dictionary in enumerated_data:
+                    # print(item)
+                    if index == 0:
+                        for key, val in dictionary.items():
+                            if 'Nombre' in key:
+                                found = True
+                                if 'Cr 1/10' in val:
+                                    found = False
+                                if 'Creatures by type' in val:
+                                    found = False
+                                if 'Creature types and subtypes' in val:
+                                    found = False
+                                # print(key)
+                            if 'Monstruo y Nivel' in key:
+                                found = True
+                            if 'Size/Type' in key:
+                                found = True
+                            if 'Descripción' in key:
+                                found = True
+                            if 'Combate' in key:
+                                found = True
+                    if index != 0:
+                        pass
+                if not found:
+                    filename = (os.path.realpath(path))
+                    excluded_folder = os.path.join(folder, '..\EXCLUDED')
+                    if not os.path.isdir(excluded_folder):  # Si el directorio pasado como argumento no existe:
+                        os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
+                    shutil.copy2(filename, excluded_folder)
+                    files_to_exclude.append(filename)
+                    print(filename)
+                    f.close()
+                    os.remove(filename)
+    print('¡Proceso Completado!')
+
+
+def insertando_titulos(folder):
+    print('Añadiendo Títulos a las criaturas que no tienen...')
+    for path in glob.glob('{}/*.json'.format(folder)):
+        with open(path, 'r+') as f:
+            data = json.load(f)
+            name_found = False
+            enumerated_data = enumerate(data)
+            for index, elem in enumerated_data:
+                if index != 0:
+                    pass
+                if index == 0:
+                    for key, val in elem.items():
+                        if 'Nombre' in key:
+                            name_found = True
+                        else:
+                            pass
+                    if not name_found:
+                        with open(path, 'w') as f2:
+                            new_index = {}
+                            old_name = os.path.basename(path.replace('.json', ''))
+                            new_name = '{}'.format(old_name.replace('_', ' '))
+                            new_index['Nombre'] = new_name
+                            data.insert(0, new_index)
+                            response = json.dumps(data, indent=2)
+                            f2.write(response)
+    print('¡Proceso completado!')
+
+
+def organizando_tipos(folder):
+    print('Los siguientes ficheros son tipos de monstruos. Clasificando...:')
+    files_to_exclude = []
+    tipos_folder = os.path.join(folder, 'TIPOS')
+    dragon_folder = os.path.join(tipos_folder, 'DRAGONES' )
+    if not os.path.isdir(dragon_folder):  # Si el directorio pasado como argumento no existe:
+         os.makedirs(dragon_folder)  # Crea el directorio pasado como argumento
+    for path in glob.glob('{}/*.json'.format(folder)):
+        with open(path, 'r+') as f:
+            criatura_tipo = False
+            data = json.load(f)
+            enumerated_data = enumerate(data)
+            for index, elem in enumerated_data:
+                if index != 1:
+                    pass
+                if index == 1:
+                    for key, val in elem.items():
+                        if 'Monstruo y Nivel' in key:
+                            criatura_tipo = True
+                            # print(val)
+                        if 'Size/Type' in key:
+                            criatura_tipo = True
+                        else:
+                            pass
+            if not criatura_tipo:
+                filename = (os.path.realpath(path))
+                shutil.copy2(filename, tipos_folder)
+                files_to_exclude.append(filename)
+                print(filename)
+                f.close()
+                os.remove(filename)
+    print('Los siguientes archivos son Dragones: ')
+    for path in glob.glob('{}/*.json'.format(tipos_folder)):
+        is_dragon = False
+        with open(path, 'r+') as f:
+            data = json.load(f)
+            enumerated_data = enumerate(data)
+            if 'Celestial_Creature' in path:
+                pass
+            elif 'Ghost' in path:
+                pass
+            elif 'Half-Dragon' in path:
+                pass
+            else:
+                for index, elem in enumerated_data:
+                    for key, val in elem.items():
+                        if 'dragon' in val.lower():
+                            is_dragon = True
+                if is_dragon:
+                        filename = (os.path.realpath(path))
+                        shutil.copy2(filename, dragon_folder)
+                        print(filename)
+                        f.close()
+                        os.remove(filename)
+    print('¡Proceso Completado!')
+
+
+def checking_files(folder):
+    CLAVES = {'Monstruo y Nivel', 'Size/Type', 'Hit Dice', 'Initiative', 'Speed', 'Armor Class',
               'Base Attack/Grapple', 'Attack', 'Full Attack', 'Space/Reach', 'Special Attacks', 'Special Qualities',
               'Saves', 'Abilities', 'Skills', 'Feats', 'Environment', 'Organization', 'Challenge Rating', 'Treasure',
-              'Alignment', 'Advancement', 'Level Adjustment', 'Descripción', 'Combate'}
-
+              'Alignment', 'Advancement', 'Level Adjustment'}
+    print('')
     for path in glob.glob('{}/*.json'.format(folder)):
-        with open(path) as f:
+        with open(path, 'r') as f:
             data = json.load(f)
-            found = False
             enumerated_data = enumerate(data)
-            # print(type(enumerated_data))
-            # print(list(enumerated_data))
-            for dict, line in enumerated_data:
-                # print(item)
-                if dict == 0:
-                    for key, val in line.items():
-                        if 'Nombre' in key:
-                            found = True
-                            # print(key)
-                        if 'Monstruo y Nivel' in key:
-                            found = True
-                        if 'Size/Type' in key:
-                            found = True
-                        if 'Descripción' in key:
-                            found = True
-                        if 'Combate' in key:
-                            found = True
-            if not found:
-                print(os.path.basename(path))
+            for index, elem in enumerated_data:
+                clean_keys = set()
+                if index != 1:
+                    pass
+                if index == 1:
+                    for key, val in elem.items():
+                        if val:
+                            clean_keys.add(key)
+                    if clean_keys != CLAVES:
+                        print(os.path.basename(path) + ': No tiene todas las CLAVES')
+                        print('Tiene las siguientes CLAVES de más: ')
+                        print(clean_keys.difference(CLAVES))
+                        print('Le faltan las siguientes CLAVES: ')
+                        print(CLAVES.difference(clean_keys))
+
+    print('¡Proceso Completado!')
 
 
 def main():
-    # html2jsondumper(Path('/monstersdb/monstersdb/raw'))
-    checking_all_files(Path('/monstersdb/monstersdb/raw'))
+    dir_path = os.path.dirname(os.getcwd())
+    os.path.normpath(dir_path)
+    backup_folder = os.path.join(dir_path, 'raw')
+    html_folder = os.path.join(backup_folder, 'HTML')
+    json_folder = os.path.join(backup_folder, 'JSON')
+
+    # dumper_html(backup_folder) # PASO 1 - Volcar el contenido Html
+    # html2jsondumper(html_folder) # PASO 2 - Transformar el contenido Html a Json
+    # excluyendo_ficheros(json_folder) # PASO 3 - Excluir los ficheros que no sirven
+    # insertando_titulos(json_folder) # PASO 4 - Insertando titulos en los ficheros que no tienen
+    # organizando_tipos(json_folder) # PASO 5 - Pone todos los monstruos que sean un tipo en un directorio y los dragones en una carpeta a parte
+    checking_files(json_folder)
     # backup_folder = Path('/monstersdb/monstersdb/raw')
-    # dumper_html(backup_folder)
+
 
 """
 RECOGE ARCHIVOS
@@ -420,6 +575,16 @@ def get_all_files(backup_folder):
             filename_list.append(entry.name)
 
     return filename_list
+"""
+"""
+Clases de victor para usar os.path:
+dir_path = os.path.dirname(os.path.realpath(_file_))
+    backup_folder = os.path.join(dir_path, '..', 'raw')
+os.path.join(dir_path, '.../raw')
+"""
+"""
+    
+
 """
 if __name__ == '__main__':
     main()
