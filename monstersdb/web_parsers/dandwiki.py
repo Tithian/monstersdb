@@ -46,6 +46,8 @@ class SRD35_HTMLParser(HTMLParser):
         self.value_row = 0
 
         # Temps
+        self.temp_total_tables = []
+        self.temp_total_rare_tables = []
         self.temp_table = {}
         self.temp_rare_table = {}
         self.temp_rare_content = {}
@@ -138,6 +140,12 @@ class SRD35_HTMLParser(HTMLParser):
             elif tag == 'span' and 'headline' in css:
                 id_span = attrs.get('id', '').capitalize()
                 if 'Combat' in id_span:
+                    if self.temp_description:
+                        self.description['Descripción'] = self.temp_description
+                        self.temp_description = ''
+                    elif self.temp_rare_value:
+                        self.description['Descripcion'] = self.temp_rare_value
+                        self.temp_rare_value = ''
                     self.start_description = False
                     self.in_description = False
                     self.in_raro = False
@@ -155,15 +163,12 @@ class SRD35_HTMLParser(HTMLParser):
                 elif 'S' in id_span:
                     self.in_description = False
                     self.in_combate = False
-                elif 'Elemental' in id_span:
-                    self.in_raro = False
 
                 elif self.in_h1:
                     if not self.temp_monster_name:
                         self.in_monster_name = True
                 elif self.in_raro:
                     self.in_rare_description_key = True
-                    #     #Aqui se añade al diccionario rare_content
                     if self.temp_rare_description_key:
                         self.temp_rare_value = ''
                         self.temp_rare_description_key = ''
@@ -180,11 +185,9 @@ class SRD35_HTMLParser(HTMLParser):
                 if self.monster_name:
                     self.monster.append(self.monster_name)
 
-                if self.total_principal_tables:
-                    self.monster.append(self.total_principal_tables)
-
-                if self.temp_description:
-                    self.description['Descripción'] = self.temp_description
+                if self.temp_total_tables:
+                    for elem in self.temp_total_tables:
+                        self.monster.append(elem)
                     self.monster.append(self.description)
 
                 if self.temp_combate:
@@ -197,8 +200,9 @@ class SRD35_HTMLParser(HTMLParser):
                 if self.temp_rare_content:
                     self.monster.append(self.temp_rare_content)
 
-                if self.total_rare_tables:
-                    self.monster.append(self.total_rare_tables)
+                if self.temp_total_rare_tables:
+                    for elem in self.temp_total_rare_tables:
+                        self.monster.append(elem)
 
                 self.start_document = False
 
@@ -215,7 +219,7 @@ class SRD35_HTMLParser(HTMLParser):
         elif self.in_table:
             if tag == 'table':
                 self.in_table = False
-                self.total_principal_tables.update(self.temp_table)
+                self.temp_total_tables.append(self.temp_table)
                 self.temp_table = {}
                 # self.temp_combate = '' #comprobar si esta línea sirve para algo
             elif self.in_key and tag == 'th':
@@ -234,11 +238,11 @@ class SRD35_HTMLParser(HTMLParser):
 
         elif self.in_rare_table:
             if tag == 'table':
+                self.value_row = 0
                 self.in_rare_table = False
                 self.in_rare_table_value = False
                 if self.temp_rare_table:
-                    self.total_rare_tables.update(self.temp_rare_table)
-                    self.temp_rare_table = {}
+                    self.temp_total_rare_tables.append(self.temp_rare_table)
             elif tag == 'tr':
                 if self.in_rare_table_key:
                     self.temp_rare_table['Columnas'] = self.temp_rare_table_key
@@ -276,7 +280,7 @@ class SRD35_HTMLParser(HTMLParser):
             else:
                 data = data.replace(' ', '')
                 if data:
-                    data = '/' + data
+                    data = '-----' + data
                     self.temp_rare_table_key += data
 
         elif self.in_rare_table and self.in_rare_table_value:
@@ -287,7 +291,7 @@ class SRD35_HTMLParser(HTMLParser):
             else:
                 data = data.replace(' ', '')
                 if data:
-                    data = '/' + data
+                    data = '-----' + data
                     self.temp_rare_table_value += data
 
         elif self.in_monster_name:
@@ -303,7 +307,6 @@ class SRD35_HTMLParser(HTMLParser):
             self.temp_rare_description_key += data
         elif self.in_rare_value:
             self.temp_rare_value += data
-
 
 class ListCreaturesHTMLParser(HTMLParser):
     def __init__(self, *arg, **kwargs):
@@ -322,6 +325,309 @@ class ListCreaturesHTMLParser(HTMLParser):
             attrs = dict(attrs)
             if attrs.get('id', None) == 'Creatures':
                 self.start = True
+
+
+# class MultipleCreatureParser(HTMLParser):
+#     def __init__(self, *arg, **kwargs):
+#         super(MultipleCreatureParser, self).__init__(*arg, **kwargs)
+#         # import ipdb; ipdb.set_trace()  # debugging manual
+#
+#         self.start = False
+#         # Informacion
+#         self.monster = []
+#         self.monster_name = {}
+#         self.total_principal_tables = {}
+#         self.total_rare_tables = {}
+#         self.table = {}
+#         self.content = {}
+#         self.description = {}
+#         # Informacion Raros
+#         self.rare_monster = {}
+#         self.rare_content = {}
+#         # Flags
+#         self.in_table = False
+#         self.in_key = False
+#         self.in_value = False
+#         self.in_combate = False
+#         self.in_p = False
+#         self.in_h1 = False
+#         self.in_monster_name = False
+#         self.start_document = False
+#         self.start_description = False
+#         self.in_description = False
+#         self.finish_document = False
+#         self.in_raro = False
+#         self.in_rare_description_key = False
+#         self.in_rare_value = False
+#         self.in_rare_table = False
+#         self.in_rare_table_value = False
+#         self.in_rare_table_key = False
+#         self.value_row = 0
+#
+#         # Temps
+#         self.temp_total_tables = []
+#         self.temp_total_rare_tables = []
+#         self.temp_table = {}
+#         self.temp_rare_table = {}
+#         self.temp_rare_content = {}
+#         self.temp_monster_name = ''
+#         self.temp_key = ''
+#         self.temp_value = ''
+#         self.temp_combate = ''
+#         self.temp_description = ''
+#         self.temp_rare_description_key = ''
+#         self.temp_rare_value = ''
+#         self.temp_rare_table_key = ''
+#         self.temp_rare_table_value = ''
+#
+#     def reset(self):
+#         super(MultipleCreatureParser, self).reset()
+#         self.monster = []
+#         self.name = {}
+#         self.table = {}
+#         self.content = {}
+#         self.description = {}
+#         self.in_table = False
+#         self.in_key = False
+#         self.in_value = False
+#         self.in_combate = False
+#         self.in_p = False
+#         self.in_h1 = False
+#         self.start_document = False
+#         self.start_description = False
+#         self.in_description = False
+#         self.finish_document = False
+#         self.rare_monster = []
+#         self.rare_content = {}
+#         self.in_raro = False
+#         self.in_rare_value = False
+#
+#
+#     def handle_starttag(self, tag, attrs):
+#         attrs = dict(attrs)
+#         css = attrs.get('class', '')
+#
+#         if tag == 'div' and 'mw-body-content' in css:
+#             self.start_document = True
+#             print('Empezando a parsear...')
+#             self.temp_description = ''
+#             self.start_description = True
+#
+#         if self.start_document:
+#             if tag == 'table':
+#                 if 'monstats' in css:
+#                     self.temp_table = {}
+#                     self.in_table = True
+#                     self.in_rare_table_value = False
+#                 else:
+#                     print('- Hay Una Tabla Rara -')
+#                     self.temp_rare_table = {}
+#                     self.in_description = False
+#                     self.in_rare_table = True
+#                     # self.in_raro = False
+#
+#             elif self.in_table:
+#                 if tag == 'th':
+#                     self.temp_key = ''
+#                     self.in_key = True
+#                 if tag == 'td':
+#                     self.temp_value = ''
+#                     self.in_value = True
+#             if self.in_rare_table:
+#                 if tag == 'th':
+#                     # self.in_rare_table_value = False
+#                     self.in_rare_table_key = True
+#                 if tag == 'td':
+#                     # self.temp_rare_table_value = ''
+#                     self.in_rare_table_value = True
+#
+#             if tag == 'h1':
+#                 self.in_h1 = True
+#             if tag == 'h2':
+#                 self.in_h1 = False
+#                 self.in_description = False
+#                 self.in_raro = True
+#             if tag == 'h3':
+#                 h3_id = attrs.get('id', '')
+#                 self.in_h1 = False
+#                 self.in_description = False
+#                 self.in_raro = True
+#                 if self.temp_rare_description_key:
+#                     self.temp_rare_content[self.temp_rare_description_key] = self.temp_rare_value
+#                 elif 'siteSub' in h3_id:
+#                     self.in_raro = False
+#
+#
+#             elif tag == 'span' and 'headline' in css:
+#                 id_span = attrs.get('id', '').capitalize()
+#                 if 'Combat' in id_span:
+#                     if self.temp_description:
+#                         self.description['Descripción'] = self.temp_description
+#                         self.temp_description = ''
+#                     elif self.temp_rare_value:
+#                         self.description['Descripcion'] = self.temp_rare_value
+#                         self.temp_rare_value = ''
+#                     self.start_description = False
+#                     self.in_description = False
+#                     self.in_raro = False
+#                     self.in_combate = True
+#
+#                 elif 'Elemental' in id_span:
+#                     self.in_raro = False
+#                     self.in_description = True
+#                 elif 'See' in id_span:
+#                     self.start_description = False
+#                     self.in_combate = False
+#                 elif 'characters' in id_span:
+#                     self.start_description = False
+#                     self.in_combate = False
+#                 elif 'S' in id_span:
+#                     self.in_description = False
+#                     self.in_combate = False
+#
+#                 elif self.in_h1:
+#                     if not self.temp_monster_name:
+#                         self.in_monster_name = True
+#                 elif self.in_raro:
+#                     self.in_rare_description_key = True
+#                     if self.temp_rare_description_key:
+#                         self.temp_rare_value = ''
+#                         self.temp_rare_description_key = ''
+#                         # self.in_raro = True
+#
+#
+#             elif self.in_raro and tag == 'p':
+#                 self.start_description = False
+#                 self.in_rare_value = True
+#
+#                 #print(self.temp_rare_value)
+#
+#             elif tag == 'hr':
+#                 if self.monster_name:
+#                     self.monster.append(self.monster_name)
+#
+#                 if self.temp_total_tables:
+#                     for elem in self.temp_total_tables:
+#                         self.monster.append(elem)
+#                     self.monster.append(self.description)
+#
+#                 if self.temp_combate:
+#                         self.temp_combate = self.temp_combate.replace('COMBAT', '')
+#                         self.temp_combate = self.temp_combate.replace('Combat', '')
+#                         self.monster.append(self.content)
+#                         if not self.content:
+#                             self.content['Combate'] = self.temp_combate
+#
+#                 if self.temp_rare_content:
+#                     self.monster.append(self.temp_rare_content)
+#
+#                 if self.temp_total_rare_tables:
+#                     for elem in self.temp_total_rare_tables:
+#                         self.monster.append(elem)
+#
+#                 self.start_document = False
+#
+#             elif self.start_description and tag == 'p':
+#                 self.in_description = True
+#
+#     def handle_endtag(self, tag):
+#         if self.in_monster_name and tag == 'h1':
+#             self.in_h1 = False
+#             if self.temp_monster_name:
+#                 self.monster_name['Nombre'] = self.temp_monster_name.capitalize()
+#             self.in_monster_name = False
+#
+#         elif self.in_table:
+#             if tag == 'table':
+#                 self.in_table = False
+#                 self.temp_total_tables.append(self.temp_table)
+#                 self.temp_table = {}
+#                 # self.temp_combate = '' #comprobar si esta línea sirve para algo
+#             elif self.in_key and tag == 'th':
+#                 self.in_key = False
+#             elif self.in_value and tag == 'td':
+#                 self.in_value = False
+#
+#             elif tag == 'tr':
+#                 if self.temp_key.endswith(':'):
+#                     self.temp_key = self.temp_key[:-1]
+#                     self.temp_table[self.temp_key] = self.temp_value
+#                     self.temp_key = ''
+#                     self.temp_value = ''
+#                 else:
+#                     self.temp_table['Monstruo y Nivel'] = self.temp_key
+#
+#         elif self.in_rare_table:
+#             if tag == 'table':
+#                 self.value_row = 0
+#                 self.in_rare_table = False
+#                 self.in_rare_table_value = False
+#                 if self.temp_rare_table:
+#                     self.temp_total_rare_tables.append(self.temp_rare_table)
+#             elif tag == 'tr':
+#                 if self.in_rare_table_key:
+#                     self.temp_rare_table['Columnas'] = self.temp_rare_table_key
+#                     self.in_rare_table_key = False
+#                     self.temp_rare_table_key = ''
+#                 elif self.in_rare_table_value:
+#                     if self.temp_rare_table_value:
+#                         self.value_row += 1
+#                         self.temp_rare_table['Fila ' + str(self.value_row)] = self.temp_rare_table_value
+#                         self.temp_rare_table_value = ''
+#                         self.in_rare_table_value = False
+#
+#         elif self.in_raro and tag == 'h3':
+#             self.in_rare_description_key = False
+#
+#         elif self.in_rare_value and tag == 'p':
+#             self.in_rare_value = False
+#
+#
+#     def handle_data(self, data):
+#         data = data.replace('\n', '')
+#         #En la Abominación me pilla una cantidad de espacios enormes, esta es la única solución que se de momento
+#         data = data.replace('                            ', ' ')
+#         data = data.replace('                        ', ' ')
+#         data = data.replace('     ', ' ')
+#
+#         if self.in_table and self.in_key:
+#             self.temp_key += data
+#         elif self.in_table and self.in_value:
+#             self.temp_value += data
+#
+#         elif self.in_rare_table and self.in_rare_table_key:
+#             if '# of ' in data:
+#                 pass
+#             else:
+#                 data = data.replace(' ', '')
+#                 if data:
+#                     data = '-----' + data
+#                     self.temp_rare_table_key += data
+#
+#         elif self.in_rare_table and self.in_rare_table_value:
+#             if 'This material is published under the ' in data:
+#                 pass
+#             elif 'OGL' in data:
+#                 pass
+#             else:
+#                 data = data.replace(' ', '')
+#                 if data:
+#                     data = '-----' + data
+#                     self.temp_rare_table_value += data
+#
+#         elif self.in_monster_name:
+#             self.temp_monster_name += data
+#
+#         elif self.in_combate:
+#             self.temp_combate += data
+#
+#         elif self.in_description:
+#             self.temp_description += data
+#
+#         elif self.in_rare_description_key:
+#             self.temp_rare_description_key += data
+#         elif self.in_rare_value:
+#             self.temp_rare_value += data
 
 
 def parse_url(parser, url):
@@ -362,7 +668,6 @@ def dumper_html(folder):
             f.write(response.content)
     print('¡Proceso completado!')
 
-
 def html2jsondumper(folder):
     print('Creando ficheros JSON...')
     for path in glob.glob('{}\*.html'.format(folder)):
@@ -380,6 +685,24 @@ def html2jsondumper(folder):
                 f2.write(response)
     print('¡Proceso Completado!')
 
+# def multiplecreatures2jsondumper(folder):
+#     print('Creando ficheros JSON...')
+#     for path in glob.glob('{}\Air_Elemental.html'.format(folder)):
+#         parser = MultipleCreatureParser()
+#         with open(path, 'r+', encoding='utf-8') as f1:
+#             parser.feed(f1.read())
+#             response = json.dumps(parser.monster, indent=2)
+#             json_folder = os.path.join(folder, '../JSON')
+#             if not os.path.isdir(json_folder):  # Si el directorio pasado como argumento no existe:
+#                 os.mkdir(json_folder)  # Crea el directorio pasado como argumento
+#             filename = os.path.basename(path)
+#             filename = os.path.join(json_folder, filename)
+#             print(filename)
+#             print(response)
+#             with open(filename.replace('.html', '.json'), 'w') as f2:
+#                 print(filename)
+#                 # f2.write(response)
+#     print('¡Proceso Completado!')
 
 def excluyendo_ficheros(folder):
     '''Compara el primer diccionario para ver si tiene claves útiles, los archivos que no las tengan son movidos
@@ -553,12 +876,16 @@ def main():
     html_folder = os.path.join(backup_folder, 'HTML')
     json_folder = os.path.join(backup_folder, 'JSON')
 
-    # dumper_html(backup_folder) # PASO 1 - Volcar el contenido Html
-    # html2jsondumper(html_folder) # PASO 2 - Transformar el contenido Html a Json
-    # excluyendo_ficheros(json_folder) # PASO 3 - Excluir los ficheros que no sirven
-    # insertando_titulos(json_folder) # PASO 4 - Insertando titulos en los ficheros que no tienen
-    # organizando_tipos(json_folder) # PASO 5 - Pone todos los monstruos que sean un tipo en un directorio y los dragones en una carpeta a parte
-    checking_files(json_folder)
+    dumper_html(backup_folder) # PASO 1 - Volcar el contenido Html
+    html2jsondumper(html_folder) # PASO 2 - Transformar el contenido Html a Json
+    excluyendo_ficheros(json_folder) # PASO 3 - Excluir los ficheros que no sirven
+    insertando_titulos(json_folder) # PASO 4 - Insertando titulos en los ficheros que no tienen
+    organizando_tipos(json_folder) # PASO 5 - Pone todos los monstruos que sean un tipo en un directorio y los dragones en una carpeta a parte
+
+    #checking_files(json_folder) #TODO PASO 6 - Chequear todos las claves y valores de las tablas
+
+    # multiplecreatures2jsondumper(html_folder)
+
     # backup_folder = Path('/monstersdb/monstersdb/raw')
 
 
