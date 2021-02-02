@@ -1,0 +1,9 @@
+[
+  {
+    "Nombre": "Creature types and subtypes"
+  },
+  {
+    "Columnas": "-----CreatureTypes-----CreatureSubtypes-----FavoredEnemyGroups",
+    "Fila 1": "-----Aberration-----Animal-----Celestial-----Construct-----Dragon-----Elemental-----Fey-----Fiend-----Giant-----Humanoid-----MagicalBeast-----MonstrousHumanoid-----Ooze-----Outsider-----Plant-----Undead-----Vermin-----Alignment-----LawfulGood-----NeutralGood-----ChaoticGood-----LawfulNeutral-----Neutral-----ChaoticNeutral-----LawfulEvil-----NeutralEvil-----ChaoticEvil-----Air-----Angel-----Aquatic-----Archon-----Augmented-----Chaotic-----Cold-----Demon-----Devil-----Earth-----Evil-----Extraplanar-----Fire-----Good-----Incorporeal-----Lawful-----Native-----Psionic-----Shapechanger-----Swarm-----Water-----HumanoidSubtype-----Aquatic-----Dwarf-----Elf-----Gnoll-----Gnome-----Goblinoid-----Halfling-----Human-----Orc-----Reptilian-----Aberration-----Animal-----Construct-----Dragon-----Elemental-----Fey-----Giant-----Humanoid(aquatic)-----Humanoid(dwarf)-----Humanoid(elf)-----Humanoid(goblinoid)-----Humanoid(gnoll)-----Humanoid(gnome)-----Humanoid(halfling)-----Humanoid(human)-----Humanoid(orc)-----Humanoid(reptilian)-----MagicalBeast-----MonstrousHumanoid-----Ooze-----Outsider(air)-----Outsider(chaotic)-----Outsider(earth)-----Outsider(evil)-----Outsider(fire)-----Outsider(good)-----Outsider(lawful)-----Outsider(native)-----Outsider(water)-----Plant-----Undead-----Vermin"
+  }
+]

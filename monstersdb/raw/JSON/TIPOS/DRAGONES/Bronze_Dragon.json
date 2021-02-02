@@ -1,0 +1,44 @@
+[
+  {
+    "Nombre": "Bronze dragon"
+  },
+  {
+    "Combate": "\nBronze dragons dislike killing animals and would rather bribe them (perhaps with food) or force them away magically. They use detect thoughts to learn intelligent creatures\u2019 intentions.\nWhen attacking they blind their opponents with fog cloud and then charge or, if flying, snatch them up. Against seafaring opponents they conjure up a storm or use their tails to smash the vessels\u2019 hulls. If a dragon is inclined to be lenient, ships might be merely becalmed, fogbound, or broken-masted.\nBreath Weapon (Su): Bronze dragons have two types of breath weapon, a line of lightning and a cone of repulsion gas. Creatures within the cone must succeed on a Will save or be compelled to do nothing but move away from the dragon for 1d6 rounds plus 1 round per age category of the dragon. This is a mind-affecting compulsion enchantment effect.\nWater Breathing (Ex): A bronze dragon can breathe underwater indefinitely and can freely use its breath weapon, spells, and other abilities while submerged.\nAlternate Form (Su): A young or older bronze dragon can assume any animal or humanoid form of Medium size or smaller as a standard action three times per day. This ability functions as a polymorph spell cast on itself at its caster level, except that the dragon does not regain hit points for changing form and can only assume the form of an animal or humanoid. The dragon can remain in its animal or humanoid form until it chooses to assume a new one or return to its natural form.\nSpell-Like Abilities: At will\u2014speak with animals; 3/day\u2014create food and water (adult or older), fog cloud (adult or older), detect thoughts (old or older), control water (ancient or older); 1/day\u2014control weather (great wyrm).\nSkills: Disguise, Swim, and Survival are considered class skills for bronze dragons.\nSEE WIKIPEDIA ENTRY: Dragon\n\n\n"
+  },
+  {
+    "Columnas": "Level Adjustment:\\\\Wyrmling +4; very young +4; young +6; others \u2014\\"
+  },
+  {
+    "Columnas": "Age\\\\Size\\\\Hit Dice (hp)\\\\Str\\\\Dex\\\\Con\\\\Int\\\\Wis\\\\Cha\\\\Base Attack/Grapple\\\\Attack\\\\Fort Save\\\\Ref Save\\\\Will Save\\\\Breath Weapon (DC)\\\\Frightful Presence DC\\",
+    "Fila 1": "\\\\\\\\\\\\\\\\\\\\\\\\\\\\Wyrmling\\\\S\\\\6d12+6 (45)\\\\13\\\\10\\\\13\\\\14\\\\15\\\\14\\\\+6/+3\\\\+8\\\\+6\\\\+5\\\\+7\\\\2d6 (14)\\\\\u2014\\",
+    "Fila 2": "Very young\\\\M\\\\9d12+18 (76)\\\\15\\\\10\\\\15\\\\14\\\\15\\\\14\\\\+9/+11\\\\+11\\\\+8\\\\+6\\\\+8\\\\4d6 (16)\\\\\u2014\\",
+    "Fila 3": "Young\\\\M\\\\12d12+24 (102)\\\\17\\\\10\\\\15\\\\16\\\\17\\\\16\\\\+12/+15\\\\+15\\\\+10\\\\+8\\\\+11\\\\6d6 (18)\\\\\u2014\\",
+    "Fila 4": "Juvenile\\\\L\\\\15d12+45 (142)\\\\19\\\\10\\\\17\\\\18\\\\19\\\\18\\\\+15/+23\\\\+18\\\\+12\\\\+9\\\\+13\\\\8d6 (20)\\\\\u2014\\",
+    "Fila 5": "Young adult\\\\L\\\\18d12+72 (189)\\\\23\\\\10\\\\19\\\\18\\\\19\\\\18\\\\+18/+28\\\\+23\\\\+15\\\\+11\\\\+15\\\\10d6 (23)\\\\23\\",
+    "Fila 6": "Adult\\\\H\\\\21d12+105 (241)\\\\27\\\\10\\\\21\\\\20\\\\21\\\\20\\\\+21/+37\\\\+27\\\\+17\\\\+12\\\\+17\\\\12d6 (25)\\\\25\\",
+    "Fila 7": "Mature adult\\\\H\\\\24d12+120 (276)\\\\29\\\\10\\\\21\\\\20\\\\21\\\\20\\\\+24/+41\\\\+31\\\\+19\\\\+14\\\\+19\\\\14d6 (27)\\\\27\\",
+    "Fila 8": "Old\\\\H\\\\27d12+162 (337)\\\\31\\\\10\\\\23\\\\22\\\\23\\\\22\\\\+27/+45\\\\+35\\\\+21\\\\+15\\\\+21\\\\16d6 (29)\\\\29\\",
+    "Fila 9": "Very old\\\\H\\\\30d12+180 (375)\\\\33\\\\10\\\\23\\\\22\\\\23\\\\22\\\\+30/+49\\\\+39\\\\+23\\\\+17\\\\+23\\\\18d6 (31)\\\\31\\",
+    "Fila 10": "Ancient\\\\G\\\\33d12+231 (445)\\\\35\\\\10\\\\25\\\\24\\\\25\\\\24\\\\+33/+57\\\\+41\\\\+25\\\\+18\\\\+25\\\\20d6 (33)\\\\33\\",
+    "Fila 11": "Wyrm\\\\G\\\\36d12+288 (522)\\\\37\\\\10\\\\27\\\\26\\\\27\\\\26\\\\+36/+61\\\\+45\\\\+28\\\\+20\\\\+28\\\\22d6 (36)\\\\36\\",
+    "Fila 12": "Great wyrm\\\\G\\\\39d12+312 (565)\\\\39\\\\10\\\\27\\\\26\\\\27\\\\26\\\\+39/+65\\\\+49\\\\+29\\\\+21\\\\+29\\\\24d6 (37)\\\\37\\"
+  },
+  {
+    "Columnas": "Age\\\\Speed\\\\Initiative\\\\AC\\\\Special Abilities\\\\Caster Level\\\\SR\\",
+    "Fila 1": "Wyrmling\\\\40 ft., fly 100 ft. (average), swim 60 ft.\\\\+0\\\\16 (+1 size, +5 natural), touch 11,flat-footed 16\\\\Immunity to electricity,water breathing,speak with animals\\\\\u2014\\\\\u2014\\",
+    "Fila 2": "Very young\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\18 (+8 natural), touch 10,flat-footed 18:\\\\\u2014\\\\\\\\\u2014\\",
+    "Fila 3": "Young\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\21 (+11 natural), touch 10,flat-footed 21\\\\Alternate form\\\\1st\\\\\u2014\\",
+    "Fila 4": "Juvenile\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\23 (\u20131 size, +14 natural), touch 9,flat-footed 23\\\\\\\\3rd\\\\\u2014\\",
+    "Fila 5": "Young adult\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\26 (\u20131 size, +17 natural), touch 9,flat-footed 26\\\\DR 5/magic\\\\5th\\\\20\\",
+    "Fila 6": "Adult\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\28 (\u20132 size, +20 natural), touch 8,flat-footed 28\\\\Create food and water,fog cloud\\\\7th\\\\22\\",
+    "Fila 7": "Mature adult\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\31 (\u20132 size, +23 natural), touch 8,flat-footed 31\\\\DR 10/magic\\\\9th\\\\23\\",
+    "Fila 8": "Old\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\34 (\u20132 size, +26 natural), touch 8,flat-footed 34\\\\Detect thoughts\\\\11th\\\\25\\",
+    "Fila 9": "Very old\\\\40 ft., fly 150 ft. (poor), swim 60 ft.\\\\+0\\\\37 (\u20132 size, +29 natural), touch 8,flat-footed 37\\\\DR 15/magic\\\\13th\\\\26\\",
+    "Fila 10": "Ancient\\\\40 ft., fly 200 ft. (clumsy), swim 60 ft.\\\\+0\\\\38 (\u20134 size, +32 natural), touch 6,flat-footed 38\\\\Control water\\\\15th\\\\28\\",
+    "Fila 11": "Wyrm\\\\40 ft., fly 200 ft. (clumsy), swim 60 ft.\\\\+0\\\\41 (\u20134 size, +35 natural), touch 6,flat-footed 41\\\\DR 20/magic\\\\17th\\\\29\\",
+    "Fila 12": "Great wyrm\\\\40 ft., fly 200 ft. (clumsy), swim 60 ft.\\\\+0\\\\44 (\u20134 size, +38 natural), touch 6,flat-footed 44\\\\Control weather\\\\19th\\\\31\\"
+  },
+  {
+    "Nombres de Tablas": "Bronze Dragon Abilities by Age"
+  }
+]

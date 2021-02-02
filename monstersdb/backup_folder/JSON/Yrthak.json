@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Yrthak"
+  },
+  {
+    "Size/Type": "Huge Magical Beast",
+    "Hit Dice": "12d10+36 (102 hp)",
+    "Initiative": "+6",
+    "Speed": "20 ft. (4 squares), fly 60 ft. (average)",
+    "Armor Class": "18 (\u20132 size, +2 Dex, +8 natural), touch 10, flat-footed 16",
+    "Base Attack/Grapple": "+12/+25",
+    "Attack": "Bite +15 melee (2d8+5) or sonic lance +12 ranged touch (6d6)",
+    "Full Attack": "Bite +15 melee (2d8+5) and 2 claws +13 melee (1d6+2); or sonic lance +12 ranged touch (6d6)",
+    "Space/Reach": "15 ft./10 ft.",
+    "Special Attacks": "Sonic lance, explosion",
+    "Special Qualities": "Blindsight 120 ft., immunities, vulnerability to sonic",
+    "Saves": "Fort +11, Ref +10, Will +5",
+    "Abilities": "Str 20, Dex 14, Con 17, Int 7, Wis 13, Cha 11",
+    "Skills": "Listen +12, Move Silently +10",
+    "Feats": "Endurance, Flyby Attack, Improved Initiative, Multiattack, Snatch",
+    "Environment": "Temperate mountains",
+    "Organization": "Solitary or clutch (2\u20134)",
+    "Challenge Rating": "9",
+    "Treasure": "None",
+    "Alignment": "Often neutral",
+    "Advancement": "13\u201316 HD (Huge); 17\u201336 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A yrthak is blind. It senses sound and movement by means of a special organ on its long tongue. It emits powerfully focused beams of sound from the protrusion on its head. The creature is a yellowish-green color, with the wings and fin being more yellow and the head and body more green. The teeth are yellow.A yrthak is about 20 feet long, with a wingspan of 40 feet. It weighs about 5,000 pounds.Despite their intelligence, yrthaks do not speak."
+  },
+  {
+    "Combate": "A yrthak prefers to attack from the air, strafing the ground with sonic attacks or snatching up and dropping prey.Sonic Lance (Su): Once every 2 rounds, a yrthak can focus sonic energy in a ray up to 60 feet long. This is a ranged touch attack that deals 6d6 points of damage to a single target.Explosion (Su): A yrthak can fire its sonic lance at the ground, a large rock, a stone wall, or the like to create an explosion of shattered stone. This attack deals 2d6 points of piercing damage to all within 10 feet of the effect\u2019s center. This counts as a use of the sonic lance attack and thus is usable only once every 2 rounds, and never on the round following a sonic lance attack.Blindsight (Ex): A yrthak can ascertain all foes within 120 feet. Beyond that range it is considered blinded. Yrthaks are invulnerable to gaze attacks, visual effects of spells such as illusions, and other attack forms that rely on sight. A yrthak whose sense of hearing is impaired is effectively blinded, treating all targets as having total concealment.Immunities: Yrthaks have immunity to gaze attacks, visual effects, illusions, and other attack forms that rely on sight.Skills: Yrthaks have a +4 racial bonus on Listen checks."
+  }
+]

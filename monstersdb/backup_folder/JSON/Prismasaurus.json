@@ -1,0 +1,33 @@
+[
+  {
+    "Nombre": "Prismasaurus"
+  },
+  {
+    "Size/Type": "Huge Magical Beast",
+    "Hit Dice": "60d10+620 (950 hp hp)",
+    "Initiative": "+15 (+7 Dex, +8 Superior Initiative)",
+    "Speed": "30 ft.",
+    "Armor Class": "55 (\u20132 size, +7 Dex, +40 natural), touch 15, flat-footed 48",
+    "Base Attack/Grapple": "+60/+79",
+    "Attack": "Bite +72 (8d10+11/ 19\u201320 (+1d6 on critical hit)) melee",
+    "Full Attack": "Bite +72 melee (8d10+11/ 19\u201320 (+1d6 on critical hit)), tail +67 (10d6+5) melee",
+    "Space/Reach": "15 ft./10 ft.",
+    "Special Attacks": "Prismatic emanations",
+    "Special Qualities": "Immunities, prismatic blur, SR 38, DR 10/\u2013",
+    "Saves": "Fort +41, Ref +39, Will +24",
+    "Abilities": "Str 32, Dex 25, Con 29, Int 4, Wis 19, Cha 10",
+    "Skills": "Listen +37, Spot +38",
+    "Feats": "Alertness, Cleave, Combat Reflexes, Devastating Critical (bite), Dodge, Endurance, Epic Endurance, Epic Toughness (\u00d74), Epic Weapon Focus (bite), Epic Weapon Focus (tail), Great Cleave, Improved Critical (bite), Improved Initiative, Overwhelming Critical (bite), Power Attack, Superior Initiative, Weapon Focus (bite), Weapon Focus (tail)",
+    "Environment": "Any sunny land",
+    "Organization": "Solitary or pair",
+    "Challenge Rating": "28",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "61\u201390 HD (Huge); 91\u2013150 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Combate": "Prismatic Emanations (Su): The reflected and refracted light from the prismasaurus\u2019s crystalline ridge functions very similarly to the prismatic spray spell. Any creature of less than 8 HD that is within 30 feet of the creature is automatically blinded for 2d4 rounds. In addition, any creature within 20 feet of the prismasaurus is randomly struck by one or more rays of light, as determined by the table that accompanies the prismatic spray spell. This effect is as the prismatic spray spell in a 30-foot-radius spread, but is otherwise as cast by a 20th-level caster. The save DC for the prismatic spray effects is 49.Immunities (Su): It is immune to poison, gases, petrification, and mind-affecting attacks.Prismatic Blur (Ex): The reflected and refracted light that constantly surrounds the creature blurs the creature\u2019s outline and makes it difficult to properly target. All melee and ranged attacks against the creature have a 50% miss chance."
+  }
+]

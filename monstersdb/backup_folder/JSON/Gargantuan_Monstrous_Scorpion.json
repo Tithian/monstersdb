@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Gargantuan monstrous scorpion"
+  },
+  {
+    "Monstruo y Nivel": "Monstrous Scorpion, Gargantuan",
+    "Size/Type": "Gargantuan Vermin",
+    "Hit Dice": "20d8+60 (150 hp)",
+    "Initiative": "+0",
+    "Speed": "50 ft. (10 squares)",
+    "Armor Class": "24 (\u20134 size, +18 natural),, touch 6, flat-footed 24",
+    "Base Attack/Grapple": "+15/+37",
+    "Attack": "Claw +21 melee (2d6+10)",
+    "Full Attack": "2 claws +21 melee (2d6+10) and sting +16 melee (2d6+5 plus poison)",
+    "Space/Reach": "20 ft./15 ft.",
+    "Special Attacks": "Constrict 2d6+10, improved grab, poison",
+    "Special Qualities": "Darkvision 60 ft., tremorsense 60 ft., vermin traits",
+    "Saves": "Fort +15, Ref +6, Will +6",
+    "Abilities": "Str 31, Dex 10, Con 16, Int \u2014, Wis 10, Cha 2",
+    "Skills": "Climb +14, Hide \u20138, Spot +4",
+    "Feats": "\u2014",
+    "Environment": "Warm deserts",
+    "Organization": "Solitary",
+    "Challenge Rating": "10",
+    "Treasure": "1/10 coins; 50% goods; 50% items",
+    "Alignment": "Always Neutral",
+    "Advancement": "21\u201339 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Columnas": "-----Size-----Fort-----DC-----Damage",
+    "Fila 1": "-----Gargantuan-----23-----1d8-----Con"
+  }
+]

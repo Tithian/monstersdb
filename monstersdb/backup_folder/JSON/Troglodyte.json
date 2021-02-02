@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Troglodyte"
+  },
+  {
+    "Size/Type": "Medium Humanoid (Reptilian)",
+    "Hit Dice": "2d8+4 (13 hp)",
+    "Initiative": "\u20131",
+    "Speed": "30 ft. (6 squares)",
+    "Armor Class": "15 (\u20131 Dex, +6 natural), touch 9, flat-footed 15",
+    "Base Attack/Grapple": "+1/+1",
+    "Attack": "Club +1 melee (1d6) or claw +1 melee (1d4) or javelin +1 ranged (1d6)",
+    "Full Attack": "Club +1 melee (1d6) and claw \u20131 melee (1d4) and bite \u20131 melee (1d4); or 2 claws +1 melee (1d4) and bite \u20131 melee (1d4); or javelin +1 ranged (1d6)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Stench",
+    "Special Qualities": "Darkvision 90 ft.",
+    "Saves": "Fort +5, Ref \u20131, Will +0",
+    "Abilities": "Str 10, Dex 9, Con 14, Int 8, Wis 10, Cha 10",
+    "Skills": "Hide +5*, Listen +3",
+    "Feats": "MultiattackB, Weapon Focus (javelin)",
+    "Environment": "Underground",
+    "Organization": "Clutch (2\u20135), squad (6\u201311 plus 1\u20132 monitor lizards), or band (20\u201380 plus 20% noncombatants plus 3\u201313 monitor lizards)",
+    "Challenge Rating": "1",
+    "Treasure": "50% coins; 50% goods; 50% items",
+    "Alignment": "Usually chaotic evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "+2"
+  },
+  {
+    "Descripci\u00f3n": "A troglodyte stands about 5 feet tall and weighs about 150 pounds.Troglodytes speak Draconic."
+  },
+  {
+    "Combate": "Half of a group of troglodytes are armed only with claws and teeth; the rest carry one or two javelins and clubs. They normally conceal themselves, launch a volley of javelins, then close to attack. If the battle goes against them, they retreat and attempt to hide.Stench (Ex): When a troglodyte is angry or frightened, it secretes an oily, musk-like chemical that nearly every form of animal life finds offensive. All living creatures (except troglodytes) within 30 feet of a troglodyte must succeed on a DC 13 Fortitude save or be sickened for 10 rounds. The save DC is Constitution-based. Creatures that successfully save cannot be affected by the same troglodyte\u2019s stench for 24 hours. A delay poison or neutralize poison spell removes the effect from the sickened creature. Creatures with immunity to poison are unaffected, and creatures resistant to poison receive their normal bonus on their saving throws.Skills: The skin of a troglodyte changes color somewhat, allowing it to blend in with its surroundings like a chameleon and providing a +4 racial bonus on Hide checks. *In rocky or underground settings, this bonus improves to +8."
+  }
+]

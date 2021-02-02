@@ -1,0 +1,30 @@
+[
+  {
+    "Nombre": "Giant bee"
+  },
+  {
+    "Size/Type": "Medium Vermin",
+    "Hit Dice": "3d8 (13 hp)",
+    "Initiative": "+2",
+    "Speed": "20 ft. (4 squares), fly 80 ft. (good)",
+    "Armor Class": "14 (+2 Dex, +2 natural), touch 12, flat-footed 12",
+    "Base Attack/Grapple": "+2/+2",
+    "Attack": "Sting +2 melee (1d4 plus poison)",
+    "Full Attack": "Sting +2 melee (1d4 plus poison)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Poison",
+    "Special Qualities": "Darkvision 60 ft., vermin traits",
+    "Saves": "Fort +3, Ref +3, Will +2",
+    "Abilities": "Str 11, Dex 14, Con 11, Int \u2014, Wis 12, Cha 9",
+    "Skills": "Spot +5, Survival +1*",
+    "Feats": "\u2014",
+    "Environment": "Temperate plains",
+    "Organization": "Solitary, buzz (2\u20135), or hive (11\u201320)",
+    "Challenge Rating": "1",
+    "Treasure": "No coins; 1/4 goods (honey only); no items",
+    "Alignment": "Always neutral",
+    "Advancement": "4\u20136 HD (Medium); 7\u20139 HD (Large)",
+    "Level Adjustment": "\u2014"
+  },
+  {}
+]

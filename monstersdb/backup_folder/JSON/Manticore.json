@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Manticore"
+  },
+  {
+    "Size/Type": "Large Magical Beast",
+    "Hit Dice": "6d10+24 (57 hp)",
+    "Initiative": "+2",
+    "Speed": "30 ft. (6 squares), fly 50 ft. (clumsy)",
+    "Armor Class": "17 (\u20131 size, +2 Dex, +6 natural), touch 11, flat-footed 15",
+    "Base Attack/Grapple": "+6/+15",
+    "Attack": "Claw +10 melee (2d4+5) or 6 spikes +8 ranged (1d8+2/19\u201320)",
+    "Full Attack": "2 claws +10 melee (2d4+5) and bite +8 melee (1d8+2); or 6 spikes +8 ranged (1d8+2/19\u201320)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Spikes",
+    "Special Qualities": "Darkvision 60 ft., low-light vision, scent",
+    "Saves": "Fort +9, Ref +7, Will +3",
+    "Abilities": "Str 20, Dex 15, Con 19, Int 7, Wis 12, Cha 9",
+    "Skills": "Listen +5, Spot +9, Survival +1",
+    "Feats": "Flyby Attack, Multiattack, TrackB, Weapon Focus (spikes)",
+    "Environment": "Warm marshes",
+    "Organization": "Solitary, pair, or pride (3\u20136)",
+    "Challenge Rating": "5",
+    "Treasure": "Standard",
+    "Alignment": "Usually lawful evil",
+    "Advancement": "7\u201316 HD (Large); 17\u201318 HD (Huge)",
+    "Level Adjustment": "+3 (cohort)"
+  },
+  {
+    "Descripci\u00f3n": "A typical manticore is about 10 feet long and weighs about 1,000 pounds. Manticores speak Common."
+  },
+  {
+    "Combate": "A manticore begins most attacks with a volley of spikes, then closes. In the outdoors, it often uses its powerful wings to stay aloft during battle.Spikes (Ex): With a snap of its tail, a manticore can loose a volley of six spikes as a standard action (make an attack roll for each spike). This attack has a range of 180 feet with no range increment. All targets must be within 30 feet of each other. The creature can launch only twenty-four spikes in any 24-hour period.Skills: *Manticores have a +4 racial bonus on Spot checks.SEE WIKIPEDIA ENTRY: Manticore"
+  }
+]

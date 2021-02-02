@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Psicrystal"
+  },
+  {
+    "Size/Type": "Diminutive Construct",
+    "Hit Dice": "As master\u2019s HD (hp 1/2 master\u2019s hp)",
+    "Initiative": "+2",
+    "Speed": "30 ft. (6 squares), climb 20 ft.* (*With self-propulsion ability activated.)",
+    "Armor Class": "16 (+4 size, +2 Dex*), touch 16, flat-footed 14",
+    "Base Attack/Grapple": "+0/\u201317",
+    "Attack": "\u2014",
+    "Full Attack": "\u2014",
+    "Space/Reach": "1 ft./0 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Construct traits, hardness 8, psicrystal granted abilities (improved evasion, personality, self-propulsion, share powers, sighted, telepathic link)",
+    "Saves": "Fort **, Ref **, Will ** (** as master's save)",
+    "Abilities": "Str 1*, Dex 15*, Con \u2014, Int 6, Wis 10, Cha 10",
+    "Skills": "Climb +14*, Listen +6, Move Silently +6, Search +2, Spot +6",
+    "Feats": "Alertness",
+    "Environment": "Any",
+    "Organization": "Solitary",
+    "Challenge Rating": "Included with master",
+    "Treasure": "None",
+    "Alignment": "As master",
+    "Advancement": "\u2014",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "The psicrystal described here is that of a 1st-level manifester."
+  },
+  {
+    "Combate": "A psicrystal\u2019s characteristics depend on its master. Its Hit Dice are equal to its master\u2019s Hit Dice (counting only levels in psion or wilder), its hit points are equal to half its master\u2019s, and its saving throw bonuses are the same as its master\u2019s.Construct Traits: A psicrystal has immunity to poison, sleep, paralysis, stunning, disease, death effects, necromancy effects, mind-affecting effects (charms, compulsions, phantasms, patterns, and morale effects), and any effect that requires a Fortitude save unless it also works on objects or is harmless. It is not subject to critical hits, nonlethal damage, ability damage, ability drain, fatigued, exhaustion, or energy drain. It cannot heal damage, but it can be repaired. Psicrystals do not have the usual construct traits of darkvision and low-light vision.Psicrystal Granted Abilities: The psicrystal described here has the special abilities of self-propulsion, alertness, improved evasion, share powers, telepathic link, sighted, and personality (If its master chooses not to activate the self-propulsion ability, the psicrystal reverts to a speed of 0 feet and has no Strength score and no Dexterity score.)Skills: A psicrystal (with its self-propulsion ability activated) uses its Dexterity modifier instead of its Strength modifier on Climb checks. It has a +8 racial bonus on Climb checks and can always choose to take 10, even if rushed or threatened."
+  }
+]

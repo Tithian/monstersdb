@@ -1,0 +1,30 @@
+[
+  {
+    "Nombre": "Balor"
+  },
+  {
+    "Size/Type": "Large Outsider (Chaotic, Demon, Extraplanar, Evil)",
+    "Hit Dice": "20d8+200 (290 hp)",
+    "Initiative": "+11",
+    "Speed": "40 ft. (8 squares), fly 90 ft. (good)",
+    "Armor Class": "35 (\u20131 size, +7 Dex, +19 natural), touch 16, flat-footed 28",
+    "Base Attack/Grapple": "+20/+36",
+    "Attack": "+1 vorpal longsword +33 melee (2d6+8/19\u201320)",
+    "Full Attack": "+1 vorpal longsword +31/+26/+21/+16 melee (2d6+8/19\u201320) and +1 flaming whip +30/+25 melee (1d4+4 plus 1d6 fire plus entangle); or 2 slams +31 melee (1d10+7)",
+    "Space/Reach": "10 ft./10 ft. (20 ft. with +1 flaming whip)",
+    "Special Attacks": "Death throes, entangle, spell-like abilities, summon demon, vorpal sword",
+    "Special Qualities": "Damage reduction 15/cold iron and good, darkvision 60 ft., flaming body, immunity to electricity, fire, and poison, resistance to acid 10 and cold 10, spell resistance 28, telepathy 100 ft., true seeing",
+    "Saves": "Fort +22, Ref +19, Will +19",
+    "Abilities": "Str 35, Dex 25, Con 31, Int 24, Wis 24, Cha 26",
+    "Skills": "Bluff +31, Concentration +33, Diplomacy +35, Disguise +8 (+10 acting), Hide +26, Intimidate +33, Knowledge (any two) +30, Listen +38, Move Silently +30, Search +30, Sense Motive +30, Spellcraft +30 (+32 scrolls), Spot +38, Survival +7 (+9 following tracks), Use Magic Device +31 (+33 scrolls)",
+    "Feats": "Cleave, Improved Initiative, Improved Two-Weapon Fighting, Power Attack, Quicken Spell-Like Ability (telekinesis), Two-Weapon Fighting, Weapon Focus (longsword)",
+    "Environment": "A chaotic evil-aligned plane",
+    "Organization": "Solitary or troupe (1 balor, 1 marilith, and 2\u20135 hezrous)",
+    "Challenge Rating": "20",
+    "Treasure": "Standard coins; double goods; standard items, plus +1 vorpal greatsword and +1 flaming whip",
+    "Alignment": "Always chaotic evil",
+    "Advancement": "21\u201330 HD (Large); 31\u201360 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {}
+]

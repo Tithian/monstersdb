@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Mithral golem"
+  },
+  {
+    "Monstruo y Nivel": "Mithral Golem",
+    "Size/Type": "Huge Construct",
+    "Hit Dice": "36d10+40 (238 hp hp)",
+    "Initiative": "+4 (Dex)",
+    "Speed": "40 ft.",
+    "Armor Class": "42 (\u20132 size, +4 Dex, +26 natural, +4 haste), touch 12, flat-footed 38",
+    "Base Attack/Grapple": "+27/+49",
+    "Attack": "Slam +39 (4d10+14) melee",
+    "Full Attack": "2 slams +39 (4d10+14) melee",
+    "Space/Reach": "15 ft./15 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Construct traits, magic immunity, DR 15/epic and adamantine, alacrity",
+    "Saves": "Fort +12, Ref +16, Will +12",
+    "Abilities": "Str 39, Dex 19, Con \u2013, Int \u2013, Wis 11, Cha 1",
+    "Skills": "Jump +18",
+    "Feats": "\u2014",
+    "Environment": "Any land",
+    "Organization": "Solitary",
+    "Challenge Rating": "21",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "37\u201354 HD (Huge); 55\u201372 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A mithral golem cannot speak or make any vocal noise, nor does it have any distinguishable odor. Unlike most golems, it can run just as well as a normal creature.A mithral golem\u2019s natural weapons are treated as epic for the purpose of overcoming damage reduction."
+  },
+  {
+    "Combate": "Alacrity (Su): Once per round, the mithral golem may take an extra standard action (either before or after its other actions in the round).Magic Immunity (Ex): A mithral golem is immune to all magical and supernatural effects, except as follows. A slow spell negates its alacrity for 1d4 rounds, while a haste spell restores 1d6 hit points per level of the caster (maximum 10d6) or restores its alacrity, if previously negated by a slow spell. Multiple slow spells simply extend the duration of the effect.ConstructionA mithral golem\u2019s body is sculpted from 8 1/2 tons of pure iron and is then polymorphed into mithral (using polymorph any object). A mithral golem costs 250,000 gold pieces to create, which includes 5,000 gp for the body. Assembling the body requires a successful Craft (armorsmithing) or Craft (weaponsmithing) check (DC 30). The creator must be 25th level, have the Craft Epic Magic Arms and Armor feat, and be able to cast arcane spells. Completing the ritual drains 5,000 XP from the creator and requires geas/quest, haste, and wish.SEE WIKIPEDIA ENTRY: Golem"
+  }
+]

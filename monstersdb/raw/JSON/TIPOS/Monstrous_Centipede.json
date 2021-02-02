@@ -1,0 +1,12 @@
+[
+  {
+    "Nombre": "Monstrous centipede"
+  },
+  {
+    "Columnas": "Size\\Fort DC\\Damage\\Size\\Fort DC\\Damage\\",
+    "Fila 1": "Tiny\\10\\1 Dex\\Huge\\14\\1d6 Dex\\",
+    "Fila 2": "Small\\10\\1d2 Dex\\Gargantuan\\17\\1d8 Dex\\",
+    "Fila 3": "Medium\\10\\1d3 Dex\\Colossal\\23\\2d6 Dex\\",
+    "Fila 4": "Large\\11\\1d4 Dex\\\\\\\\"
+  }
+]

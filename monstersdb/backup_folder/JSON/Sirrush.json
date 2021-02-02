@@ -1,0 +1,32 @@
+[
+  {
+    "Size/Type": "Large Magical Beast",
+    "Hit Dice": "40d10+680 (900 hp)",
+    "Initiative": "+23 (+15 Dex, +8 Superior Initiative)",
+    "Speed": "90 ft.",
+    "Armor Class": "44 (+15 Dex, \u20131 size, +20 natural), touch 24, flat-footed 39",
+    "Base Attack/Grapple": "+40/+60",
+    "Attack": "Claw +56 (2d6+16/19\u201320 (+1d6 on critical hit)) melee",
+    "Full Attack": "4 claws +56 (2d6+16/19\u201320 (+1d6 on critical hit)) melee, bite +54 (4d6+8) melee",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Pounce, stunning roar",
+    "Special Qualities": "Blindsight 300 ft., DR 10/epic, darkvision 60 ft., fast healing 20, low-light vision, SR 39, scent; acid, cold, electricity, fire, and sonic resistance 10",
+    "Saves": "Fort +39, Ref +37, Will +27",
+    "Abilities": "Str 42, Dex 40, Con 44, Int 21, Wis 38, Cha 28",
+    "Skills": "Climb +59, Hide +58, Jump +83, Listen +57, Move Silently +58, Spot +57, Survival +57",
+    "Feats": "Blinding Speed (\u00d74), Cleave, Great Cleave, Improved Critical (claw), Improved Initiative, Multiattack, Overwhelming Critical (claw), Power Attack, Superior Initiative, Weapon Focus (bite), Weapon Focus (claw)",
+    "Environment": "Any",
+    "Organization": "Solitary, pair, or pack (4\u20139 sirrushes and 1\u20132 three-headed sirrushes)",
+    "Challenge Rating": "24",
+    "Treasure": "Standard",
+    "Alignment": "Usually chaotic neutral",
+    "Advancement": "41\u201350 HD (Large), 51\u201360 HD (Huge), 61+ HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Sirrushes speak Sylvan and Draconic.A sirrush\u2019s natural weapons are treated as epic for the purpose of overcoming damage reduction."
+  },
+  {
+    "Combate": "Stunning Roar (Ex): Every 1d4 rounds, a sirrush can loose a sonic attack of such volume that it stuns all creatures in a 60-foot spread for 1d4 rounds if they fail a fortitude saving throw (DC 47). The DC is Constitution-based.Pounce (Ex): If a sirrush charges or leaps upon a foe during its first round of combat, it can make a full attack even if it has already taken a move action.Headloss Resistance (Ex): A sirrush\u2019s thick bony plate protects its neck like a shield and provides resistance from effects that could normally behead it, such as a vorpal weapon. When a sirrush or three-headed sir-rush would otherwise lose its head, it instead makes a fortitude saving throw (DC 10 + 1/2 HD of attacker + attacker\u2019s Strength modifier). On a failed save, the sirrush\u2019s head leaves its shoulders normally, but on a successful save, the sirrush is unaffected by the beheading. A sirrush dies when beheaded; a three-headed sirrush goes on fighting until all its heads are lost (the only penalty it incurs is one or two fewer bite attacks when it makes a full attack)."
+  }
+]

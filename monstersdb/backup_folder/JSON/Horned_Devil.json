@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Horned devil (cornugon)"
+  },
+  {
+    "Size/Type": "Large Outsider (Devil, Extraplanar, Evil, Lawful)",
+    "Hit Dice": "15d8+105 (172 hp)",
+    "Initiative": "+7",
+    "Speed": "20 ft. (4 squares), fly 50 ft. (average)",
+    "Armor Class": "35 (\u20131 size, +7 Dex, +19 natural), touch 16, flat-footed 28",
+    "Base Attack/Grapple": "+15/+29",
+    "Attack": "Spiked chain +25 melee (2d6+15 plus stun) or claw +24 melee (2d6+10) or tail +24 melee (2d6+10 plus infernal wound)",
+    "Full Attack": "Spiked chain +25/+20/+15 melee (2d6+15 plus stun) and bite +22 melee (2d8+5) and tail +22 melee (2d6+5 plus infernal wound); or 2 claws +24 melee (2d6+10) and bite + 22 melee (2d8+5) and tail +22 melee (2d6+5 plus infernal wound)",
+    "Space/Reach": "10 ft./10 ft. (20 ft. with spiked chain)",
+    "Special Attacks": "Fear aura, infernal wound, spell-like abilities, stun, summon devil",
+    "Special Qualities": "Damage reduction 10/good and silver, darkvision 60 ft., immunity to fire and poison, resistance to acid 10 and cold 10, regeneration 5, see in darkness, spell resistance 28, telepathy 100 ft.",
+    "Saves": "Fort +16, Ref +16, Will +15",
+    "Abilities": "Str 31, Dex 25, Con 25, Int 14, Wis 18, Cha 22",
+    "Skills": "Bluff +24, Climb +28, Concentration +24, Diplomacy +10, Disguise +6 (+8 acting), Hide +21, Intimidate +26, Listen +22, Move Silently +23, Search +20, Sense Motive +22, Spot +22, Survival +4 (+6 following tracks)",
+    "Feats": "Cleave, Improved Sunder, Iron Will, Multiattack, Power Attack, Weapon Focus (spiked chain)",
+    "Environment": "A lawful evil-aligned plane",
+    "Organization": "Solitary, team (2\u20134), or squad (6\u201310)",
+    "Challenge Rating": "16",
+    "Treasure": "Standard coins; double goods; standard items",
+    "Alignment": "Always lawful evil",
+    "Advancement": "16\u201320 HD (Large); 21\u201345 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A horned devil is 9 feet tall and weighs about 600 pounds."
+  },
+  {
+    "Combate": "Horned devils are bold fighters. They rarely retreat, even against overwhelming odds. They love to fight with their spiked chains, usually singling out the most powerful foes to stun and eliminate quickly.A horned devil\u2019s natural weapons, as well as any weapons it wields, are treated as evil-aligned and lawful-aligned for the purpose of overcoming damage reduction.Spell-Like Abilities: At will\u2014dispel chaos (DC 21), dispel good (DC 21), magic circle against good, greater teleport (self plus 50 pounds of objects only); persistent image (DC 21) 3/day\u2014fireball (DC 19), lightning bolt (DC 19). Caster level 15th. The save DCs are Charisma-based.Fear Aura (Su): A horned devil can radiate a 5-foot-radius fear aura as a free action. A creature in the area must succeed on a DC 23 Will save or be affected as though by a fear spell (caster level 15th). A creature that successfully saves cannot be affected again by the same horned devil\u2019s aura for 24 hours. Other devils are immune to the aura. The save DC is Charisma-based.Stun (Su): Whenever a horned devil hits with a spiked chain attack, the opponent must succeed on a DC 27 Fortitude save or be stunned for 1d4 rounds. The save DC is Strength-based. This ability is a function of the horned devil, not of the spiked chain.Infernal Wound (Su): The damage a horned devil deals with its tail attack causes a persistent wound. An injured creature loses 2 additional hit points each round. The wound does not heal naturally and resists healing spells. The continuing hit point loss can be stopped by a DC 24 Heal check, a cure spell, or a heal spell. However, a character attempting to cast a cure spell or a heal spell on a creature damaged by a horned devil\u2019s tail must succeed on a DC 24 caster level check, or the spell has no effect on the injured character. A successful Heal check automatically stops the continuing hit point loss as well as restoring hit points. The check DC is Constitution-based.Summon Devil (Sp): Once per day a horned devil can attempt to summon 2d10 lemures or 1d6 bearded devils with a 50% chance of success, 1d6 barbed devils with a 35% chance of success, or another horned devil with a 20% chance of success. This ability is the equivalent of a 6th-level spell.Regeneration (Ex): A horned devil takes normal damage from good-aligned silvered weapons, and from spells or effects with the good descriptor."
+  }
+]

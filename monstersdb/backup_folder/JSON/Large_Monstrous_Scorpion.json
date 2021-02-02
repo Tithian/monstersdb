@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Large monstrous scorpion"
+  },
+  {
+    "Monstruo y Nivel": "Monstrous scorpion, Large",
+    "Size/Type": "Large Vermin",
+    "Hit Dice": "5d8+10 (32 hp)",
+    "Initiative": "+0",
+    "Speed": "50 ft. (10 squares)",
+    "Armor Class": "16 (\u20131 size, +7 natural),, touch 9, flat-footed 16",
+    "Base Attack/Grapple": "+3/+11",
+    "Attack": "Claw +6 melee (1d6+4)",
+    "Full Attack": "2 claws +6 melee (1d6+4) and sting +1 melee (1d6+2 plus poison)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Constrict 1d6+4, improved grab, poison",
+    "Special Qualities": "Darkvision 60 ft., tremorsense 60 ft., vermin traits",
+    "Saves": "Fort +6, Ref +1, Will +1",
+    "Abilities": "Str 19, Dex 10, Con 14, Int \u2014, Wis 10, Cha 2",
+    "Skills": "Climb +8, Hide +0, Spot +4",
+    "Feats": "\u2014",
+    "Environment": "Warm deserts",
+    "Organization": "Solitary or colony (2\u20135)",
+    "Challenge Rating": "3",
+    "Treasure": "1/10 coins; 50% goods; 50% items",
+    "Alignment": "Always neutral",
+    "Advancement": "6\u20139 HD (Large)",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Columnas": "-----Size-----Fort-----DC-----Damage",
+    "Fila 1": "-----Large-----14-----1d4-----Con"
+  }
+]

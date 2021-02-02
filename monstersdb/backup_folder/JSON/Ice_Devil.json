@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Ice devil (gelugon)"
+  },
+  {
+    "Size/Type": "Large Outsider (Devil, Extraplanar, Evil, Lawful)",
+    "Hit Dice": "14d8+84 (147 hp)",
+    "Initiative": "+5",
+    "Speed": "40 ft. (8 squares)",
+    "Armor Class": "32 (\u20131 size, +5 Dex, +18 natural), touch 14, flat-footed 27",
+    "Base Attack/Grapple": "+14/+24",
+    "Attack": "Spear +20 melee (2d6+9/x3 plus slow) or claw +19 melee (1d10+6)",
+    "Full Attack": "Spear +20/+15/+10 melee (2d6+9/x3 plus slow) and bite +14 melee (2d6+3) and tail +14 melee (3d6+3 plus slow); or 2 claws +19 melee (1d10+6) and bite +14 melee (2d6+3) and tail +14 melee (3d6+3 plus slow)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Fear aura, slow, spell-like abilities, summon devil",
+    "Special Qualities": "Damage reduction 10/good, darkvision 60 ft., immunity to fire and poison, resistance to acid 10 and cold 10, regeneration 5, see in darkness, spell resistance 25, telepathy 100 ft.",
+    "Saves": "Fort +15, Ref +14, Will +15",
+    "Abilities": "Str 23, Dex 21, Con 23, Int 22, Wis 22, Cha 20",
+    "Skills": "Bluff +22, Climb +23, Concentration +23, Diplomacy +9, Disguise +5 (+7 acting), Intimidate +24, Jump +27, Knowledge (any three) +23, Listen +25, Move Silently +22, Search +23, Sense Motive +23, Spellcraft +23, Spot +25, Survival +6 (+8 following tracks)",
+    "Feats": "Alertness, Cleave, Combat Reflexes, Power Attack, Weapon Focus (spear)",
+    "Environment": "A lawful evil-aligned plane",
+    "Organization": "Solitary, team (2\u20134), squad (6\u201310), or troupe (1\u20132 ice devils, 7\u201312 bearded devils, and 1\u20134 bone devils)",
+    "Challenge Rating": "13",
+    "Treasure": "Standard coins; double goods; standard items",
+    "Alignment": "Always lawful evil",
+    "Advancement": "15\u201328 HD (Large); 29\u201342 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "An ice devil is about 12 feet tall and weighs about 700 pounds."
+  },
+  {
+    "Combate": "An ice devil prefers to fight only when doing so serves its mission, but it never hesitates to attack when it deems a battle necessary\u2014or likely to end in its victory.An ice devil\u2019s natural weapons, as well as any weapons it wields, are treated as evil-aligned and lawful-aligned for the purpose of overcoming damage reduction.Fear Aura (Su): An ice devil can radiate a 10-foot-radius fear aura as a free action. A creature in the area must succeed on a DC 22 Will save or be affected as though by a fear spell (caster level 13th). A creature that successfully saves cannot be affected again by the same ice devil\u2019s aura for 24 hours. Other devils are immune to the aura. The save DC is Charisma-based.Slow (Su): A hit from an ice devil\u2019s tail or spear induces numbing cold. The opponent must succeed on a DC 23 Fortitude save or be affected as though by a slow spell for 1d6 rounds. The save DC is Constitution-based.Spell-Like Abilities: At will\u2014cone of cold (DC 20), fly, ice storm (DC 19), greater teleport (self plus 50 pounds of objects only), persistent image (DC 20), unholy aura (DC 23), wall of ice (DC 19). Caster level 13th. The save DCs are Charisma-based.Summon Devil (Sp): Once per day an ice devil can attempt to summon 2d10 lemures or 1d6 bearded devils, 2d4 bone devils with a 50% chance of success, or another ice devil with a 20% chance of success. This ability is the equivalent of a 4th-level spell.Regeneration (Ex): An ice devil takes normal damage from good-aligned weapons and from spells or effects with the good descriptor."
+  }
+]

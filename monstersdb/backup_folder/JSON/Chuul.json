@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Chuul"
+  },
+  {
+    "Size/Type": "Large Aberration (Aquatic)",
+    "Hit Dice": "11d8+44 (93 hp)",
+    "Initiative": "+7",
+    "Speed": "30 ft. (6 squares), swim 20 ft.",
+    "Armor Class": "22 (\u20131 size, +3 Dex, +10 natural), touch 12, flat-footed 19",
+    "Base Attack/Grapple": "+8/+17",
+    "Attack": "Claw +12 melee (2d6+5)",
+    "Full Attack": "2 claws +12 melee (2d6+5)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Constrict 3d6+5, improved grab, paralytic tentacles",
+    "Special Qualities": "Amphibious, darkvision 60 ft., immunity to poison",
+    "Saves": "Fort +7, Ref +6, Will +9",
+    "Abilities": "Str 20, Dex 16, Con 18, Int 10, Wis 14, Cha 5",
+    "Skills": "Hide +13, Listen +11, Spot +11, Swim +13",
+    "Feats": "Alertness, Blind Fight,Combat Reflexes, Improved Initiative",
+    "Environment": "Temperate marshes",
+    "Organization": "Solitary, pair, or pack (3\u20135)",
+    "Challenge Rating": "7",
+    "Treasure": "1/10th coins; 50% goods; standard items",
+    "Alignment": "Usually chaotic evil",
+    "Advancement": "12\u201316 HD (Large); 17\u201333 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A horrible mix of crustacean, insect, and serpent, the chuul is an abomination that lurks submerged or partially submerged, awaiting intelligent prey to devour. Although amphibious, chuuls are not good swimmers and actually prefer to be on land or in very shallow water when they attack. A chuul is about 8 feet long and weighs 650 pounds.Chuuls speak Common (or Undercommon, for the underground variety)."
+  },
+  {
+    "Combate": "A chuul prefers to wait by the shore, submerged in murky water, until it hears nearby prey (in or out of the water) that it can attack with surprise. A chuul grabs with its claws and constricts its foe, then passes the opponent to its paralytic tentacles. It tries to always have one claw free, so if it faces a large number of opponents, it drops a paralyzed or dead victim and continues attempting to grab, constrict, and paralyze the rest.Constrict (Ex): On a successful grapple check, a chuul deals 3d6+5 points of damage.Improved Grab (Ex): To use this ability, a chuul must hit with a claw attack. It can then attempt to start a grapple as a free action without provoking an attack of opportunity. If it wins the grapple check, it establishes a hold and can constrict or on its next turn transfer a grabbed opponent to its tentacles.Paralytic Tentacles (Ex): A chuul can transfer grabbed victims from a claw to its ten- tacles as a move action. The tentacles grapple with the same strength as the claw but deal no damage. However, they exude a paralytic secretion. Anyone held in the tentacles must succeed on a DC 19 Fortitude save each round on the chuul\u2019s turn or be paralyzed for 6 rounds. The save DC is Constitution-based. While held in the tentacles, paralyzed or not, a victim automatically takes 1d8+2 points of damage each round from the creature\u2019s mandibles.Amphibious (Ex): Although chuuls are aquatic, they can survive indefinitely on land.Skills: A chuul has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line."
+  }
+]

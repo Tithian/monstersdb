@@ -1,0 +1,33 @@
+[
+  {
+    "Nombre": "Cerebrilith"
+  },
+  {
+    "Size/Type": "Large Outsider (Chaotic, Evil, Extraplanar, Psionic)",
+    "Hit Dice": "9d8+63 (103 hp)",
+    "Initiative": "+1",
+    "Speed": "30 ft. (6 squares)",
+    "Armor Class": "25 (\u20131 size, +1 Dex, +15 natural), touch 10, flat-footed 24",
+    "Base Attack/Grapple": "+9/+19",
+    "Attack": "Bite +14 melee (1d8+6)",
+    "Full Attack": "Bite +14 melee (1d8+6) and 2 claws +9 melee (1d6+3)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Psi-like abilities, spell-like abilities, summon demon",
+    "Special Qualities": "Damage reduction 10/good, darkvision 60 ft., immunity to electricity and poison, outsider traits, psionic traits, resistance to acid 10, cold 10, and fire 10, power resistance 20, telepathy 100 ft.",
+    "Saves": "Fort +13, Ref +7, Will +10",
+    "Abilities": "Str 22, Dex 13, Con 25, Int 15, Wis 18, Cha 21",
+    "Skills": "Concentration +17, Hide +7, Jump +16, Knowledge (arcana) +12, Knowledge (psionics) +12, Knowledge (planes) +12, Listen +22, Move Silently +11, Psicraft +12, Search +12, Sense Motive +14, Spot +22",
+    "Feats": "Power Attack, Psionic Meditation, Psionic Fist, Unavoidable Strike, Wild TalentB",
+    "Environment": "Chaotic evil-Aligned planes",
+    "Organization": "Solitary or gang (2\u20134)",
+    "Challenge Rating": "10",
+    "Treasure": "Standard",
+    "Alignment": "Always chaotic evil",
+    "Advancement": "10\u201318 HD (Large); 19\u201327 HD (Huge)",
+    "Level Adjustment": "+9"
+  },
+  {},
+  {
+    "Combate": "Cerebriliths favor telepathic attacks, usually beginning a battle by launching a furious barrage of ego whip and in insinuation attacks. In melee, cerebriliths often use their Concentration skill to gain psionic focus, so that they can use Psionic Fist or Unavoidable Strike (the latter in conjunction with Power Attack).A cerebrilith\u2019s natural weapons, as well as any weapons it wields, are treated as chaotic-aligned and evil-aligned for the purpose of overcoming damage reduction.Psi-Like Abilities: At will\u2014brain lock (any nonmindless, DC 17*), detect psionics, ego whip (2d4, DC 19*), in insinuation (four targets, DC 20*), mind trap (5 rounds*); 3/day\u2014psionic domate (24 hours, DC 20*), ectoplasmic form, mind probe (DC 20); 1/day\u2014mind thrust (9d10, DC 20*). Manifester level 9th. The save DCs are Charisma-based.Includes augmentation for the cerebrilith\u2019s manifester level.Spell-Like Abilities: At will\u2014deeper darkness, desecrate, detect good, dispel good (DC 20), greater teleport (self plus 50 pounds of objects only), magic circle against good (DC 18), unholy blight (DC 19). Caster level 9th. The save DCs are Charisma-based.Summon Demon (Sp): Once per day a cerebrilith can attempt to summon 4d6 dretches or another cerebrilith with a 35% chance of success. This ability is equivalent to a 4th-level spell.Outsider Traits: A cerebrilith cannot be raised, reincarnated or resurrected (though a limited wish, wish, miracle, or true resurrection spell can restore life). It has darkvision out to 60 feet.Skills: Cerebriliths have a +8 racial bonus on Listen and Spot checks."
+  }
+]

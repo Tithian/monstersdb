@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Genius loci"
+  },
+  {
+    "Size/Type": "Colossal Ooze",
+    "Hit Dice": "70d10+1,400 (1,785 hp)",
+    "Initiative": "\u20132 (Dex)",
+    "Speed": "5 ft., burrow 5 ft.",
+    "Armor Class": "0 (\u20132 Dex, \u20138 size), touch , flat-footed",
+    "Base Attack/Grapple": "+52/+88",
+    "Attack": "Slam +64 (4d10+20) melee",
+    "Full Attack": "10 slam +64 (4d10+20) melee",
+    "Space/Reach": "Varies (see text)/Varies (see text)",
+    "Special Attacks": "Enslave, improved grab, constrict 4d10+30",
+    "Special Qualities": "Blindsight 200 ft., fast healing 50, ooze traits",
+    "Saves": "Fort +43, Ref +21, Will +30",
+    "Abilities": "Str 50, Dex 6, Con 50, Int \u2013, Wis 24, Cha 26",
+    "Skills": "Jump +5",
+    "Feats": "\u2014",
+    "Environment": "Any",
+    "Organization": "Solitary",
+    "Challenge Rating": "30",
+    "Treasure": "Standard",
+    "Alignment": "Usually any evil",
+    "Advancement": "None",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A genius loci is difficult to spot, since it looks like any other section of landscape. A genius loci itself has no intelligence, but rather \u201cemulates\u201d the sentience of any creature it currently enslaves (see below), if any. Each genius loci has only a single enslaved creature at one time, though other creatures may also inhabit the surface of the genius loci. Any creature entering a genius loci who makes a successful Survival check (DC 31) realizes that something is amiss, though it is difficult to tell exactly what. Genius loci do not speak directly, though they may do so through their currently enslaved thrall."
+  },
+  {
+    "Combate": "A genius loci can directly attack any creature standing on its surface with animated parts of itself, delivering slam attacks. It also directs its enslaved thrall against those it attacks. If its slave is slain, it selects another of its foes as its next, newest slave. Once a genius loci animates a portion of itself to attack the boundaries of its form become clear, and the creature becomes open to attack (Survival checks to determine the extent of the genius loci are no longer necessary). The animated part of the genius loci has a reach of 15 feet.Enslave (Su): A genius loci can use the epic spell enslave once per round as a free action until it successfully enslaves a foe (Will DC 53 to resist). The DC is Charisma-based. Once it has a slave, it cannot enslave another until its current slave dies, is imprisoned, or is otherwise incapaticiated. A slave becomes free if its genius loci master is slain. A genius loci forces its slave to remain with it, though it may send its slave off to temporarily visit nearby locations in order to draw in unsuspecting victims. In fact, the \u201cpurposes\u201d of the genius loci are to some degree influenced by the current slave. The genius loci has no Intelligence score of its own; thus, its emulation of its slave\u2019s intelligence sometimes transfers attitudes and goals. However, a slave can only go so far in influencing its mobile master, and cannot knowingly attempt to free itself from the genius loci that keeps it close.Improved Grab (Ex): If the genius loci hits a Gargantuan or smaller creature with a slam attack, it deals normal Damage and attempts to start a grapple as a free action without provoking an attack of opportunity. The genius loci has the option to conduct the grapple normally, or simply use the part of its body it used in the improved grab to hold the opponent. Each successful grapple check it makes during successive rounds automatically deals slam attack Damage, in addition to constriction Damage.Constrict (Ex): A genius loci crushes its opponent, dealing 4d10+30 points of bludgeoning Damage, after making a successful grapple check.Ooze Traits: An ooze is an amorphous or mutable creature. Oozes are immune to poison, sleep, paralysis, stunning, and polymorphing. They have no clear front or back and are therefore not subject to critical hits or flanking. Oozes are blind but have the Blindsight special quality. They have no Intelligence scores and are therefore immune to all mind-affecting effects (charms, compulsions, phantasms, patterns, and morale effects)."
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Primal water elemental"
+  },
+  {
+    "Monstruo y Nivel": "Water Elemental, Primal",
+    "Size/Type": "Colossal Elemental (Water, Extraplanar)",
+    "Hit Dice": "64d8+640 (1,048 hp hp)",
+    "Initiative": "+14 (Dex)",
+    "Speed": "20 ft., swim 90 ft.",
+    "Armor Class": "64 (\u20138 size, +14 Dex, +48 natural), touch 16, flat-footed 50",
+    "Base Attack/Grapple": "+48/+80",
+    "Attack": "Slam +57 (4d10+24/19-20)",
+    "Full Attack": "2 slam +57 (4d10+24/19-20)",
+    "Space/Reach": "30 ft./30 ft.",
+    "Special Attacks": "Water mastery, drench, vortex",
+    "Special Qualities": "Elemental traits, DR 15/\u2014, SR 42",
+    "Saves": "Fort +46, Ref +21, Will +28",
+    "Abilities": "Str 42, Dex 38, Con 31, Int 8, Wis 13, Cha 13",
+    "Skills": "Jump +7, Listen +57, Spot +48, Swim +19",
+    "Feats": "Alertness, Cleave, Combat Reflexes, Devastating Critical (slam), Dodge, Epic Prowess (\u00d72), Epic Toughness (\u00d76), Epic Will, Great Cleave, Improved Critical (slam), Improved Sunder, Iron Will, Lightning Reflexes, Overwhelming Critical (slam), Power Attack, Weapon Focus (slam)",
+    "Environment": "Any land",
+    "Organization": "Solitary",
+    "Challenge Rating": "35",
+    "Treasure": "None",
+    "Alignment": "Usually neutral",
+    "Advancement": "65\u2013288 HD (Colossal)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A primal water elemental can\u2019t venture more than 360 feet from the body of water from which it emerged. Water elementals speak Aquan."
+  },
+  {
+    "Combate": "Water Mastery (Ex): A water elemental gains a +1 bonus on attack and damage rolls if both it and its opponent touch water. If the opponent or elemental is land-bound, the elemental takes a \u20134 penalty on attack and damage rolls. (These modifiers are not included in the statistics block.) A primal water elemental can be a serious threat to a ship that crosses its path. It can easily overturn even large craft (ships of up to 5 feet in length per Hit Dice of the elemental) and stop massive vessels (ships of less than 10 feet in length per HD). Even ocean-going behemoths (ships of less than 20 feet in length per HD) can be slowed to half speed.Drench (Ex): The elemental\u2019s touch puts out torches, campfires, exposed lanterns, and other open flames of non-magical origin if these are Gargantuan or smaller. The creature can dispel magical fire it touches as dispel magic cast by a caster whose level equals the elemental\u2019s HD total (64).Vortex (Su): The elemental can transform itself into a whirlpool once every 10 minutes, provided it is underwater, and remain in that form for up to 1 round for every 2 HD it has (48 rounds). In vortex form, the elemental can move through the water or along the bottom at its swim speed. The vortex is 5 feet wide at the base, up to 50 feet wide at the top, and up to 80 feet tall. The elemental controls its exact height, but it must be at least 10 feet. Gargantuan and smaller creatures might take damage when caught in the vortex and may be swept up by it. An affected creature must succeed at a Reflex save (DC 58) when it comes into contact with the vortex or take 4d10 points of damage. It must also succeed at a second Reflex save (DC 68) or be picked up bodily and held suspended in the powerful currents, automatically taking 4d10 points of damage each round. A creature that can swim is allowed a Reflex save (DC 58) each round to escape the vortex. The creature still takes damage, but can leave if the save is successful. The elemental can eject any carried creatures whenever it wishes, depositing them wherever the vortex happens to be. A summoned elemental always ejects trapped creatures before returning to its home plane. If the vortex\u2019s base touches the bottom, it creates a swirling cloud of debris. This cloud is centered on the elemental and has a diameter equal to half the vortex\u2019s height. The cloud obscures all vision, including dark-vision, beyond 5 feet. Creatures 5 feet away have one-half concealment, while those farther away have total concealment. Those caught in the cloud must succeed at a Concentration check (DC 58) to cast a spell. The DC is Strength-based.Elemental Traits: Immune to poison, sleep, paralysis, and stunning. Not subject to critical hits."
+  }
+]

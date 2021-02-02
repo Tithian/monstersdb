@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Merrow"
+  },
+  {
+    "Monstruo y Nivel": "Merrow",
+    "Size/Type": "Large Giant (Aquatic)",
+    "Hit Dice": "4d8+11 (29 hp)",
+    "Initiative": "\u20131",
+    "Speed": "20 ft. in hide armor (6 squares); base speed 30 ft.; swim speed 40 ft.",
+    "Armor Class": "16 (\u20131 size, \u20131 Dex, +5 natural, +3 hide armor),, touch 8, flat-footed 16",
+    "Base Attack/Grapple": "+3/+12",
+    "Attack": "longspear +8 melee (1d8+7) or javelin +1 ranged (1d8+5)",
+    "Full Attack": "longspear +8 melee (1d8+7) or javelin +1 ranged (1d8+5)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Darkvision 60 ft., low-light vision",
+    "Saves": "Fort +6, Ref +0, Will +1",
+    "Abilities": "Str 21, Dex 8, Con 15, Int 6, Wis 10, Cha 7",
+    "Skills": "Climb +5, Listen +2, Spot +2",
+    "Feats": "Toughness, Weapon Focus (greatclub)",
+    "Environment": "Temperate aquatic",
+    "Organization": "Solitary, pair, gang (3\u20134), or band (5\u20138)",
+    "Challenge Rating": "3",
+    "Treasure": "Standard",
+    "Alignment": "Usually chaotic evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "+2"
+  },
+  {
+    "Descripci\u00f3n": "These cousins of the ogre have the aquatic subtype. Adult merrow stand 9 to 10 feet tall and weigh 600 to 650 pounds. Their skin color ranges from dull yellow to dull brown. Their clothing consists of poorly cured furs and hides, which add to their naturally repellent odor.Merrow speak Giant, and those specimens who boast Intelligence scores of at least 10 also speak Common."
+  },
+  {
+    "Combate": "Merrow favor overwhelming odds, sneak attacks, and ambushes over a fair fight. They are intelligent enough to fire ranged weapons first to soften up their foes before closing, but merrow gangs and bands fight as unorganized individuals.SEE WIKIPEDIA ENTRY: Ogre"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Phane"
+  },
+  {
+    "Monstruo y Nivel": "Phane",
+    "Size/Type": "Large Outsider (Chaotic, Evil, Extraplanar, Incorporeal)",
+    "Hit Dice": "36d8+324 (612 hp hp)",
+    "Initiative": "+11 (+7 Dex, +4 Improved Initiative)",
+    "Speed": "80 ft., fly 120 ft. (perfect)",
+    "Armor Class": "50 (\u20131 size, +7 Dex, +11 deflection, +23 insight), touch 50, flat-footed 43",
+    "Base Attack/Grapple": "+36/\u2014",
+    "Attack": "Incorporeal touch +43 (1d6 plus stasis touch) melee",
+    "Full Attack": "Incorporeal touch +43 (1d6 plus stasis touch) melee",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Spell-like abilities, stasis touch, chronal blast, time leach, summon past time duplicate",
+    "Special Qualities": "Abomination traits, null time field, time regression, fast healing 15, regeneration 15, SR 37, DR 15/epic, sonic immunity",
+    "Saves": "Fort +31, Ref +29, Will +29",
+    "Abilities": "Str \u2014, Dex 25, Con 28, Int 24, Wis 16, Cha 33",
+    "Skills": "Balance +46, Concentration +48, Diplomacy +50, Hide +42, Jump +20, Knowledge (arcana, religion, the planes) +46, Listen +44, Move Silently +46, Search +46, Sense Motive +42, Spellcraft +46, Spot +44, Swim +39, Tumble +46",
+    "Feats": "Alertness, Blinding Speed, Combat Reflexes, Dodge, Epic Toughness (\u00d72), Epic Will, Great fortitude, Improved Initiative, Iron Will, Lightning Reflexes, Spell Stowaway (time stop), Weapon Focus (incorporeal touch)",
+    "Environment": "Any land and underground",
+    "Organization": "Solitary or pair",
+    "Challenge Rating": "25",
+    "Treasure": "None",
+    "Alignment": "Always chaotic evil",
+    "Advancement": "37\u201350 HD (Large); 51\u201365 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A phanes\u2019 natural weapons are treated as epic, evil, and chaotic-aligned for the purpose of overcoming damage reduction."
+  },
+  {
+    "Combate": "Spell-Like  At will\u2014detect good, detect magic, greater invisibility (self only); 5/day\u2014haste, slow, greater teleport], tongues, trap the soul, true strike, unholy aura; 2/day\u2014safe time, time duplicate (epic spell); 1/day\u2014time stop. Caster level 21st; save DC 21 + spell level. The DC is Charisma-based.Stasis Touch (Su): As temporal stasis, except as an at-will supernatural ability. Caster level 25th; save DC 21 + spell level. The DC is Charisma-based.Chronal Blast (Su): As a standard action, the phane can make a ranged touch attack against any creature within 100 feet. If it succeeds, the subject is targeted by a spasm of space-time flux, dealing 15d6 points of damage.Time Leach (Su): For every round of apparent time experienced by the phane, it automatically absorbs the \u201cfuture\u201d from any creature it has successfully encapsulated in static time via its stasis touch (not its null time field), no matter the distance separating victim and phane, and no matter the number of victims. Of course, to the victim no time passes at all, but each apparent round experienced by the phane ages the victim 1d4 years, at the same time healing the phane of 20 hit points of damage. A victim who is not somehow released from static time by a friend who can cast dispel magic, greater dispel magic, or some other likely spell, eventually ages to death. Victims killed in this manner automatically fall out of static time as desiccated husks that disintegrate to a fine dust with even the lightest touch. Victims who are released prior to death immediately apply the physical effects of aging, but not the mental effects.Summon Past Time Duplicate (Sp): Once per day, a phane can summon a duplicate of one its foes stolen from a parallel alternate past. The stolen time duplicate has the same stats and possessions as the original, but is treated as if having two Energy Drains (which simulates a less experienced version of the original). The phane can never summon a past time duplicate of a creature with more than 25 HD (add sufficient Energy Drains to compensate for high foe HD, if necessary). The past time duplicate, despite having most of the knowledge of the original, serves the phane loyally like any summoned creature. If the past time duplicate is slain, the original is not harmed because the duplicate was pulled from a parallel past. However, the original does not necessarily realize this, and must make a Will save (DC 30) or be shaken for 1d4 rounds after witnessing the death of a duplicate for the first time.Abomination Traits: Immune to polymorphing, petrification, and other form-altering attacks; not subject to Energy Drain, ability drain, ability damage, or death from massive damage; immune to mind-affecting effects; fire resistance 20; cold resistance 20; nondetection; true seeing at will; blindsight 500 ft.; telepathy out to 1,000 ft.Null Time Field (Ex): Phanes continually generate a 30-foot-radius spread null time field. All creatures and objects in the field, except the phane, must make a Will saving throw (DC 30) each round to take any actions. On a failed save, subjects are stuck in a static time stream until their next round of actions, at which time they must make another saving throw. While a subject is stuck in a static time stream induced by a null time field, the phane can use its static touch on the subject, though in all other ways, the subject is invulnerable to attacks and damage as if in temporal stasis.Time Regression (Su): If the phane spends an action per round for four rounds, at the end of the 4th round the phane regresses back in time 4 rounds, to the very 1st round it originally began concentrating on time regression. On its second pass through the time stream, it can take completely different actions, based on its knowledge of the future (though if it takes different actions from its first pass through the time stream, the events of the original time stream are also changed).Regeneration (Ex): Phanes take normal damage from holy and good weapons, and from weapons forged in the future or an alternate reality\u2019s time stream (if any)."
+  }
+]

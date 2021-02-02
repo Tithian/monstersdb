@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Abyssal greater basilisk"
+  },
+  {
+    "Size/Type": "Large Outsider (Augmented Magical Beast, Extraplanar)",
+    "Hit Dice": "18d10+90 (189 hp)",
+    "Initiative": "\u20131",
+    "Speed": "20 ft. (4 squares)",
+    "Armor Class": "17 (\u20131 Dex, \u20131 size, +9 natural), touch 8, flat-footed 17",
+    "Base Attack/Grapple": "+18/+29",
+    "Attack": "Bite +25 melee (2d8+10)",
+    "Full Attack": "Bite +25 melee (2d8+10)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Petrifying gaze, smite good",
+    "Special Qualities": "Resistance to cold 10 and fire 10, damage reduction 10/magic, darkvision 60 ft., low-light vision, spell resistance 23",
+    "Saves": "Fort +18, Ref +12, Will +8",
+    "Abilities": "Str 24, Dex 8, Con 21, Int 3, Wis 10, Cha 15",
+    "Skills": "Hide +0*, Listen +10, Spot +10",
+    "Feats": "Alertness, Blind Fight, Great Fortitude, Iron Will, Improved Natural Attack (bite), Lightning Reflexes, Weapon Focus (bite)",
+    "Environment": "A chaotic evil-Aligned plane",
+    "Organization": "Solitary or colony (3\u20136)",
+    "Challenge Rating": "12",
+    "Treasure": "Standard",
+    "Alignment": "Always chaotic evil",
+    "Advancement": "\u2014",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A basilisk is a reptilian monster that petrifies living creatures with a mere gaze. A basilisk usually has a dull brown body with a yellowish underbelly. Some specimens sport a short, curved horn atop the nose. An adult basilisk\u2019s body grows to about 6 feet long, not including its tail, which can reach an additional length of 5 to 7 feet. The creature weighs about 300 pounds."
+  },
+  {
+    "Combate": "A basilisk relies on its gaze attack, biting only when opponents come within reach. Though it has eight legs, its slow metabolism renders it relatively sluggish, so it does not expend energy unnecessarily. Intruders who flee a basilisk rather than fight can expect, at best, a halfhearted pursuit. These creatures tend to spend most of their time lying in wait for prey, which includes small mammals, birds, reptiles, and similar creatures.An abyssal greater basilisk\u2019s natural weapons are treated as magic weapons for the purpose of overcoming damage reduction.Petrifying Gaze (Su): Turn to stone permanently, range 30 feet; Fortitude DC 21 negates. The save DC is Charisma-based.Skills: *The basilisk\u2019s dull coloration and its ability to remain motionless for long periods of time grant it a +4 racial bonus on Hide checks in natural settings.Smite Good (Su): Once per day an abyssal greater basilisk can make a normal melee attack to deal an extra 18 points of damage against a good foe.SEE WIKIPEDIA ENTRY: Basilisk"
+  }
+]

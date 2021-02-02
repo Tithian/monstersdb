@@ -1,0 +1,39 @@
+[
+  {
+    "Nombre": "Gargantuan monstrous spider"
+  },
+  {
+    "Monstruo y Nivel": "Monstrous Spider, Gargantuan",
+    "Size/Type": "Gargantuan Vermin",
+    "Hit Dice": "16d8+32 (104 hp)",
+    "Initiative": "+3",
+    "Speed": "30 ft. (6 squares), climb 20 ft.",
+    "Armor Class": "19 (\u20134 size, +3 Dex, +10 natural),, touch 9, flat-footed 16",
+    "Base Attack/Grapple": "+12/+31",
+    "Attack": "Bite +15 melee (2d8+10 plus poison)",
+    "Full Attack": "Bite +15 melee (2d8+10 plus poison)",
+    "Space/Reach": "20 ft./15 ft.",
+    "Special Attacks": "Poison, web",
+    "Special Qualities": "Darkvision 60 ft., tremorsense 60 ft., vermin traits",
+    "Saves": "Fort +12, Ref +8, Will +5",
+    "Abilities": "Str 25, Dex 17, Con 14, Int \u2014, Wis 10, Cha 2",
+    "Skills": "Climb +14, Hide \u20135*, Jump +7*, Spot +4*",
+    "Feats": "\u2014",
+    "Environment": "Temperate forests",
+    "Organization": "Solitary",
+    "Challenge Rating": "8",
+    "Treasure": "1/10 coins; 50% goods; 50% items",
+    "Alignment": "Always neutral",
+    "Advancement": "17\u201331 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Columnas": "-----Size-----Fort-----DC-----Damage",
+    "Fila 1": "-----Gargantuan-----20-----2d6-----Str"
+  },
+  {
+    "Columnas": "-----Size-----EscapeArtist-----DC-----Break-----DC-----HitPoints",
+    "Fila 1": "-----Gargantuan-----20-----24-----16"
+  }
+]

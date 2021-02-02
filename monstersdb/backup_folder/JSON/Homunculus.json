@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Homunculus"
+  },
+  {
+    "Size/Type": "Tiny Construct",
+    "Hit Dice": "2d10 (11 hp)",
+    "Initiative": "+2",
+    "Speed": "20 ft. (4 squares), fly 50 ft. (good)",
+    "Armor Class": "14 (+2 Dex, +2 size, touch 14, flat-footed 12",
+    "Base Attack/Grapple": "+1/\u20138",
+    "Attack": "Bite +2 melee (1d4\u20131 plus poison)",
+    "Full Attack": "Bite +2 melee (1d4\u20131 plus poison)",
+    "Space/Reach": "2-1/2 ft./0 ft.",
+    "Special Attacks": "Poison",
+    "Special Qualities": "Construct traits, darkvision 60 ft., low-light vision",
+    "Saves": "Fort +0, Ref +4, Will +1",
+    "Abilities": "Str 8, Dex 15, Con \u2014, Int 10, Wis 12, Cha 7",
+    "Skills": "Hide +14, Listen +4, Spot +4",
+    "Feats": "Lightning Reflexes",
+    "Environment": "Any",
+    "Organization": "Solitary",
+    "Challenge Rating": "1",
+    "Treasure": "None",
+    "Alignment": "Any (same as creator)",
+    "Advancement": "3\u20136 HD (Tiny)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A homunculus is a miniature servant created by a wizard. These creatures are weak combatants but make effective spies, messengers, and scouts. A homunculus\u2019s creator determines its precise features. Homunculi are little more than tools designed to carry out assigned tasks. They are extensions of their creators, sharing the same alignment and basic nature. A homunculus cannot speak, but the process of creating one links it telepathically with its creator.It knows what its master knows and can convey to him or her everything it sees and hears, out to a distance of 1,500 feet. A homunculus never travels beyond this range willingly, though it can be removed forcibly. If this occurs, the creature does everything in its power to regain contact with its master. An attack that destroys a homunculus deals 2d10 points of damage to its master.If the creature\u2019s master is slain, the homunculus also dies, and its body swiftly melts away into a pool of ichor."
+  },
+  {
+    "Combate": "Homunculi land on their victims and bite with their venomous fangs.Poison (Ex): Injury, Fortitude DC 13, initial damage sleep for 1 minute, secondary damage sleep for another 5d6 minutes. The save DC is Constitution-based and includes a +2 racial bonus.CONSTRUCTIONA homunculus is shaped from a mixture of clay, ashes, mandrake root, spring water, and one pint of the creator\u2019s own blood. The materials cost 50 gp. The creature\u2019s master may assemble the body or hire someone else to do the job. Creating the body requires a DC 12 Craft (sculpting) check or a DC 12 Craft (pottery) check.After the body is sculpted, it is animated through an extended magical ritual that requires a specially prepared laboratory or workroom, similar to an alchemist\u2019s laboratory and costing 500 gp to establish. If the creator is personally constructing the creature\u2019s body, the building and ritual can be performed together.A homunculus with more than 2 Hit Dice can be created, but each additional Hit Die adds +2,000 gp to the cost to create.Craft Construct, arcane eye, mirror image, mending, caster must be at least 4th level; Price \u2014 (never sold); Cost 1,050 gp + 78 XP.SEE WIKIPEDIA ENTRY: Homunculus"
+  }
+]

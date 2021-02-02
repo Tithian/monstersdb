@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Zelekhut"
+  },
+  {
+    "Size/Type": "Large Construct (Extraplanar, Lawful)",
+    "Hit Dice": "8d10+30 (74 hp)",
+    "Initiative": "+0",
+    "Speed": "35 ft. in plate barding (7 squares), fly 40 ft. (average) in plate barding (8 squares); base speed 50 ft., fly 60 ft. (average)",
+    "Armor Class": "27 (\u20131 size, +10 natural, +8 plate barding), touch 9, flat-footed 27",
+    "Base Attack/Grapple": "+6/+15",
+    "Attack": "Spiked chain +10 melee (2d6+5 plus 1d6 electricity)",
+    "Full Attack": "2 spiked chains +10 melee (2d6+5 plus 1d6 electricity)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Spell-like abilities",
+    "Special Qualities": "Construct traits, damage reduction 10/chaotic, darkvision 60 ft., fast healing 5, low-light vision, spell resistance 20",
+    "Saves": "Fort +4, Ref +2, Will +5",
+    "Abilities": "Str 21, Dex 11, Con \u2014, Int 10, Wis 17, Cha 15",
+    "Skills": "Diplomacy +4, Listen +9, Search +9, Sense Motive +12, Spot +9, Survival +3 (+5 following tracks)",
+    "Feats": "Great Fortitude, Ride-By Attack, Spirited Charge",
+    "Environment": "A lawful-aligned plane",
+    "Organization": "Solitary",
+    "Challenge Rating": "9",
+    "Treasure": "None",
+    "Alignment": "Always lawful neutral",
+    "Advancement": "9\u201316 HD (Large); 17\u201324 HD (Huge)",
+    "Level Adjustment": "+7"
+  },
+  {
+    "Descripci\u00f3n": "Zelekhuts are charged with hunting down those who would deny justice\u2014especially those who flee to escape punishment. Expert trackers, they use a combination of natural skill and magic to find fugitives wherever they may hide.A zelekhut may initially appear rather non-threatening\u2014but when it is about to enter combat, it can cause two spiked chains to spring forth from its forearms as a free action. In similar fashion, it can cause a pair of golden metallic wings to emerge from its back. Retracting the chains or the wings is also a free action."
+  },
+  {
+    "Combate": "Once it has found its fugitive, a zelekhut uses its speed and its spell-like abilities to cover the most likely escape routes. Then it immobilizes any defenders while attempting to protect any innocent bystanders. Finally, it apprehends the fugitive with its spiked chains, tripping or disarming the foe as needed.A zelekhut\u2019s natural weapons, as well as any weapons it wields, are treated as lawful-aligned for the purpose of overcoming damage reduction.Spell-Like Abilities: At will\u2014clairaudience/clairvoyance, dimensional anchor, dispel magic, fear (DC 16), hold person (DC 15), locate creature, true seeing; 3/day\u2014hold monster (DC 17), mark of justice; 1/week\u2014 lesser geas (DC 16). Caster level 8th. The save DCs are Charisma-based.Skills: A zelekhut has a +4 racial bonus on Search and Sense Motive checks.Feats: Due to its centaur-like construction, a zelekhut qualifies for feats as if it had the Mounted  feat."
+  }
+]

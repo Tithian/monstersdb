@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Dromite"
+  },
+  {
+    "Monstruo y Nivel": "Dromite",
+    "Size/Type": "Small Monstrous Humanoid (Psionic) 1st-Level Warrior",
+    "Hit Dice": "1d8+1 (5 hp)",
+    "Initiative": "+0",
+    "Speed": "20 ft. (4 squares)",
+    "Armor Class": "18 (+1 size, +3 natural armor, +3 studded leather, +1 light shield), touch 11, flat-footed 18",
+    "Base Attack/Grapple": "+1/\u20133",
+    "Attack": "Longsword +3 melee (1d6/19\u201320) or light crossbow +2 ranged (1d6/19\u201320)",
+    "Full Attack": "Longsword +3 melee (1d6/19\u201320) or light crossbow +2 ranged (1d6/19\u201320)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Psi-like abilities)",
+    "Special Qualities": "Darkvision 60 ft., resistance to fire 5, scent",
+    "Saves": "Fort +3, Ref +0, Will \u20132",
+    "Abilities": "Str 11, Dex 11, Con 12, Int 10, Wis 7, Cha 10",
+    "Skills": "Climb +2, Spot +4",
+    "Feats": "Weapon Focus (longsword), Blind FightB",
+    "Environment": "Underground",
+    "Organization": "Squad (2\u20134), company (11\u201320 plus 2 3rd-level sergeants and 1 leader of 3rd\u20136th level), or band (30\u2013100 plus 100% noncombatants plus 1 3rdlevel sergeant per 20 adults, 5 5th-level lieutenants, 3 7th-level captains, 6\u201310 giant beetles, and 2\u20135 riding giant beetles)",
+    "Challenge Rating": "1/2",
+    "Treasure": "Standard",
+    "Alignment": "Usually neutral",
+    "Advancement": "By character class",
+    "Level Adjustment": "+1"
+  },
+  {
+    "Descripci\u00f3n": "Dromites stand about 3 feet tall and usually weigh slightly more than 30 pounds. They have iridescent compound eyes. Dromites wear heavy boots and light clothing, and are sometimes content with just a sturdy harness.Dromites speak Common.Most dromites encountered outside their homes are warriors; the information in the statistics block is for a warrior of 1st level."
+  },
+  {
+    "Combate": "Psi-Like Abilities: 1/day: energy ray (fire, 1d6+1). Manifester level 1st. The save DC is Charisma-based. (Other dromites may manifest electricity, cold, or sonic energy rays instead; the energy ray always matches the type of energy the dromite is resistant to.)The dromite warrior presented here had the following ability scores before racial adjustments: Str 13, Dex 11, Con 12, Int 10, Wis 9, Cha 8."
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Werewolf"
+  },
+  {
+    "Monstruo y Nivel": "Werewolf, Hybrid Form",
+    "Size/Type": "Medium Humanoid (Human, Shapechanger)",
+    "Hit Dice": "1d8+1 plus 2d8+6 (20 hp)",
+    "Initiative": "+6",
+    "Speed": "30 ft. (6 squares)",
+    "Armor Class": "16 (+2 Dex, +4 natural), touch 12, flat-footed 14",
+    "Base Attack/Grapple": "+2/+4",
+    "Attack": "Claw +4 melee (1d4+2)",
+    "Full Attack": "2 claws +4 melee (1d4+2) and bite +0 melee (1d6+1)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Curse of lycanthropy",
+    "Special Qualities": "Alternate form, wolf empathy, damage reduction 10/silver, low-light vision, scent",
+    "Saves": "Fort +8, Ref +5, Will +2",
+    "Abilities": "Str 15, Dex 15, Con 16, Int 10, Wis 11, Cha 8",
+    "Skills": "Handle Animal +1, Hide +6, Listen +1, Move Silently +6, Spot +1, Survival +2*",
+    "Feats": "(same as human form)",
+    "Environment": "Temperate forests",
+    "Organization": "(same as human form)",
+    "Challenge Rating": "3",
+    "Treasure": "Standard",
+    "Alignment": "Always chaotic evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "+3"
+  },
+  {
+    "Descripci\u00f3n": "Werewolves in humanoid form have no distinguishing traits."
+  },
+  {
+    "Combate": "In wolf form, a werewolf can trip just as a normal wolf does. A werewolf in hybrid form usually dispenses with weapon attacks, though it can wield a weapon and use its bite as a secondary natural attack.Alternate Form (Su): A werewolf can assume a bipedal hybrid form or the form of a wolf.Curse of Lycanthropy (Su): Any humanoid or giant hit by a werewolf\u2019s bite attack in animal or hybrid form must succeed on a DC 15 Fortitude save or contract lycanthropy.Trip (Ex): A werewolf in animal form that hits with a bite attack can attempt to trip the opponent (+2 check modifier) as a free action without making a touch attack or provoking an attack of opportunity.If the attempt fails, the opponent cannot react to trip the werewolf.Wolf Empathy (Ex): Communicate with wolves and dire wolves, and +4 racial bonus on Charisma-based checks against wolves and dire wolves.Skills: *A werewolf in hybrid or wolf form gains a +4 racial bonus on Survival checks when tracking by scent.The werewolf presented here is based on a 1st-level human warrior and natural lycanthrope, using the following base ability scores: Str 13, Dex 11, Con 12, Int 10, Wis 9, Cha 8."
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "Nombre": "Colossal monstrous spider"
+  },
+  {
+    "Monstruo y Nivel": "Monstrous Spider, Colossal",
+    "Size/Type": "Colossal Vermin",
+    "Hit Dice": "32d8+64 (208 hp)",
+    "Initiative": "+2",
+    "Speed": "30 ft. (6 squares), climb 20 ft.",
+    "Armor Class": "22 (\u20138 size, +2 Dex, +18 natural),, touch 4, flat-footed 20",
+    "Base Attack/Grapple": "+24/+50",
+    "Attack": "Bite +26 melee (4d6+15 plus poison)",
+    "Full Attack": "Bite +26 melee (4d6+15 plus poison)",
+    "Space/Reach": "40 ft./30 ft.",
+    "Special Attacks": "Poison, web",
+    "Special Qualities": "Darkvision 60 ft., tremorsense 60 ft., vermin traits",
+    "Saves": "Fort +20, Ref +12, Will +10",
+    "Abilities": "Str 31, Dex 15, Con 14, Int \u2014, Wis 10, Cha 2",
+    "Skills": "Climb +16, Hide \u201310*, Jump +10*, Spot +7*",
+    "Feats": "\u2014",
+    "Environment": "Temperate forests",
+    "Organization": "Solitary",
+    "Challenge Rating": "11",
+    "Treasure": "1/10 coins; 50% goods; 50% items",
+    "Alignment": "Always neutral",
+    "Advancement": "33\u201360 HD (Colossal)",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Columnas": "-----Size-----Fort-----DC-----Damage",
+    "Fila 1": "-----Colossal-----28-----2d8-----Str"
+  },
+  {
+    "Columnas": "-----Size-----EscapeArtist-----DC-----Break-----DC-----HitPoints",
+    "Fila 1": "-----Colossal-----28-----32-----18"
+  }
+]

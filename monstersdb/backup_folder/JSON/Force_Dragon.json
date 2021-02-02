@@ -1,0 +1,69 @@
+[
+  {
+    "Nombre": "Force dragon"
+  },
+  {
+    "Monstruo y Nivel": "Sample Force Dragon, Adult",
+    "Size/Type": "Gargantuan Dragon (Force)",
+    "Hit Dice": "45d12+585 (877 hp)",
+    "Initiative": "+0",
+    "Speed": "60 ft., fly 300 ft. (clumsy)",
+    "Armor Class": "64 (\u20134 size, +14 deflection, +44 natural), touch 20, flat-footed 64",
+    "Base Attack/Grapple": "+45/+77",
+    "Attack": "Bite +61 (4d6+20/19-20) melee",
+    "Full Attack": "Bite +61 (4d6+20/19-20) melee, 2 claws +56 (2d6+10/19-20) melee, 2 wings +56 (2d6+10/19-20) melee, tail slap +56 (2d8+30/19-20) melee",
+    "Space/Reach": "20 ft./reach=15 ft.",
+    "Special Attacks": "Crush 4d6+30 (DC 45), tail sweep 2d6+30 (DC 45), breath weapon, Frightful Presence (DC 46), spells (caster level 18th), spell-like abilities",
+    "Special Qualities": "Immunities, DR 15/epic, SR 39, Blindsense 60ft., keen senses, deflecting force, blur (20% miss chance)",
+    "Saves": "Fort +37, Ref +24, Will +38",
+    "Abilities": "Str 51, Dex 10, Con 37, Int 38, Wis 39, Cha 38",
+    "Skills": "Appraise +50, Bluff +62, Concentration +61, Craft (alchemy) +50, Diplomacy +74, Escape Artist +48, Gather Information +20, Intimidate +68, Jump +32, Knowledge (all) +56, Listen +64, Search +72, Sense Motive +50, Spellcraft +68, Spot +74",
+    "Feats": "Alertness, Cleave, Combat Reflexes, Empower Spell-Like Ability, Flyby Attack, Hover, Improved Critical (bite), Improved Critical (claws), Improved Critical (wings), Improved Critical (tail slap), Improved Initiative, Improved Sunder, Maximize Spell-Like Ability, Power Attack, Spell Knowledge, Wingover",
+    "Environment": "Any land and underground",
+    "Organization": "Solitary, pair, or family (1\u20132 and 2\u20135 offspring)",
+    "Challenge Rating": "31",
+    "Treasure": "Double standard",
+    "Alignment": "Usually neutral",
+    "Advancement": "46\u201349 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A force dragon\u2019s natural weapons are treated as magic (wyrmling \u2013 juvenile) or epic (young adult \u2013 great wyrm) for the purpose of overcoming damage reduction."
+  },
+  {
+    "Combate": "Breath Weapon (Su): A force dragon has one of breath weapon, a cone of force that tears through creatures and objects in its area to devastating effect.Immune to Force (Ex): A force dragon cannot be harmed by any force effect, including magic missiles, explosive runes, mage\u2019s sword, the sphere spells, or any other spell or effect with the Force descriptor. It can move freely through barriers made of force, such as a wall of force.Deflecting Force (Su): A force dragon is protected by a shield of force that provides a deflection bonus to its AC. The deflection bonus is equal to the dragon\u2019s Charisma bonus.Blur (Su): When a force dragon reaches juvenile age, the force surrounding its body distorts the light around it so that it is hard to discern the dragon\u2019s exact location. This functions as a continuous blur spell, giving the dragon concealment (20% miss chance).Displacement (Su): An old force dragon\u2019s deflecting force bends light even more extremely, giving the dragon the benefit of the displacement spell (50% miss chance). This supersedes its blur ability.Invisibility (Su): A great wyrm force dragon is a creature of pure force, and is completely invisible (as though protected by greater invisibility). A creature that can see invisible creatures must still contend with the dragon\u2019s displacement ability.Spell-Like  3/day\u2014forcecage, maze, resilient sphere, telekinetic sphere, wall of force. The DCs are Charisma-based."
+  },
+  {
+    "Columnas": "-----LevelAdjustment-----:-----\u2014"
+  },
+  {
+    "Columnas": "-----Age-----Size-----HitDice(hp)-----Str-----Dex-----Con-----Int-----Wis-----Cha-----BaseAttack/-----Grapple-----Attack-----FortSave-----RefSave-----WillSave-----BreathWeapon(DC)-----FrightfulPresenceDC",
+    "Fila 1": "-----Wyrmling-----H-----20d12+100(230)-----31-----10-----21-----18-----19-----18-----+20/+38-----+28-----+17-----+12-----+16-----5d12(25)-----24",
+    "Fila 2": "-----Veryyoung-----H-----25d12+150(312)-----35-----10-----23-----22-----23-----22-----+25/+45-----+35-----+20-----+14-----+20-----10d12(28)-----28",
+    "Fila 3": "-----Young-----G-----30d12+210(405)-----39-----10-----25-----26-----27-----26-----+30/+56-----+40-----+24-----+17-----+25-----15d12(32)-----33",
+    "Fila 4": "-----Juvenile-----G-----35d12+315(542)-----43-----10-----29-----30-----31-----30-----+35/+63-----+47-----+28-----+19-----+29-----20d12(36)-----37",
+    "Fila 5": "-----Youngadult-----G-----40d12+440(700)-----47-----10-----33-----34-----35-----34-----+40/+70-----+54-----+33-----+22-----+34-----25d12(41)-----42",
+    "Fila 6": "-----Adult-----G-----45d12+585(877)-----51-----10-----37-----38-----39-----38-----+45/+77-----+61-----+37-----+24-----+38-----30d12(45)-----46",
+    "Fila 7": "-----Matureadult-----C-----50d12+750(1,075)-----55-----10-----41-----42-----43-----42-----+50/+88-----+64-----+42-----+27-----+43-----35d12(50)-----51",
+    "Fila 8": "-----Old-----C-----55d12+935(1,292)-----59-----10-----45-----46-----47-----46-----+55/+95-----+71-----+46-----+29-----+47-----40d12(54)-----55",
+    "Fila 9": "-----Veryold-----C-----60d12+1,140(1,530)-----63-----10-----49-----50-----51-----50-----+60/+102-----+78-----+51-----+32-----+52-----45d12(59)-----60",
+    "Fila 10": "-----Ancient-----C-----65d12+1,365(1,787)-----67-----10-----53-----54-----55-----54-----+65/+109-----+85-----+55-----+34-----+56-----50d12(63)-----64",
+    "Fila 11": "-----Wyrm-----C+-----70d12+1,610(2,065)-----71-----10-----57-----58-----59-----58-----+70/+116-----+92-----+60-----+37-----+61-----55d12(68)-----69",
+    "Fila 12": "-----Greatwyrm-----C+-----75d12+1,875(2,362)-----75-----10-----61-----62-----63-----62-----+75/+123-----+99-----+64-----+39-----+65-----60d12(72)-----73"
+  },
+  {
+    "Columnas": "-----Age-----Speed-----Initiative-----AC-----SpecialAbilities-----CasterLevel-----SR",
+    "Fila 1": "-----Wyrmling-----60ft.,fly250ft.(poor)-----+0-----31(\u20132size,+4deflection,+19natural),touch12,-----flat-footed31-----Damagereduction-----10/magic,-----deflectingforce,-----immunetoforce-----3rd-----24",
+    "Fila 2": "-----Veryyoung-----60ft.,fly250ft.(poor)-----+0-----38(\u20132size,+6deflection,+24natural),touch14,-----flat-footed38-----6th-----27",
+    "Fila 3": "-----Young-----60ft.,fly300ft.(clumsy)-----+0-----43(\u20134size,+8deflection,+29natural),touch14,-----flat-footed43-----Damagereduction-----15/magic-----9th-----30",
+    "Fila 4": "-----Juvenile-----60ft.,fly300ft.(clumsy)-----+0-----50(\u20134size,+10deflection,+34natural),touch16,-----flat-footed50-----resilientsphere-----,-----blur-----12th-----33",
+    "Fila 5": "-----Youngadult-----60ft.,fly300ft.(clumsy)-----+0-----57(\u20134size,+12deflection,+39natural),touch18,-----flat-footed57-----Damagereduction-----15/epic-----15th-----36",
+    "Fila 6": "-----Adult-----60ft.,fly300ft.(clumsy)-----+0-----64(\u20134size,+14deflection,+44natural),touch20,-----flat-footed64-----Wallofforce-----18th-----39",
+    "Fila 7": "-----Matureadult-----60ft.,fly300ft.(clumsy)-----+0-----67(\u20138size,+16deflection,+49natural),touch18,-----flat-footed67-----Damagereduction-----20/epic-----21st-----42",
+    "Fila 8": "-----Old-----60ft.,fly300ft.(clumsy)-----+0-----74(\u20138size,+18deflection,+54natural),touch20,-----flat-footed74-----Forcecage-----,-----displacement-----24th-----45",
+    "Fila 9": "-----Veryold-----60ft.,fly300ft.(clumsy)-----+0-----81(\u20138size,+20deflection,+59natural),touch22,-----flat-footed81-----Damagereduction-----25/epic-----27th-----48",
+    "Fila 10": "-----Ancient-----60ft.,fly300ft.(clumsy)-----+0-----88(\u20138size,+22deflection,+64natural),touch24,-----flat-footed88-----Maze-----30th-----51",
+    "Fila 11": "-----Wyrm-----60ft.,fly350ft.(clumsy)-----+0-----95(\u20138size,+24deflection,+69natural),touch26,-----flat-footed95-----33rd-----54",
+    "Fila 12": "-----Greatwyrm-----60ft.,fly350ft.(clumsy)-----+0-----102(\u20138size,+26deflection,+74natural),touch28,-----flat-footed102-----telekineticsphere-----,-----invisibility-----36th-----57"
+  }
+]

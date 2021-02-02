@@ -1,0 +1,39 @@
+[
+  {
+    "Nombre": "Tiny monstrous spider"
+  },
+  {
+    "Monstruo y Nivel": "Monstrous Spider, Tiny",
+    "Size/Type": "Tiny Vermin",
+    "Hit Dice": "1/2 d8 (2 hp)",
+    "Initiative": "+3",
+    "Speed": "20 ft. (4 squares), climb 10 ft.",
+    "Armor Class": "15 (+2 size, +3 Dex),, touch 15, flat-footed 12",
+    "Base Attack/Grapple": "+0/\u201312",
+    "Attack": "Bite +5 melee (1d3\u20134 plus poison)",
+    "Full Attack": "Bite +5 melee (1d3\u20134 plus poison)",
+    "Space/Reach": "2-1/2 ft./0 ft.",
+    "Special Attacks": "Poison, web",
+    "Special Qualities": "Darkvision 60 ft., tremorsense 60 ft., vermin traits",
+    "Saves": "Fort +2, Ref +3, Will +0",
+    "Abilities": "Str 3, Dex 17, Con 10, Int \u2014, Wis 10, Cha 2",
+    "Skills": "Climb +11, Hide +15*, Jump \u20134*, Spot +4*",
+    "Feats": "Weapon FinesseB",
+    "Environment": "Temperate forests",
+    "Organization": "Colony (8\u201316)",
+    "Challenge Rating": "1/4",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "\u2014",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Columnas": "-----Size-----Fort-----DC-----Damage",
+    "Fila 1": "-----Tiny-----10-----1d2-----Str"
+  },
+  {
+    "Columnas": "-----Size-----EscapeArtist-----DC-----Break-----DC-----HitPoints",
+    "Fila 1": "-----Tiny-----10-----14-----2"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Wraith"
+  },
+  {
+    "Monstruo y Nivel": "Wraith",
+    "Size/Type": "Medium Undead (Incorporeal)",
+    "Hit Dice": "5d12 (32 hp)",
+    "Initiative": "+7",
+    "Speed": "Fly 60 ft. (good) (12 squares)",
+    "Armor Class": "15 (+3 Dex, +2 deflection), touch 15, flat-footed 12",
+    "Base Attack/Grapple": "+2/\u2014",
+    "Attack": "Incorporeal touch +5 melee (1d4 plus 1d6 Constitution drain)",
+    "Full Attack": "Incorporeal touch +5 melee (1d4 plus 1d6 Constitution drain)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Constitution drain, create spawn",
+    "Special Qualities": "Darkvision 60 ft., daylight powerlessness, incorporeal traits, +2 turn resistance, undead traits, unnatural aura",
+    "Saves": "Fort +1, Ref +4, Will +6",
+    "Abilities": "Str \u2014, Dex 16, Con \u2014, Int 14, Wis 14, Cha 15",
+    "Skills": "Diplomacy +6, Hide +11, Intimidate +10, Listen +12, Search +10, Sense Motive +8, Spot +12, Survival +2 (+4 following tracks)",
+    "Feats": "AlertnessB, Blind Fight, Combat Reflexes, Improved InitiativeB",
+    "Environment": "Any",
+    "Organization": "Solitary, gang (2\u20135), or pack (6\u201311)",
+    "Challenge Rating": "5",
+    "Treasure": "None",
+    "Alignment": "Always lawful evil",
+    "Advancement": "6\u201310 HD (Medium)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Wraiths are incorporeal creatures born of evil and darkness. In some cases, the grim silhouette of a wraith might appear armored or outfitted with weapons. This appearance does not affect the creature\u2019s AC or combat abilities but only reflects the shape it had in life.A wraith is about as tall as a human, while a dread wraith is roughly the size of an ogre. Since both are incorporeal, they are weightless.Wraiths speak Common and Infernal."
+  },
+  {
+    "Combate": "Unnatural Aura (Su): Animals, whether wild or domesticated, can sense the unnatural presence of a wraith at a distance of 30 feet. They will not willingly approach nearer than that and panic if forced to do so; they remain panicked as long as they are within that range.Daylight Powerlessness (Ex): Wraiths are utterly powerless in natural sunlight (not merely a daylight spell) and flee from it.Constitution Drain (Su): Living creatures hit by a wraith\u2019s incorporeal touch attack must succeed on a DC 14 Fortitude save or take 1d6 points of Constitution drain. The save DC is Charisma-based. On each such successful attack, the wraith gains 5 temporary hit points.Create Spawn (Su): Any humanoid slain by a wraith becomes a wraith in 1d4 rounds. Its body remains intact and inanimate, but its spirit is torn free from its corpse and transformed. Spawn are under the command of the wraith that created them and remain enslaved until its death. They do not possess any of the abilities they had in life.SEE WIKIPEDIA ENTRY: Wraith"
+  }
+]

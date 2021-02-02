@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Boar"
+  },
+  {
+    "Size/Type": "Medium Animal",
+    "Hit Dice": "3d8+12 (25 hp)",
+    "Initiative": "+0",
+    "Speed": "40 ft. (8 squares)",
+    "Armor Class": "16 (+6 natural), touch 10, flat-footed 16",
+    "Base Attack/Grapple": "+2/+4",
+    "Attack": "Gore +4 melee (1d8+3)",
+    "Full Attack": "Gore +4 melee (1d8+3)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Ferocity",
+    "Special Qualities": "Low-light vision, scent",
+    "Saves": "Fort +6, Ref +3, Will +2",
+    "Abilities": "Str 15, Dex 10, Con 17, Int 2, Wis 13, Cha 4",
+    "Skills": "Listen +7, Spot +5",
+    "Feats": "Alertness, Toughness",
+    "Environment": "Temperate forests",
+    "Organization": "Solitary or herd (5\u20138)",
+    "Challenge Rating": "2",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "4\u20135 HD (Medium)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Though not carnivores, these wild swine are bad-tempered and usually charge anyone who disturbs them. A boar is covered in coarse, grayish-black fur. Adult males are about 4 feet long and 3 feet high at the shoulder."
+  },
+  {
+    "Combate": "Ferocity (Ex): A boar is such a tenacious combatant that it continues to fight without penalty even while disabled or dying.SEE WIKIPEDIA ENTRY: Boar"
+  }
+]

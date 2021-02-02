@@ -1,0 +1,28 @@
+[
+  {
+    "Monstruo y Nivel": "Whale, Orca",
+    "Size/Type": "Huge Animal",
+    "Hit Dice": "9d8+48 (88 hp)",
+    "Initiative": "+2",
+    "Speed": "Swim 50 ft. (10 squares)",
+    "Armor Class": "16 (\u20132 size, +2 Dex, +6 natural), touch 10, flat-footed 14",
+    "Base Attack/Grapple": "+6/+22",
+    "Attack": "Bite +12 melee (2d6+12)",
+    "Full Attack": "Bite +12 melee (2d6+12)",
+    "Space/Reach": "15 ft./10 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Blindsight 120 ft., hold breath, low-light vision",
+    "Saves": "Fort +11, Ref +8, Will +5",
+    "Abilities": "Str 27, Dex 15, Con 21, Int 2, Wis 14, Cha 6",
+    "Skills": "Listen +14*, Spot +14*, Swim +16",
+    "Feats": "Alertness, Endurance, Run, Toughness",
+    "Environment": "Cold aquatic",
+    "Organization": "Solitary or pod (6\u201311)",
+    "Challenge Rating": "5",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "10\u201313 HD (Huge); 14\u201327 HD (Gargantuan)",
+    "Level Adjustment": "\u2014"
+  },
+  {}
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Ogre mage"
+  },
+  {
+    "Size/Type": "Large Giant",
+    "Hit Dice": "5d8+15 (37 hp)",
+    "Initiative": "+4",
+    "Speed": "40 ft. (8 squares), fly 40 ft. (good)",
+    "Armor Class": "18 (\u20131 size, +5 natural, +4 chain shirt), touch 9, flat-footed 18",
+    "Base Attack/Grapple": "+3/+12",
+    "Attack": "Greatsword +7 melee (3d6+7/19\u201320) or longbow +2 ranged (2d6/x3)",
+    "Full Attack": "Greatsword +7 melee (3d6+7/19\u201320) or longbow +2 ranged (2d6/x3)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Spell-like abilities",
+    "Special Qualities": "Darkvision 90 ft., low-light vision, regeneration 5, spell resistance 19",
+    "Saves": "Fort +7, Ref +1, Will +3",
+    "Abilities": "Str 21, Dex 10, Con 17, Int 14, Wis 14, Cha 17",
+    "Skills": "Concentration +11, Listen +10, Spellcraft +10, Spot +10",
+    "Feats": "Combat Expertise, Improved Initiative",
+    "Environment": "Cold hills",
+    "Organization": "Solitary, pair, or troupe (1\u20132 plus 2\u20134 ogres)",
+    "Challenge Rating": "8",
+    "Treasure": "Double standard",
+    "Alignment": "Usually lawful evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "+7"
+  },
+  {
+    "Descripci\u00f3n": "The ogre mage is a more intelligent and dangerous variety of its mundane cousin.An ogre mage stands about 10 feet tall and weighs up to 700 pounds. Its skin varies in color from light green to light blue, and its hair is black or very dark brown. Ogre mages favor loose, comfortable clothing and lightweight armor.Ogre mages speak Giant and Common."
+  },
+  {
+    "Combate": "Ogre mages rely on their spell-like abilities, resorting to physical combat only when necessary. When faced with obviously superior forces, they prefer to retreat using gaseous form rather than fight a losing battle.Spell-Like Abilities: At will\u2014darkness, invisibility; 1/day\u2014 charm person (DC 14), cone of cold (DC 18), gaseous form, polymorph, sleep (DC 14). Caster level 9th. The save DCs are Charisma-based.Flight (Su): An ogre mage can cease or resume flight as a free action. While using gaseous form it can fly at its normal speed and has perfect maneuverability.Regeneration (Ex): Fire and acid deal normal damage to an ogre mage.An ogre mage that loses a limb or body part can reattach it by holding the severed member to the stump. Reattachment takes 1 minute. If the head or some other vital organ is severed, it must be reattached within 10 minutes or the creature dies. An ogre mage cannot regrow lost body parts.Change Shape (Su): An ogre mage can assume the form of any Small, Medium, or Large humanoid or giant."
+  }
+]

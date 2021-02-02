@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Hill giant"
+  },
+  {
+    "Size/Type": "Large Giant",
+    "Hit Dice": "12d8+48 (102 hp)",
+    "Initiative": "\u20131",
+    "Speed": "30 ft. in hide armor (6 squares); base speed 40 ft.",
+    "Armor Class": "20 (\u20131 size, \u20131 Dex, +9 natural, +3 hide armor), touch 8, flat-footed 20",
+    "Base Attack/Grapple": "+9/+20",
+    "Attack": "Greatclub +16 melee (2d8+10) or slam +15 melee (1d4+7) or rock +8 ranged (2d6+7)",
+    "Full Attack": "Greatclub +16/+11 melee (2d8+10) or 2 slams +15 melee (1d4+7) or rock +8 ranged (2d6+7)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Rock throwing",
+    "Special Qualities": "Low-light vision, rock catching",
+    "Saves": "Fort +12, Ref +3, Will +4",
+    "Abilities": "Str 25, Dex 8, Con 19, Int 6, Wis 10, Cha 7",
+    "Skills": "Climb +7, Jump +7, Listen +3, Spot +6",
+    "Feats": "Cleave, Improved Bull Rush, Power Attack, Improved Sunder, Weapon Focus (greatclub)",
+    "Environment": "Temperate hills",
+    "Organization": "Solitary, gang (2\u20135), band (6\u20139 plus 35% noncombatants), hunting/raiding party (6\u20139 plus 2\u20134 dire wolves), or tribe (21\u201330 plus 35% noncombatants plus 12\u201330 dire wolves, 2\u20134 ogres, and 12\u201322 orcs)",
+    "Challenge Rating": "7",
+    "Treasure": "Standard",
+    "Alignment": "Often chaotic evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "+4"
+  },
+  {
+    "Descripci\u00f3n": "Skin color among hill giants ranges from light tan to deep ruddy brown. Their hair is brown or black, with eyes the same color. Hill giants wear layers of crudely prepared hides with the fur left on. They seldom wash or repair their garments, preferring to simply add more hides as their old ones wear out.Adults are about 10-1/2 feet tall and weigh about 1,100 pounds. Hill giants can live to be 200 years old."
+  },
+  {
+    "Combate": "Hill giants prefer to fight from high, rocky outcroppings, where they can pelt opponents with rocks and boulders while limiting the risk to themselves.Hill giants love to make overrun attacks against smaller creatures when they first join battle. Thereafter, they stand fast and swing away with their massive clubs.Rock Throwing (Ex): The range increment is 120 feet for a hill giant\u2019s thrown rocks."
+  }
+]

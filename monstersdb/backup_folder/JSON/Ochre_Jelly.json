@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Ochre jelly"
+  },
+  {
+    "Size/Type": "Large Ooze",
+    "Hit Dice": "6d10+36 (69 hp)",
+    "Initiative": "\u20135",
+    "Speed": "10 ft. (2 squares), climb 10 ft.",
+    "Armor Class": "4 (\u20131 size, \u20135 Dex), touch 4, flat-footed 4",
+    "Base Attack/Grapple": "+4/+10",
+    "Attack": "Slam +5 melee (2d4+3 plus 1d4 acid)",
+    "Full Attack": "Slam +5 melee (2d4+3 plus 1d4 acid)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Acid, constrict 2d4+3 plus 1d4 acid, improved grab",
+    "Special Qualities": "Blindsight 60 ft., split, ooze traits",
+    "Saves": "Fort +8, Ref \u20133, Will \u20133",
+    "Abilities": "Str 15, Dex 1, Con 22, Int \u2014, Wis 1, Cha 1",
+    "Skills": "Climb +10",
+    "Feats": "\u2014",
+    "Environment": "Temperate marshes",
+    "Organization": "Solitary",
+    "Challenge Rating": "5",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "7\u20139 HD (Large); 10\u201318 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "An ochre jelly can grow to a diameter of about 15 feet and a thickness of about 6 inches, but can compress its body to fit into cracks as small as 1 inch wide. A typical specimen weighs about 5,600 pounds."
+  },
+  {
+    "Combate": "An ochre jelly attempts to envelop and squeeze its prey.Acid (Ex): An ochre jelly secretes a digestive acid that dissolves only flesh. Any melee hit or constrict attack deals acid damage.Constrict (Ex): An ochre jelly deals automatic slam and acid damage with a successful grapple check.Improved Grab (Ex): To use this ability, an ochre jelly must hit with its slam attack. It can then attempt to start a grapple as a free action without provoking an attack of opportunity. If it wins the grapple check, it establishes a hold and can constrict.Split (Ex): Slashing and piercing weapons and electricity attacks deal no damage to an ochre jelly. Instead the creature splits into two identical jellies, each with half of the original\u2019s current hit points (round down). A jelly with 10 hit points or less cannot be further split and dies if reduced to 0 it points.Skills: An ochre jelly has a +8 racial bonus on Climb checks and can always choose to take 10 on a Climb check, even if rushed or threatened."
+  }
+]

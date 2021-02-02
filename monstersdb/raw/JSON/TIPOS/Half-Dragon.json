@@ -1,0 +1,38 @@
+[
+  {
+    "Nombre": "Half-dragon"
+  },
+  {
+    "Columnas": "Size\\Bite Damage\\Claw Damage\\",
+    "Fila 1": "Fine\\1\\\u2014\\",
+    "Fila 2": "Diminutive\\1d2\\1\\",
+    "Fila 3": "Tiny\\1d3\\1d2\\",
+    "Fila 4": "Small\\1d4\\1d3\\",
+    "Fila 5": "Medium\\1d6\\1d4\\",
+    "Fila 6": "Large\\1d8\\1d6\\",
+    "Fila 7": "Huge\\2d6\\1d8\\",
+    "Fila 8": "Gargantuan\\3d6\\2d6\\",
+    "Fila 9": "Colossal\\4d6\\3d6\\"
+  },
+  {
+    "Columnas": "Dragon Variety\\Breath Weapon\\",
+    "Fila 1": "Black\\60-foot line of acid\\",
+    "Fila 2": "Blue\\60-foot line of lightning\\",
+    "Fila 3": "Green\\30-foot cone of corrosive (acid) gas\\",
+    "Fila 4": "Red\\30-foot cone of fire\\",
+    "Fila 5": "White\\30-foot cone of cold\\",
+    "Fila 6": "Brass\\60-foot line of fire\\",
+    "Fila 7": "Bronze\\60-foot line of lightning\\",
+    "Fila 8": "Copper\\60-foot line of acid\\",
+    "Fila 9": "Gold\\30-foot cone of fire\\",
+    "Fila 10": "Silver\\30-foot cone of cold\\"
+  },
+  {
+    "Columnas": "Dragon Variety\\Immunity\\Dragon Variety\\Immunity\\",
+    "Fila 1": "Black\\Acid\\Brass\\Fire\\",
+    "Fila 2": "Blue\\Electricity\\Bronze\\Electricity\\",
+    "Fila 3": "Green\\Acid\\Copper\\Acid\\",
+    "Fila 4": "Red\\Fire\\Gold\\Fire\\",
+    "Fila 5": "White\\Cold\\Silver\\Cold\\"
+  }
+]

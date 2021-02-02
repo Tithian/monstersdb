@@ -1,0 +1,37 @@
+[
+  {
+    "Monstruo y Nivel": "Snake, Large Viper",
+    "Size/Type": "Large Animal",
+    "Hit Dice": "3d8 (13 hp)",
+    "Initiative": "+7",
+    "Speed": "20 ft. (4 squares), climb 20 ft., swim 20 ft.",
+    "Armor Class": "15 (\u20131 size, +3 Dex, +3 natural),, touch 12, flat-footed 12",
+    "Base Attack/Grapple": "+2/+6",
+    "Attack": "Bite +4 melee (1d4 plus poison)",
+    "Full Attack": "Bite +4 melee (1d4 plus poison)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Poison",
+    "Special Qualities": "Scent",
+    "Saves": "Fort +3, Ref +6, Will +2",
+    "Abilities": "Str 10, Dex 17, Con 11, Int 1, Wis 12, Cha 2",
+    "Skills": "Balance +11, Climb +11, Hide +8, Listen +5, Spot +6, Swim +8",
+    "Feats": "Improved Initiative, Weapon Finesse",
+    "Environment": "Temperate marshes",
+    "Organization": "Solitary",
+    "Challenge Rating": "2",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "\u2014",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "These creatures range widely in size. They are not particularly aggressive, but will often lash out with a bite attack before attempting to retreat.Skills: Snakes have a +4 racial bonus on Hide, Listen, and Spot checks and a +8 racial bonus on Balance and Climb checks. A snake can always choose to take 10 on a Climb check, even if rushed or threatened. Snakes use either their Strength modifier or Dexterity modifier for Climb checks, whichever is higher. A snake has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line."
+  },
+  {
+    "Combate": "Viper snakes rely on their venomous bite to kill prey and defend themselves.Poison (Ex): A viper snake has a poisonous bite that deals initial and secondary damage of 1d6 Con. The save DC varies by the snake\u2019s size, as shown on the table below. The save DCs are Constitution-based.SEE WIKIPEDIA ENTRY: Snake"
+  },
+  {
+    "Columnas": "-----Size-----Fort-----DC",
+    "Fila 1": "-----Large-----11"
+  }
+]

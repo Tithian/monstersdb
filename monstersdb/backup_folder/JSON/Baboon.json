@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Baboon"
+  },
+  {
+    "Size/Type": "Medium Animal",
+    "Hit Dice": "1d8+1 (5 hp)",
+    "Initiative": "+2",
+    "Speed": "40 ft. (8 squares), climb 30 ft.",
+    "Armor Class": "13 (+2 Dex, +1 natural), touch 12, flat-footed 11",
+    "Base Attack/Grapple": "+0/+2",
+    "Attack": "Bite +2 melee (1d6+3)",
+    "Full Attack": "Bite +2 melee (1d6+3)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Low-light vision, scent",
+    "Saves": "Fort +3, Ref +4, Will +1",
+    "Abilities": "Str 15, Dex 14, Con 12, Int 2, Wis 12, Cha 4",
+    "Skills": "Climb +10, Listen +5, Spot +5",
+    "Feats": "Alertness",
+    "Environment": "Warm plains",
+    "Organization": "Solitary or troop (10\u201340)",
+    "Challenge Rating": "1/2",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "2\u20133 HD (Medium)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Baboons are powerful and aggressive primates adapted to life on the ground. They prefer open spaces but climb trees to find safe places to rest overnight. A typical baboon is the size of a big dog.Males can be 2 to 4 feet long and weigh as much as 90 pounds."
+  },
+  {
+    "Combate": "Baboons usually attack in groups.Skills: Baboons have a +8 racial bonus on Climb checks and can always choose to take 10 on Climb checks, even if rushed or threatened.SEE WIKIPEDIA ENTRY: Baboon]"
+  }
+]

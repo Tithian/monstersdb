@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Harpy"
+  },
+  {
+    "Monstruo y Nivel": "Harpy",
+    "Size/Type": "Medium Monstrous Humanoid",
+    "Hit Dice": "7d8 (31 hp)",
+    "Initiative": "+2",
+    "Speed": "20 ft. (4 squares), fly 80 ft. (average)",
+    "Armor Class": "13 (+2 Dex, +1 natural),, touch 12, flat-footed 11",
+    "Base Attack/Grapple": "+7/+7",
+    "Attack": "Club +7 melee (1d6)",
+    "Full Attack": "Club +7/+2 melee (1d6) and 2 claws +2 melee (1d3)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Captivating song",
+    "Special Qualities": "Darkvision 60 ft.",
+    "Saves": "Fort +2, Ref +7, Will +6",
+    "Abilities": "Str 10, Dex 15, Con 10, Int 7, Wis 12, Cha 17",
+    "Skills": "Bluff +11, Intimidate +7, Listen +7, Perform (oratory) +5, Spot +3",
+    "Feats": "Dodge, Flyby Attack, Persuasive",
+    "Environment": "Temperate marshes",
+    "Organization": "Solitary, pair, or flight (7\u201312)",
+    "Challenge Rating": "4",
+    "Treasure": "Standard",
+    "Alignment": "Usually chaotic evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "+3"
+  },
+  {
+    "Descripci\u00f3n": "Harpies like to entrance hapless travelers with their magical songs and lead them to unspeakable torments. Only when a harpy has finished playing with its new \u201ctoys\u201d will it release them from suffering by killing and consuming them."
+  },
+  {
+    "Combate": "When a harpy engages in battle, it prefers to use Flyby Attack and strike with a melee weapon.Captivating Song (Su): The most insidious ability of the harpy is its song. When a harpy sings, all creatures (other than harpies) within a 300-foot spread must succeed on a DC 16 Will save or become captivated. This is a sonic mind-affecting charm effect. A creature that successfully saves cannot be affected again by the same harpy\u2019s song for 24 hours. The save DC is Charisma-based.A captivated victim walks toward the harpy, taking the most direct route available. If the path leads into a dangerous area (through flame, off a cliff, or the like), that creature gets a second saving throw. Captivated creatures can take no actions other than to defend themselves. (Thus, a fighter cannot run away or attack but takes no defensive penalties.) A victim within 5 feet of the harpy stands there and offers no resistance to the monster\u2019s attacks. The effect continues for as long as the harpy sings and for 1 round thereafter. A bard\u2019s countersong ability allows the captivated creature to attempt a new Will save.Skills: Harpies have a +4 racial bonus on Bluff and Listen checks.SEE WIKIPEDIA ENTRY: Harpy"
+  }
+]

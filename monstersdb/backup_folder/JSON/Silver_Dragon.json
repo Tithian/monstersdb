@@ -1,0 +1,38 @@
+[
+  {
+    "Combate": "Silver dragons are not violent and avoid combat except when faced with highly evil or aggressive foes. If necessary, they use fog cloud or control weather to blind or confuse opponents before attacking. When angry, they use reverse gravity to fling enemies helplessly into the air, where they can be snatched. Against flying opponents, a silver dragon hides in clouds (creating some with control weather on clear days), then jumps to the attack when it has the advantage.Breath Weapon (Su): A silver dragon has two types of breath weapon, a cone of cold and a cone of paralyzing gas. Creatures within a cone of paralyzing gas must succeed on a Fortitude save or be paralyzed for 1d6 rounds plus 1 round per age category of the dragon.Alternate Form (Su): A silver dragon can assume any animal or humanoid form of Medium size or smaller as a standard action three times per day. This ability functions as a polymorph spell cast on itself at its caster level, except that the dragon does not regain hit points for changing form and can only assume the form of an anirmal or humanoid. The dragon can remain in its animal or humanoid form until it chooses to assume a new one or return to its natural form.Cloudwalking (Su): A silver dragon can tread on clouds or fog as though on solid ground. The ability functions continuously but can be negated or resumed at will.Spell-Like Abilities: 3/day\u2014fog cloud (adult or older), control winds (old or older); 2/day\u2014feather fall (juvenile or older); 1/day\u2014 control weather (ancient or older), reverse gravity (great wyrm).Skills: Bluff, Disguise, and Jump are considered class skills for silver dragons.See Wikipedia Entry: http://en.wikipedia.org/wiki/Dragon"
+  },
+  {
+    "Columnas": "-----LevelAdjustment-----:-----Wyrmling+4;veryyoung+4;young+5;others\u2014"
+  },
+  {
+    "Columnas": "-----Age-----Size-----HitDice(hp)-----Str-----Dex-----Con-----Int-----Wis-----Cha-----BaseAttack/-----Grapple-----Attack-----FortSave-----RefSave-----WillSave-----BreathWeapon(DC)-----FrightfulPresenceDC",
+    "Fila 1": "-----Wyrmling-----S-----7d12+7(52)-----13-----10-----13-----14-----15-----14-----+7/+4-----+9-----+6-----+5-----+7-----2d8(14)-----\u2014",
+    "Fila 2": "-----Veryyoung-----M-----10d12+20(85)-----15-----10-----15-----14-----15-----14-----+10/+12-----+12-----+9-----+7-----+9-----4d8(17)-----\u2014",
+    "Fila 3": "-----Young-----M-----13d12+26(110)-----17-----10-----15-----16-----17-----16-----+13/+16-----+16-----+10-----+8-----+11-----6d8(18)-----\u2014",
+    "Fila 4": "-----Juvenile-----L-----16d12+48(152)-----19-----10-----17-----18-----19-----18-----+16/+24-----+19-----+13-----+10-----+14-----8d8(21)-----\u2014",
+    "Fila 5": "-----Youngadult-----L-----19d12+76(199)-----23-----10-----19-----18-----19-----18-----+19/+29-----+24-----+15-----+11-----+15-----10d8(23)-----23",
+    "Fila 6": "-----Adult-----H-----22d12+110(253)-----27-----10-----21-----20-----21-----20-----+22/+38-----+28-----+18-----+13-----+18-----12d8(26)-----26",
+    "Fila 7": "-----Matureadult-----H-----25d12+125(287)-----29-----10-----21-----20-----21-----20-----+25/+42-----+32-----+19-----+14-----+19-----14d8(27)-----27",
+    "Fila 8": "-----Old-----H-----28d12+168(350)-----31-----10-----23-----22-----23-----22-----+28/+46-----+36-----+22-----+16-----+22-----16d8(30)-----30",
+    "Fila 9": "-----Veryold-----H-----31d12+186(387)-----33-----10-----23-----24-----25-----24-----+31/+50-----+40-----+23-----+17-----+24-----18d8(31)-----32",
+    "Fila 10": "-----Ancient-----G-----34d12+238(459)-----35-----10-----25-----26-----27-----26-----+34/+58-----+42-----+26-----+19-----+27-----20d8(34)-----35",
+    "Fila 11": "-----Wyrm-----G-----37d12+333(573)-----39-----10-----29-----28-----29-----28-----+37/+63-----+47-----+29-----+20-----+29-----22d8(37)-----37",
+    "Fila 12": "-----Greatwyrm-----C-----40d12+400(660)-----43-----10-----31-----30-----31-----30-----+40/+72-----+48-----+32-----+22-----+32-----24d8(40)-----40"
+  },
+  {
+    "Columnas": "-----Age-----Speed-----Initiative-----AC-----SpecialAbilities-----CasterLevel-----SR",
+    "Fila 1": "-----Wyrmling-----40ft.,fly100ft.(average)-----+0-----17(+1size,+6natural),touch11,-----flat-footed17-----Alternateform-----,-----immunitytoacidandcold,-----cloudwalking,-----vulnerability-----tofire-----\u2014-----\u2014",
+    "Fila 2": "-----Veryyoung-----40ft.,fly150ft.(poor)-----+0-----19(+9natural),touch10,-----flat-footed19:-----\u2014-----\u2014",
+    "Fila 3": "-----Young-----40ft.,fly150ft.(poor)-----+0-----22(+12natural),touch10,-----flat-footed22-----1st-----\u2014",
+    "Fila 4": "-----Juvenile-----40ft.,fly150ft.(poor)-----+0-----24(\u20131size,+15natural),touch9,-----flat-footed24-----Featherfall-----3rd-----\u2014",
+    "Fila 5": "-----Youngadult-----40ft.,fly150ft.(poor)-----+0-----27(\u20131size,+18natural),touch9,-----flat-footed27-----DR5/magic-----5th-----20",
+    "Fila 6": "-----Adult-----40ft.,fly150ft.(poor)-----+0-----29(\u20132size,+21natural),touch8,-----flat-footed29-----Fogcloud-----7th-----22",
+    "Fila 7": "-----Matureadult-----40ft.,fly150ft.(poor)-----+0-----32(\u20132size,+24natural),touch8,-----flat-footed32-----DR10/magic-----9th-----24",
+    "Fila 8": "-----Old-----40ft.,fly150ft.(poor)-----+0-----35(\u20132size,+27natural),touch8,-----flat-footed35-----Controlwinds-----11th-----26",
+    "Fila 9": "-----Veryold-----40ft.,fly150ft.(poor)-----+0-----38(\u20132size,+30natural),touch8,-----flat-footed38-----DR15/magic-----13th-----27",
+    "Fila 10": "-----Ancient-----40ft.,fly200ft.(clumsy)-----+0-----39(\u20134size,+33natural),touch6,-----flat-footed39-----Controlweather-----15th-----29",
+    "Fila 11": "-----Wyrm-----40ft.,fly200ft.(clumsy)-----+0-----42(\u20134size,+36natural),touch6,-----flat-footed42-----DR20/magic-----17th-----30",
+    "Fila 12": "-----Greatwyrm-----40ft.,fly200ft.(clumsy)-----+0-----41(\u20138size,+39natural),touch2,-----flat-footed41-----Reversegravity-----19th-----32"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "Size/Type": "Huge Giant",
+    "Hit Dice": "19d8+114 (199 hp)",
+    "Initiative": "+2",
+    "Speed": "35 ft. (7 squares), swim 30 ft. (6 squares) in breastplate; base speed 50 ft., swim 40 ft.",
+    "Armor Class": "27 (\u20132 size, +2 Dex, +12 natural, +5 breastplate), touch 10, flat-footed 25",
+    "Base Attack/Grapple": "+14/+36",
+    "Attack": "Greatsword +26 melee (4d6+21/19\u201320) or slam +26 melee (1d6+14) or composite longbow (+14 str bonus) +14 ranged (3d6+14/x3)",
+    "Full Attack": "Greatsword +26/+21/+16 melee (4d6+21/19\u201320) or 2 slams +26 melee (1d6+14) or composite longbow (+14 str bonus) +14/+9/+4 ranged (3d6+14/x3)",
+    "Space/Reach": "15 ft./15 ft.",
+    "Special Attacks": "Spell-like abilities",
+    "Special Qualities": "Freedom of movement, immunity to electricity, low-light vision, rock catching, water breathing",
+    "Saves": "Fort +17, Ref +8, Will +13",
+    "Abilities": "Str 39, Dex 14, Con 23, Int 16, Wis 20, Cha 15",
+    "Skills": "Climb +20, Concentration +26, Craft (any one) +13, Diplomacy +4, Intimidate +12, Jump +24, Listen +15, Perform (sing) +12, Sense Motive +15, Spot +25, Swim +18*",
+    "Feats": "Awesome Blow, Cleave, Combat Reflexes, Improved Bull Rush, Improved Sunder, Iron Will, Power Attack",
+    "Environment": "Warm mountains",
+    "Organization": "Solitary or family (2\u20134 plus 35% noncombatants plus 1 sorcerer or cleric of 7th\u201310th level plus 1\u20132 rocs, 2\u20135 griffons, or 2\u20138 sea cats)",
+    "Challenge Rating": "13",
+    "Treasure": "Standard coins; double goods; standard items",
+    "Alignment": "Often chaotic good",
+    "Advancement": "By character class",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Very rarely, storm giants have violet skin. Violet-skinned storm giants have deep violet or blue-black hair with silvery gray or purple eyes. Adults are about 21 feet tall and weigh about 12,000 pounds. Storm giants can live to be 600 years old. Storm giants\u2019 garb is usually a short, loose tunic belted at the waist, sandals or bare feet, and a headband. They wear a few pieces of simple but finely crafted jewelry, anklets (favored by barefoot giants), rings, or circlets being most common. They live quiet, reflective lives and spend their time musing about the world, composing and playing music, and tilling their land or gathering food."
+  },
+  {
+    "Combate": "Storm giants use weapons and spell-like abilities instead of throwing rocks. Their composite longbows have a range increment of 180 feet.Spell-Like Abilities: 1/day\u2014call lightning (DC 15), chain lightning (DC 18). Caster level 15th. 2/day\u2014control weather, levitate. Caster level 20th. The save DCs are Charisma-based.Freedom of Movement (Su): Storm giants have a continuous freedom of movement ability as the spell (caster level 20th). The effect can be dispelled, but the storm giant can create it again on its next turn as a free action.Water Breathing (Ex): Storm giants can breathe underwater indefinitely and can freely use their spell-like abilities while submerged.Skills: A storm giant has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line. *Storm giants ignore all weight penalties for gear carried when swimming."
+  }
+]

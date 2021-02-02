@@ -1,0 +1,31 @@
+[
+  {
+    "Nombre": "Bugbear zombie"
+  },
+  {
+    "Monstruo y Nivel": "Bugbear Zombie",
+    "Size/Type": "Medium Undead",
+    "Hit Dice": "6d12+3 (42 hp)",
+    "Initiative": "+0",
+    "Speed": "30 ft. (6 squares; can\u2019t run)",
+    "Armor Class": "16 (+5 natural, +1 light wooden shield),, touch 10, flat-footed 16",
+    "Base Attack/Grapple": "+3/+6",
+    "Attack": "Morningstar +6 melee (1d8+3) or slam +6 melee (1d6+3) or javelin +3 ranged (1d6+2)",
+    "Full Attack": "Morningstar +6 melee (1d8+3) or slam +6 melee (1d6+3) or javelin +3 ranged (1d6+2)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Single actions only, damage reduction 5/slashing, darkvision 60 ft., undead traits",
+    "Saves": "Fort +2, Ref +2, Will +5",
+    "Abilities": "Str 17, Dex 10, Con \u2014, Int \u2014, Wis 10, Cha 1",
+    "Skills": "\u2014",
+    "Feats": "Toughness",
+    "Environment": "Temperate mountains",
+    "Organization": "Any",
+    "Challenge Rating": "2",
+    "Treasure": "None",
+    "Alignment": "Always neutral evil",
+    "Advancement": "None",
+    "Level Adjustment": "\u2014"
+  },
+  {}
+]

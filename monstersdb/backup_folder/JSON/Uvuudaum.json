@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Uvuudaum"
+  },
+  {
+    "Size/Type": "Large Outsider (Evil, Extraplanar)",
+    "Hit Dice": "38d8+646 (817 hp)",
+    "Initiative": "+14 (Dex)",
+    "Speed": "80 ft., climb 40 ft.",
+    "Armor Class": "52 (+14 Dex, \u20131 size, +29 natural), touch , flat-footed",
+    "Base Attack/Grapple": "+38/+56",
+    "Attack": "Head spike +51 (10d6+21/19\u201320 plus Wisdom drain) melee",
+    "Full Attack": "Head spike +51 (10d6+21/19\u201320 plus Wisdom drain) melee",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Confusion aura, spell-like abilities, Wisdom drain",
+    "Special Qualities": "Blindsight 500 ft., DR 10/epic and good, electricity resistance 30, fast healing 20, regeneration 5, SR 39",
+    "Saves": "Fort +40, Ref +37, Will +41",
+    "Abilities": "Str 39, Dex 38, Con 44, Int 32, Wis 38, Cha 46",
+    "Skills": "Balance +18, Climb +32, Concentration +58, Craft (alchemy) +52, Diplomacy +22, Escape Artist +55, Gather Information +22, Hide +51, Intimidate +59, Jump +69, Knowledge (arcana, history, local, religion, the planes) +52, Listen +55, Move Silently +55, Search +52, Sense Motive +55, Spellcraft +56, Spot +55, Swim +55, Tumble +59",
+    "Feats": "Cleave, Combat Casting, Combat Reflexes, Epic Reflexes, Great Cleave, Improved Critical (head spike), Improved Combat Reflexes, Lightning Reflexes, Power Attack, Spell Stowaway (time stop), Tenacious Magic (haste), Tenacious Magic (displacement), Tenacious Magic (stoneskin)",
+    "Environment": "Any",
+    "Organization": "Solitary, pair, or madness (3\u20136)",
+    "Challenge Rating": "27",
+    "Treasure": "Standard",
+    "Alignment": "Usually neutral evil",
+    "Advancement": "As character class",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Uvuudaums can speak telepathically to any creature within 500 feet that has a language.A uvuudaum\u2019s natural weapons are treated as epic and evil for the purpose of overcoming damage reduction."
+  },
+  {
+    "Combate": "Confusion Aura (Su): This ability operates continuously, as the confusion spell but with a 30-foot radius. Potential victims can make a Will save (DC 47) to resist confusion. Those affected by the aura can make a new save every 4 rounds to throw off the effect. Once it has successfully resisted, a subject remains immune to that uvuudaum\u2019s confusion aura for 24 hours. The save DC is Charisma-based.Wisdom Drain (Su): This effect permanently reduces a living opponent\u2019s Wisdom score by 2d4 points when the creature hits with its head spike, or twice that amount on a critical hit. The creature regains 5 lost hit points (or 10 on a critical hit ) whenever it drains Wisdom, gaining any excess hit points as temporary hit points. Thesse temporary hit points last a maximum of 1 hour. An opponent can avoid the Wisdom drain with a fortitude save (DC 47). The save DC is Charisma-based.Spell-Like  At will\u2014confusion, dimension door, greater dispel magic, displacement, haste, invisibility, lightning bolt, magic missile, mage armor, polymorph, shield, stoneskin, true strike, web; 3/day\u2014chain lightning, cone of cold, disintegrate, dominate person, plane shift, prismatic spray, greater scrying, teleport, wall of force; 1/day\u2014contingent resurrection, nailed to the sky, time duplicate (epic spells), time stop. Caster level 27th; save DC 28 + spell level. The save DCs are Charisma-based.Regeneration (Ex): Uvuudaums take normal damage from holy weapons, cold, and fire."
+  }
+]

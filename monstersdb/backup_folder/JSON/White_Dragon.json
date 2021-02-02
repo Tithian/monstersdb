@@ -1,0 +1,41 @@
+[
+  {
+    "Nombre": "White dragon"
+  },
+  {
+    "Combate": "White dragons prefer sudden assaults, swooping down from aloft or bursting from beneath water, snow, or ice. They loose their breath weapon, then try to knock out a single opponent with a follow-up attack.Breath Weapon (Su): A white dragon has one type of breath weapon, a cone of cold.Icewalking (Ex): This ability works like the spider climb spell, but the surfaces the dragon climbs must be icy. It is always in effect.Freezing Fog (Sp): An old or older white dragon can use this ability three times per day. It is similar to a solid fog spell but also causes a rime of slippery ice to form on any surface the fog touches, creating the effect of a grease spell. The dragon is immune to the grease effect because of its icewalking ability. This ability is the equivalent of a 5th-level spell.Other Spell-Like Abilities: 3/day\u2014fog cloud (juvenile or older), gust of wind (adult or older), wall of ice (ancient or older); 1/day\u2014control weather (great wyrm).Skills: Hide, Move Silently, and Swim are considered class skills for white dragons.SEE WIKIPEDIA ENTRY: Dragon"
+  },
+  {
+    "Columnas": "-----LevelAdjustment-----:-----Wyrmling+2;veryyoung+3;young+3;juvenile+5;others\u2014"
+  },
+  {
+    "Columnas": "-----Age-----Size-----HitDice(hp)-----Str-----Dex-----Con-----Int-----Wis-----Cha-----BaseAttack/-----Grapple-----Attack-----FortSave-----RefSave-----WillSave-----BreathWeapon(DC)-----FrightfulPresenceDC",
+    "Fila 1": "-----Wyrmling-----T-----3d12+3(22)-----11-----10-----13-----6-----11-----6-----+3/\u20135-----+5-----+4-----+3-----+3-----1d6(12)-----\u2014",
+    "Fila 2": "-----Veryyoung-----S-----6d12+6(45)-----13-----10-----13-----6-----11-----6-----+6/+3-----+8-----+6-----+5-----+5-----2d6(14)-----\u2014",
+    "Fila 3": "-----Young-----M-----9d12+18(76)-----15-----10-----15-----6-----11-----6-----+9/+11-----+11-----+8-----+6-----+6-----3d6(16)-----\u2014",
+    "Fila 4": "-----Juvenile-----M-----12d12+24(102)-----17-----10-----15-----8-----11-----8-----+12/+15-----+15-----+10-----+8-----+8-----4d6(18)-----\u2014",
+    "Fila 5": "-----Youngadult-----L-----15d12+45(142)-----19-----10-----17-----8-----11-----10-----+15/+23-----+18-----+12-----+9-----+9-----5d6(20)-----17",
+    "Fila 6": "-----Adult-----L-----18d12+72(189)-----23-----10-----19-----10-----11-----12-----+18/+28-----+23-----+15-----+11-----+11-----6d6(23)-----20",
+    "Fila 7": "-----Matureadult-----H-----21d12+105(241)-----27-----10-----21-----12-----13-----12-----+21/+37-----+27-----+17-----+12-----+13-----7d6(25)-----21",
+    "Fila 8": "-----Old-----H-----24d12+120(276)-----29-----10-----21-----12-----13-----12-----+24/+41-----+31-----+19-----+14-----+15-----8d6(27)-----23",
+    "Fila 9": "-----Veryold-----H-----27d12+162(337)-----31-----10-----23-----14-----15-----14-----+27/+45-----+35-----+21-----+15-----+17-----9d6(29)-----25",
+    "Fila 10": "-----Ancient-----H-----30d12+180(375)-----33-----10-----23-----14-----15-----14-----+30/+49-----+39-----+23-----+17-----+19-----10d6(31)-----27",
+    "Fila 11": "-----Wyrm-----G-----33d12+231(445)-----35-----10-----25-----14-----15-----16-----+33/+57-----+41-----+25-----+18-----+20-----11d6(33)-----29",
+    "Fila 12": "-----Greatwyrm-----G-----36d12+288(522)-----37-----10-----27-----18-----19-----18-----+36/+61-----+45-----+28-----+20-----+24-----12d6(36)-----32"
+  },
+  {
+    "Columnas": "-----Age-----Speed-----Initiative-----AC-----SpecialAbilities-----CasterLevel-----SR",
+    "Fila 1": "-----Wyrmling-----60ft.,burrow30ft.,-----fly150ft.(average),swim60ft.-----+0-----14(+2size,+2natural),touch12,-----flat-footed14-----Icewalking,immunitytocold-----vulnerability-----tofire-----\u2014-----\u2014",
+    "Fila 2": "-----Veryyoung-----60ft.,burrow30ft.,-----fly150ft.(average),swim60ft.-----+0-----16(+1size,+5natural),touch11,-----flat-footed16:-----\u2014-----\u2014",
+    "Fila 3": "-----Young-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----18(+8natural),touch10,-----flat-footed18-----\u2014-----\u2014",
+    "Fila 4": "-----Juvenile-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----21(+11natural),touch10,-----flat-footed21-----Fogcloud-----\u2014-----\u2014",
+    "Fila 5": "-----Youngadult-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----23(\u20131size,+14natural),touch9,-----flat-footed23-----DR5/magic-----\u2014-----16",
+    "Fila 6": "-----Adult-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----26(\u20131size,+17natural),touch9,-----flat-footed26-----Gustofwind-----1st-----18",
+    "Fila 7": "-----Matureadult-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----28(\u20132size,+20natural),touch8,-----flat-footed28-----DR10/magic-----3rd-----20",
+    "Fila 8": "-----Old-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----31(\u20132size,+23natural),touch8,-----flat-footed31-----Freezingfog-----5th-----21",
+    "Fila 9": "-----Veryold-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----34(\u20132size,+26natural),touch8,-----flat-footed34-----DR15/magic-----7th-----23",
+    "Fila 10": "-----Ancient-----60ft.,burrow30ft.,-----fly200ft.(poor),swim60ft.-----+0-----37(\u20132size,+29natural),touch8,-----flat-footed37-----Wallofice-----9th-----24",
+    "Fila 11": "-----Wyrm-----60ft.,burrow30ft.,-----fly250ft.(clumsy),swim60ft.-----+0-----38(\u20134size,+32natural),touch6,-----flat-footed38-----DR20/magic-----11th-----25",
+    "Fila 12": "-----Greatwyrm-----60ft.,burrow30ft.,-----fly250ft.(clumsy),swim60ft.-----+0-----41(\u20134size,+35natural),touch6,-----flat-footed41-----Controlweather-----13th-----27"
+  }
+]

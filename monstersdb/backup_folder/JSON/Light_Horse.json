@@ -1,0 +1,33 @@
+[
+  {
+    "Size/Type": "Large Animal",
+    "Hit Dice": "3d8+6 (19 hp)",
+    "Initiative": "+1",
+    "Speed": "60 ft. (12 squares)",
+    "Armor Class": "13 (\u20131 size, +1 Dex, +3 natural), touch 10, flat-footed 12",
+    "Base Attack/Grapple": "+2/+8",
+    "Attack": "Hoof \u20132 melee (1d4+1*)",
+    "Full Attack": "2 hooves \u20132 melee (1d4+1*)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Low-light vision, scent",
+    "Saves": "Fort +5, Ref +4, Will +2",
+    "Abilities": "Str 14, Dex 13, Con 15, Int 2, Wis 12, Cha 6",
+    "Skills": "Listen +4, Spot +4",
+    "Feats": "Endurance, Run",
+    "Environment": "Temperate plains",
+    "Organization": "Domesticated or herd (6\u201330)",
+    "Challenge Rating": "1",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "\u2014",
+    "Level Adjustment": "\u2014"
+  },
+  {},
+  {
+    "Combate": "A horse not trained for war does not normally use its hooves to attack. Its hoof attack is treated as a secondary attack and adds only half the horse\u2019s Strength bonus to damage. (These secondary attacks are noted with an asterisk in the Attack and Full Attack entries for the heavy horse and the light horse.)A light horse cannot fight while carrying a rider.SEE WIKIPEDIA ENTRY: Horse"
+  },
+  {
+    "LIGHT HORSEHorses are widely domesticated for riding and as beasts of burden.The statistics presented here describe smaller breeds of working horses such as quarter horses and Arabians as well as wild horses. These animals are usually ready for useful work by age two.Carrying Capacity: A light load for a light horse is up to 150 pounds; a medium load, 151\u2013300 pounds; and a heavy load, 301\u2013450 pounds. A light horse can drag 2,250 pounds.": ""
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Unbodied"
+  },
+  {
+    "Size/Type": "Medium Monstrous Humanoid (Incorporeal, Psionic)",
+    "Hit Dice": "4d8+4 (22 hp)",
+    "Initiative": "+1",
+    "Speed": "Fly 30 ft. (good) (6 squares)",
+    "Armor Class": "13 (+1 Dex, +2 deflection), touch 13, flat-footed 12",
+    "Base Attack/Grapple": "+4/\u2014",
+    "Attack": "Incorporeal touch +5 melee (1d6)",
+    "Full Attack": "Incorporeal touch +5 melee (1d6)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Psionic powers, telekinetic force",
+    "Special Qualities": "Assume likeness, incorporeal traits, telepathy 100 ft.",
+    "Saves": "Fort +2, Ref +5, Will +6",
+    "Abilities": "Str \u2014, Dex 13, Con 12, Int 15, Wis 14, Cha 15",
+    "Skills": "Bluff +10*, Diplomacy +6, Disguise +10*, Intimidate +6, Listen +6, Sense Motive +6, Spot +6",
+    "Feats": "Overchannel, Wild Talent",
+    "Environment": "Any",
+    "Organization": "Solitary or illumination (3\u20136)",
+    "Challenge Rating": "5",
+    "Treasure": "Half standard",
+    "Alignment": "Any",
+    "Advancement": "By character class",
+    "Level Adjustment": "+4"
+  },
+  {
+    "Descripci\u00f3n": "An unbodied uses telepathy to communicate with others."
+  },
+  {
+    "Combate": "Psionic Powers: An unbodied manifests powers as a 4th-level psion (telepath). The save DCs are Intelligence-based.Typical Psion Powers Known (power points 21, base save DC 12 + power level): 1st\u2014 detect psionics, empty mind, mind thrust (DC 13*), psionic charm (DC 13*); 2nd\u2014brain lock (DC 14), cloud mind (DC 14), energy push (DC 14), read thoughts (DC 14).*Power can be augmented.Telekinetic Force (Su): An unbodied can use telekinetic force (DC 15) as a standard action that does not provoke attacks of opportunity. Manifester level 4th. The save DC is Charisma-based.Assume Likeness (Su): An unbodied can assume the likeness of any Small, Medium, or Large creature as a standard action that does not provoke attacks of opportunity. Its abilities do not change, but it appears to be that creature, relying on its Bluff and Disguise skills to deflect suspicion.Hide Mind (Su): An unbodied cannot be identified as psionic by divination spells or clairsentience powers.Incorporeal Traits: An unbodied is harmed only by other incorporeal creatures, magic weapons, powers, spells, spell-like abilities, and supernatural abilities. It has a 50% chance to ignore any damage from a corporeal source, except for force effects or attacks made with ghost touch weapons. It can pass through solid objects, but not force effects, at will. Its attacks ignore natural armor, armor, and shields, but deflection bonuses and force effects work normally against them. An incorporeal creature always moves silently and cannot be heard with Listen checks if it doesn\u2019t wish to be.Skills: An unbodied has a +4 racial bonus on Bluff and Disguise checks. *When using its assume likeness ability, an unbodied gets an additional +10 circumstance bonus on Disguise checks. If it can read an opponent\u2019s mind, it gets a further +4 circumstance bonus on Bluff and Disguise checks."
+  }
+]

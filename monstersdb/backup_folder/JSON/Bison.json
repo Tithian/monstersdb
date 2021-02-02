@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Bison"
+  },
+  {
+    "Size/Type": "Large Animal",
+    "Hit Dice": "5d8+15 (37 hp)",
+    "Initiative": "+0",
+    "Speed": "40 ft. (8 squares)",
+    "Armor Class": "13 (\u20131 size, +4 natural), touch 9, flat-footed 13",
+    "Base Attack/Grapple": "+3/+13",
+    "Attack": "Gore +8 melee (1d8+9)",
+    "Full Attack": "Gore +8 melee (1d8+9)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Stampede",
+    "Special Qualities": "Low-light vision, scent",
+    "Saves": "Fort +7, Ref +4, Will +1",
+    "Abilities": "Str 22, Dex 10, Con 16, Int 2, Wis 11, Cha 4",
+    "Skills": "Listen +7, Spot +5",
+    "Feats": "Alertness, Endurance",
+    "Environment": "Temperate plains",
+    "Organization": "Solitary or herd (6\u201330)",
+    "Challenge Rating": "2",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "6\u20137 HD (Large)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "These herd animals can be aggressive when protecting young and during the mating season, but they generally prefer flight to fighting. A bison stands more than 6 feet tall at the shoulder and is 9 to 12 feet long. It weigh 1,800 to 2,400 pounds. The bison\u2019s statistics can be used for almost any large herd animal."
+  },
+  {
+    "Combate": "Stampede (Ex): A frightened herd of bison flees as a group in a random direction (but always away from the perceived source of danger). They literally run over anything of Large size or smaller that gets in their way, dealing 1d12 points of damage for each five bison in the herd (Reflex DC 18 half ). The save DC is Strength-based.SEE WIKIPEDIA ENTRY: Bison"
+  }
+]

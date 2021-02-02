@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Iron golem"
+  },
+  {
+    "Size/Type": "Large Construct",
+    "Hit Dice": "18d10+30 (129 hp)",
+    "Initiative": "\u20131",
+    "Speed": "20 ft. (4 squares)",
+    "Armor Class": "30 (\u20131 size, \u20131 Dex, +22 natural), touch 8, flat-footed 30",
+    "Base Attack/Grapple": "+12/+28",
+    "Attack": "Slam +23 melee (2d10+11)",
+    "Full Attack": "2 slams +23 melee (2d10+11)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Breath weapon",
+    "Special Qualities": "Construct traits, damage reduction 15/adamantine, darkvision 60 ft., immunity to magic, low-light vision",
+    "Saves": "Fort +6, Ref +5, Will +6",
+    "Abilities": "Str 33, Dex 9, Con \u2014, Int \u2014, Wis 11, Cha 1",
+    "Skills": "\u2014",
+    "Feats": "\u2014",
+    "Environment": "Any",
+    "Organization": "Solitary or gang (2\u20134)",
+    "Challenge Rating": "13",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "19\u201324 HD (Large); 25\u201354 HD (Huge)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "This golem has a humanoid body made from iron. An iron golem can be fashioned in any manner, just like a stone golem (see below), although it almost always displays armor of some sort. Its features are much smoother than those of a stone golem. Iron golems sometimes carry a short sword in one hand. An iron golem is 12 feet tall and weighs about 5,000 pounds. An iron golem cannot speak or make any vocal noise, nor does it have any distinguishable odor. It moves with a ponderous but smooth gait. Each step causes the floor to tremble unless it is on a thick, solid foundation."
+  },
+  {
+    "Combate": "Breath Weapon (Su): 10-foot cube, cloud of poisonous gas lasting 1 round, free action once every 1d4+1 rounds; initial damage 1d4 Con, secondary damage 3d4 Con, Fortitude DC 19 negates. The save DC is Constitution-based.Immunity to Magic (Ex): An iron golem is immune to any spell or spell-like ability that allows spell resistance. In addition, certain spells and effects function differently against the creature, as noted below.A magical attack that deals electricity damage slows an iron golem (as the slow spell) for 3 rounds, with no saving throw.A magical attack that deals fire damage breaks any slow effect on the golem and heals 1 point of damage for each 3 points of damage the attack would otherwise deal. If the amount of healing would cause the golem to exceed its full normal hit points, it gains any excess as temporary hit points. For example, an iron golem hit by a fireball gains back 6 hit points if the damage total is 18 points. An iron golem gets no saving throw against fire effects.An iron golem is affected normally by rust attacks, such as that of a rust monster or a rusting grasp spell.ConstructionAn iron golem\u2019s body is sculpted from 5,000 pounds of pure iron, smelted with rare tinctures and admixtures costing at least 10,000 gp. Assembling the body requires a DC 20 Craft (armorsmithing) check or a DC 20 Craft (weaponsmithing) check.CL 16th; Craft Construct, cloudkill, geas/quest, limited wish, polymorph any object, caster must be at least 16th level; Price 150,000 gp; Cost 80,000 gp + 5,600 XP.SEE WIKIPEDIA ENTRY: Golem"
+  }
+]

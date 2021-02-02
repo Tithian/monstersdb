@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Giant ant worker"
+  },
+  {
+    "Monstruo y Nivel": "Giant Ant, Worker",
+    "Size/Type": "Medium Vermin",
+    "Hit Dice": "2d8 (9 hp)",
+    "Initiative": "+0",
+    "Speed": "50 ft. (10 squares), climb 20 ft.",
+    "Armor Class": "17 (+7 natural),, touch 10, flat-footed 17",
+    "Base Attack/Grapple": "+1/+1",
+    "Attack": "Bite +1 melee (1d6)",
+    "Full Attack": "Bite +1 melee (1d6)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Improved grab",
+    "Special Qualities": "Scent, vermin traits",
+    "Saves": "Fort +3, Ref +0, Will +0",
+    "Abilities": "Str 10, Dex 10, Con 10, Int \u2014, Wis 11, Cha 9",
+    "Skills": "Climb +8",
+    "Feats": "TrackB",
+    "Environment": "Temperate plains",
+    "Organization": "Gang (2\u20136) or crew (6\u201311 plus 1 giant ant soldier)",
+    "Challenge Rating": "1",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "3\u20134 HD (Medium); 5\u20136 HD (Large)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Giant ants are among the hardiest and most adaptable vermin. Workers are about 6 feet long."
+  },
+  {
+    "Combate": "Improved Grab (Ex): To use this ability, a giant ant must hit with its bite attack.Skills: *Giant ants have a +4 racial bonus on Survival checks when tracking by scent and a +8 racial bonus on Climb checks. A giant ant can always choose to take 10 on Climb checks, even if rushed or threatened.SEE WIKIPEDIA ENTRY: Ant"
+  }
+]

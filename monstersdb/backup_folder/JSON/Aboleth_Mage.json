@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Aboleth mage"
+  },
+  {
+    "Monstruo y Nivel": "Aboleth Mage, 10th-Level Wizard",
+    "Size/Type": "Huge Aberration (Aquatic)",
+    "Hit Dice": "8d8+56 plus 10d4+70 (177 hp)",
+    "Initiative": "+7",
+    "Speed": "10 ft. (2 squares), swim 60 ft.",
+    "Armor Class": "18 (\u20132 size, +3 Dex, +7 natural), touch 11, flat-footed 15",
+    "Base Attack/Grapple": "+11/+28",
+    "Attack": "Tentacle +18 melee (1d6+9 plus slime)",
+    "Full Attack": "4 tentacles +18 melee (1d6+9 plus slime)",
+    "Space/Reach": "15 ft./10 ft.",
+    "Special Attacks": "Enslave, psionics, slime, spells",
+    "Special Qualities": "Aquatic subtype, darkvision 60 ft., mucus cloud, summon familiar",
+    "Saves": "Fort +15, Ref +10, Will +15",
+    "Abilities": "Str 28, Dex 16, Con 24, Int 20, Wis 16, Cha 14",
+    "Skills": "Bluff +13, Concentration +25, Decipher Script +15, Diplomacy +6, Disguise +2 (+4 acting), Intimidate +4, Knowledge (arcana) +15, Knowledge (dungeoneering) +25, Knowledge (history) +15, Knowledge (the planes) +15, Listen +15, Search +10, Sense Motive +15, Spellcraft +20, Spot +17, Survival +3 (+5 following tracks, on other planes, and underground), Swim +8",
+    "Feats": "Combat Casting, Empower Spell, Eschew Materials, Great Fortitude, Improved Initiative, Lightning Reflexes, Scribe Scroll, Spell Focus illusion), Spell Focus (enchantment), Spell Penetration",
+    "Environment": "Underground",
+    "Organization": "Solitary",
+    "Challenge Rating": "17",
+    "Treasure": "Double standard",
+    "Alignment": "Usually lawful evil",
+    "Advancement": "By character class",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "The aboleth is a revolting fishlike amphibian found primarily in subterranean lakes and rivers. An aboleth has a pink belly. Four pulsating blueblack orifices line the bottom of its body and secrete gray slime that smells like rancid grease. It uses its tail for propulsion in the water and drags itself along with its tentacles on land. An aboleth weighs about 6,500 pounds.Aboleths speak their own language, as well as Undercommon and Aquan."
+  },
+  {
+    "Combate": "An aboleth attacks by flailing with its long, slimy tentacles, though it prefers to fight from a distance using its illusion powers.Enslave (Su): Three times per day, an aboleth can attempt to enslave any one living creature within 30 feet. The target must succeed on a DC 16 Will save or be affected as though by a dominate person spell (caster level 16th). An enslaved creature obeys the aboleth\u2019s telepathic commands until freed by remove curse, and can attempt a new Will save every 24 hours to break free. The control is also broken if the aboleth dies or travels more than 1 mile from its slave. The save DC is Charisma-based.Psionics (Sp): At will\u2014Hypnotic pattern (DC 14), illusory wall (DC 16), mirage arcana (DC 17), persistent image (DC 17), programmed image (DC 18), project image (DC 19), veil (DC 18). Effective caster level 16th.The aboleth mage uses a number of spells, such as displacement, greater invisibility, and wall of force, to protect itself while seizing control of its foes with spells and innate abilities.Typical Wizard Spells Prepared (4/6/5/4/4/3; save DC 15 + spell level): 0\u2014daze, detect magic (2), resistance; 1st\u2014alarm, charm person, color spray, mage armor, magic missile (2); 2nd\u2014blur, bull\u2019s strength, darkness, fox\u2019s cunning, see invisibility; 3rd\u2014dispel magic, displacement, fly, lightning bolt; 4th\u2014greater invisibility, phantasmal killer, scrying, stoneskin; 5th\u2014hold monster, empowered lightning bolt, wall of force.Slime (Ex): A blow from an aboleth\u2019s tentacle can cause a terrible affliction. A creature hit by a tentacle must succeed on a DC 21 Fortitude save or begin to transform over the next 1d4+1 minutes, the skin gradually becoming a clear, slimy membrane. An afflicted creature must remain moistened with cool, fresh water or take 1d12 points of damage every 10 minutes. The slime reduces the creature\u2019s natural armor bonus by 1 (but never to less than 0). The save DC is Constitution-based.A remove disease spell cast before the transformation is complete will restore an afflicted creature to normal. Afterward, however, only a heal or mass heal spell can reverse the affliction.Mucus Cloud (Ex): An aboleth underwater surrounds itself with a viscous cloud of mucus roughly 1 foot thick. Any creature coming into contact with and inhaling this substance must succeed on a DC 21 Fortitude save or lose the ability to breathe air for the next 3 hours. An affected creature suffocates in 2d6 minutes if removed from the water. Renewed contact with the mucus cloud and failing another Fortitude save continues the effect for another 3 hours. The save DC is Constitution-based.Skills: An aboleth has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line."
+  }
+]

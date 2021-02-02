@@ -1,0 +1,36 @@
+[
+  {
+    "Nombre": "Psionic couatl"
+  },
+  {
+    "Monstruo y Nivel": "Couatle (psionic)",
+    "Size/Type": "Large Outsider (Native, Psionic)",
+    "Hit Dice": "9d8+18 (58 hp)",
+    "Initiative": "+7",
+    "Speed": "20 ft. (4 squares), fly 60 ft. (good)",
+    "Armor Class": "21 (\u20131 size, +3 Dex, +9 natural), touch 12, flat-footed 18",
+    "Base Attack/Grapple": "+9/+17",
+    "Attack": "Bite +12 melee (1d3+6 plus poison)",
+    "Full Attack": "Bite +12 melee (1d3+6 plus poison)",
+    "Space/Reach": "10 ft./5 ft.",
+    "Special Attacks": "Constrict 2d8+6, improved grab, poison, psi-like abilities, spells",
+    "Special Qualities": "Darkvision 60 ft., ethereal jaunt, telepathy 90 ft.",
+    "Saves": "Fort +8, Ref +9, Will +10",
+    "Abilities": "Str 18, Dex 16, Con 14, Int 17, Wis 19, Cha 17",
+    "Skills": "Concentration +14, Diplomacy +17, Jump +0, Knowledge (any two) +15, Listen +16, Search +15, Sense Motive +16, Spellcraft +15 (+17 scrolls), Spot +16, Survival +4 (+6 following tracks), Tumble +15, Use Magic Device +15 (+17 scrolls)",
+    "Feats": "Dodge, Empower Spell, Eschew MaterialsB, Hover, Improved Initiative",
+    "Environment": "Warm forests",
+    "Organization": "Solitary, pair, or flight (3\u20136)",
+    "Challenge Rating": "10",
+    "Treasure": "Standard",
+    "Alignment": "Always lawful good",
+    "Advancement": "10\u201313 HD (Large); 14\u201327 HD (Huge)",
+    "Level Adjustment": "+7"
+  },
+  {
+    "Descripci\u00f3n": "A couatl is about 12 feet long, with a wingspan of about 15 feet. It weighs about 1,800 pounds.Couatls speak Celestial, Common, and Draconic, and also have the power of telepathy (see below)."
+  },
+  {
+    "Combate": "A couatl uses its detect thoughts ability on any creature that arouses its suspicions. Since it is highly intelligent, a couatl usually casts spells from a distance before closing. If more than one couatl is involved, they discuss their strategy before a battle.Constrict (Ex): A couatl deals 2d8+6 points of damage with a successful grapple check.Improved Grab (Ex): To use this ability, a couatl must hit a creature of up to two size categories larger with its bite attack. It can then attempt to start a grapple as a free action without provoking an attack of opportunity. If it wins the grapple check, it establishes a hold and can constrict.Poison (Ex): Injury, Fortitude DC 16, initial damage 2d4 Str, secondary damage 4d4 Str.The save DC is Constitution-based.Psi-Like Abilities: At will\u2014aura sight, cloud mind (DC 15), detect psionics, read thoughts (DC 15); 3/day\u2014mental barrier (2 rounds*), metamorphosis, psionic plane shift, thought shield (power resistance 19*). Manifester level 9th. The save DCs are Charisma-based.*Includes augmentation for the psionic couatl\u2019s manifester level.Spells: A couatl casts spells as a 9th-level sorcerer.It can choose its spells known from the sorcerer list, the cleric list, and from the lists for the Air, Good, and Law domains. The cleric spells and domain spells are considered arcane spells for a couatl, meaning that the creature does not need a divine focus to cast them.Typical Spells Known (6/7/7/7/4; save DC 13 + spell level): 0\u2014cure minor wounds, daze, disrupt undead, light, obscuring mist, ray of frost, read magic, resistance; 1st\u2014endure elements, mage armor, protection from chaos, true strike, wind wall; 2nd\u2014cure moderate wounds, eagle\u2019s splendor, scorching ray, silence; 3rd\u2014gaseous form, magic circle against evil, summon monster iII; 4th\u2014 charm monster, freedom of movement.Ethereal Jaunt (Su): This ability works like the ethereal jaunt spell (caster level 16th).Telepathy (Su): A couatl can communicate telepathically with any creature within 90 feet that has an Intelligence score. The creature can respond to the couatl if it wishes\u2014no common language is needed.Change Shape (Su): A couatl can assume the form of any Small or Medium humanoid."
+  }
+]

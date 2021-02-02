@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Hezrou"
+  },
+  {
+    "Size/Type": "Large Outsider (Chaotic, Demon, Extraplanar, Evil)",
+    "Hit Dice": "10d8+93 (138 hp)",
+    "Initiative": "+0",
+    "Speed": "30 ft. (6 squares)",
+    "Armor Class": "23 (\u20131 size, +14 natural), touch 9, flat-footed 23",
+    "Base Attack/Grapple": "+10/+19",
+    "Attack": "Bite +14 melee (4d4+5)",
+    "Full Attack": "Bite +14 melee (4d4+5) and 2 claws +9 melee (1d8+2)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "Spell-like abilities, stench, improved grab, summon demon",
+    "Special Qualities": "Damage reduction 10/good, darkvision 60 ft., immunity to electricity and poison, resistance to acid 10, cold 10, and fire 10, spell resistance 19, telepathy 100 ft.",
+    "Saves": "Fort +16, Ref +7, Will +9",
+    "Abilities": "Str 21, Dex 10, Con 29, Int 14, Wis 14, Cha 18",
+    "Skills": "Climb +18, Concentration +22, Hide +13, Escape Artist +13, Intimidate +17, Listen +23, Move Silently +13, Search +15, Spellcraft +15, Spot +23, Survival +2 (+4 following tracks), Use Rope +0 (+2 with bindings)",
+    "Feats": "Blind Fight, Cleave, Power Attack, Toughness",
+    "Environment": "A chaotic evil-aligned plane",
+    "Organization": "Solitary or gang (2\u20134)",
+    "Challenge Rating": "11",
+    "Treasure": "Standard",
+    "Alignment": "Always chaotic evil",
+    "Advancement": "11\u201315 HD (Large); 16\u201330 HD (Huge)",
+    "Level Adjustment": "+9"
+  },
+  {
+    "Descripci\u00f3n": "A hezrou can walk both upright and on all fours, but it always fights standing upA hezrou is about 8 feet tall and weighs about 750 pounds."
+  },
+  {
+    "Combate": "Hezrous enjoy melee combat even more than vrocks do. They eagerly press an attack deep into the heart of enemy forces, so their stench can take effect as quickly as possible. They enter most battles by using blasphemy, and follow it with an occasional chaos hammer or unholy blight, depending on the alignment of their opponents.A hezrou\u2019s natural weapons, as well as any weapons it wields, are treated as chaotic-aligned and evil-aligned for the purpose of overcoming damage reduction.Improved Grab (Ex): To use this ability, a hezrou must hit with both claw attacks. It can then attempt to start a grapple as a free action without provoking an attack of opportunity.Spell-Like Abilities: At will\u2014chaos hammer (DC 18), greater teleport (self plus 50 pounds of objects only), unholy blight (DC 18); 3/day\u2014blasphemy (DC 21), gaseous form. Caster level 13th. The save DCs are Charisma-based.Stench (Ex): A hezrou\u2019s skin produces a foul-smelling, toxic liquid whenever it fights. Any living creature (except other demons) within 10 feet must succeed on a DC 24 Fortitude save or be nauseated for as long as it remains within the affected area and for 1d4 rounds afterward. Creatures that successfully save are sickened for as long as they remain in the area. A creature that successfully saves cannot be affected again by the same hezrou\u2019s stench for 24 hours. A delay poison or neutralize poison spell removes either condition from one creature. Creatures that have immunity to poison are unaffected, and creatures resistant to poison receive their normal bonus on their saving throws.. The save DC is Constitution-based.Summon Demon (Sp): Once per day a hezrou can attempt to summon 4d10 dretches or another hezrou with a 35% chance of success. This ability is the equivalent of a 4th-level spell.Skills: Hezrous have a +8 racial bonus on Listen and Spot checks."
+  }
+]

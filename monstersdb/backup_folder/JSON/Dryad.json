@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Dryad"
+  },
+  {
+    "Size/Type": "Medium Fey",
+    "Hit Dice": "4d6 (14 hp)",
+    "Initiative": "+4",
+    "Speed": "30 ft. (6 squares)",
+    "Armor Class": "17 (+4 Dex, +3 natural), touch 14, flat-footed 13",
+    "Base Attack/Grapple": "+2/+2",
+    "Attack": "Dagger +6 melee (1d4/19\u201320) or masterwork longbow +7 ranged (1d8/x3)",
+    "Full Attack": "Dagger +6 melee (1d4/19\u201320) or masterwork longbow +7 ranged (1d8/x3)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Spell-like abilities",
+    "Special Qualities": "Damage reduction 5/cold iron, tree dependent, wild empathy",
+    "Saves": "Fort +3, Ref +8, Will +6",
+    "Abilities": "Str 10, Dex 19, Con 11, Int 14, Wis 15, Cha 18",
+    "Skills": "Escape Artist +11, Handle Animal +11, Hide +11, Knowledge (nature) +11, Listen +9, Move Silently +11, Ride +6, Spot +9, Survival +9, Use Rope +4 (+6 with bindings)",
+    "Feats": "Great Fortitude, Weapon Finesse",
+    "Environment": "Temperate forests",
+    "Organization": "Solitary or grove (4\u20137)",
+    "Challenge Rating": "3",
+    "Treasure": "Standard",
+    "Alignment": "Usually chaotic good",
+    "Advancement": "By character class",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A dryad\u2019s delicate features are much like a female elf \u2019s, though her flesh is like bark or fine wood, and her hair is like a canopy of leaves that changes color with the seasons.Although they are generally solitary, up to seven dryads have been encountered in one place on rare occasions.Dryads speak Common, Elven, and Sylvan."
+  },
+  {
+    "Combate": "Shy, intelligent, and resolute, dryads are as elusive as they are alluring\u2014they avoid physical combat and are rarely seen unless they wish to be. If threatened, or in need of an ally, a dryad uses charm person or suggestion, attempting to gain control of the attacker(s) who could help the most against the rest. Any attack on her tree, however, provokes the dryad into a frenzied defense.Spell-Like Abilities: At will\u2014entangle (DC 13), speak with plants, tree shape; 3/day\u2014 charm person (DC 13), deep slumber (DC 15), tree stride; 1/day\u2014suggestion (DC 15). Caster level 6th. The save DCs are Wisdom-based.Tree Dependent (Su): Each dryad is mystically bound to a single, enormous oak tree and must never stray more than 300 yards from it. Any who do become ill and die within 4d6 hours. A dryad\u2019s oak does not radiate magic.Wild Empathy (Ex): This power works like the druid\u2019s wild empathy class feature, except that the dryad has a +6 racial bonus on the check.SEE WIKIPEDIA ENTRY: Dryad"
+  }
+]

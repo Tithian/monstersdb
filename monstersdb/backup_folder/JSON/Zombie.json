@@ -1,0 +1,40 @@
+[
+  {
+    "Nombre": "Zombie"
+  },
+  {
+    "Creating a Zombie": "\u201cZombie\u201d is an acquired template that can be added to any corporeal creature (other than an undead) that has a skeletal system (referred to hereafter as the base creature).Size and Type: The creature\u2019s type changes to undead. It retains any subtypes except alignment subtypes and subtypes that indicate kind. It does not gain the augmented subtype. It uses all the base creature\u2019s statistics and special abilities except as noted here.Hit Dice: Drop any Hit Dice from class levels (to a minimum of 1), double the number of Hit Dice left, and raise them to d12s. If the base creature has more than 10 Hit Dice (not counting those gained with experience), it can\u2019t be made into a zombie with the animate dead spell.Speed: If the base creature can fly, its maneuverability rating drops to clumsy.Armor Class: Natural armor bonus increases by a number based on the zombie\u2019s size:Base Attack: A zombie has a base attack bonus equal to 1/2 its Hit Dice.Attacks: A zombie retains all the natural weapons, manufactured weapon attacks, and weapon proficiencies of the base creature. A zombie also gains a slam attack.Damage: Natural and manufactured weapons deal damage normally. A slam attack deals damage depending on the zombie\u2019s size. (Use the base creature\u2019s slam damage if it\u2019s better.)Special Attacks: A zombie retains none of the base creature\u2019s special attacks.Special Qualities: A zombie loses most special qualities of the base creature. It retains any extraordinary special qualities that improve its melee or ranged attacks. A zombie gains the following special quality.Damage Reduction 5/Slashing (Ex): Zombies are lumberingmasses of flesh.Single Actions Only (Ex): Zombies have poor reflexes and can perform only a single move action or attack action each round. A zombie can move up to its speed and attack in the same round, but only if it attempts a charge.Saves: Base save bonuses are Fort +1/3 HD, Ref +1/3 HD, and Will +1/2 HD + 2.Abilities: A zombie\u2019s Strength increases by +2, its Dexterity decreases by 2, it has no Constitution or Intelligence score, its Wisdom changes to 10, and its Charisma changes to 1.Skills: A zombie has no skills.Feats: A zombie loses all feats of the base creature and gains Toughness.Environment: Any land and underground.Organization: Any.Challenge Rating: Depends on Hit Dice, as follows:Treasure: None.Alignment: Always neutral evil.Advancement: As base creature, but double Hit Dice (maximum 20), or \u2014 if the base creature advances by character class.Level Adjustment: \u2014.SEE WIKIPEDIA ENTRY: Zombie"
+  },
+  {
+    "Fila 1": "-----Tinyorsmaller-----+0",
+    "Fila 2": "-----Small-----+1",
+    "Fila 3": "-----Medium-----+2",
+    "Fila 4": "-----Large-----+3",
+    "Fila 5": "-----Huge-----+4",
+    "Fila 6": "-----Gargantuan-----+7",
+    "Fila 7": "-----Colossal-----+11"
+  },
+  {
+    "Fila 1": "-----Fine-----1",
+    "Fila 2": "-----Diminutive-----1d2",
+    "Fila 3": "-----Tiny-----1d3",
+    "Fila 4": "-----Small-----1d4",
+    "Fila 5": "-----Medium-----1d6",
+    "Fila 6": "-----Large-----1d8",
+    "Fila 7": "-----Huge-----2d6",
+    "Fila 8": "-----Gargantuan-----2d8",
+    "Fila 9": "-----Colossal-----4d6"
+  },
+  {
+    "Columnas": "-----HitDice-----ChallengeRating",
+    "Fila 1": "-----1/2-----1/8",
+    "Fila 2": "-----1-----1/4",
+    "Fila 3": "-----2-----1/2",
+    "Fila 4": "-----4-----1",
+    "Fila 5": "-----6-----2",
+    "Fila 6": "-----8\u201310-----3",
+    "Fila 7": "-----12\u201314-----4",
+    "Fila 8": "-----15\u201316-----5",
+    "Fila 9": "-----18\u201320-----6"
+  }
+]

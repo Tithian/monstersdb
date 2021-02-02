@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Porpoise"
+  },
+  {
+    "Size/Type": "Medium Animal",
+    "Hit Dice": "2d8+2 (11 hp)",
+    "Initiative": "+3",
+    "Speed": "Swim 80 ft. (16 squares)",
+    "Armor Class": "15 (+3 Dex, +2 natural), touch 13, flat-footed 12",
+    "Base Attack/Grapple": "+1/+1",
+    "Attack": "Slam +4 melee (2d4)",
+    "Full Attack": "Slam +4 melee (2d4)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Blindsight 120 ft., hold breath, low-light vision",
+    "Saves": "Fort +4, Ref +6, Will +1",
+    "Abilities": "Str 11, Dex 17, Con 13, Int 2, Wis 12, Cha 6",
+    "Skills": "Listen +8*, Spot +7*, Swim +8",
+    "Feats": "Weapon Finesse",
+    "Environment": "Temperate aquatic",
+    "Organization": "Solitary, pair, or school (3\u201320)",
+    "Challenge Rating": "1/2",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "3\u20134 HD (Medium); 5\u20136 HD (Large)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Porpoises are mammals that tend to be playful, friendly, and helpful. A typical porpoise is 4 to 6 feet long and weighs 110 to 160 pounds. The statistics presented here can describe any small whale of similar size."
+  },
+  {
+    "Combate": "Blindsight (Ex): Porpoises can \u201csee\u201d by emitting high-frequency sounds, inaudible to most other creatures, that allow them to locate objects and creatures within 120 feet. A silence spell negates this and forces the porpoise to rely on its vision, which is approximately as good as a human\u2019s.Hold Breath (Ex): A porpoise can hold its breath for a number of rounds equal to 6 x its Constitution score before it risks drowning.Skills: A porpoise has a +8 racial bonus on any Swim check to perform some special action or avoid a hazard. It can always choose to take 10 on a Swim check, even if distracted or endangered. It can use the run action while swimming, provided it swims in a straight line. *A porpoise has a +4 racial bonus on Spot and Listen checks. These bonuses are lost if its blindsight is negated.SEE WIKIPEDIA ENTRY:PorpoiseDolphin"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Treant, elder"
+  },
+  {
+    "Size/Type": "Colossal Plant",
+    "Hit Dice": "50d8+880 (1,105 hp)",
+    "Initiative": "+3 (\u20131 Dex, +4 Improved Initiative)",
+    "Speed": "60 ft.",
+    "Armor Class": "41 (\u20131 Dex, \u20138 size, +40 natural), touch 1, flat-footed 41",
+    "Base Attack/Grapple": "+37/+72",
+    "Attack": "Slam +51 (10d6+19/19\u201320(+1d6 on critical hit)) melee",
+    "Full Attack": "2 slams +51 (10d6+19/19\u201320 (+1d6 on a critical hit)) melee",
+    "Space/Reach": "30 ft./30 ft.",
+    "Special Attacks": "Animate trees, trample, triple Damage against objects, spell-like abilities",
+    "Special Qualities": "Plant traits, SR 29, DR 10/\u2013",
+    "Saves": "Fort +45, Ref +17, Will +33",
+    "Abilities": "Str 48, Dex 8, Con 42, Int 19, Wis 33, Cha 35",
+    "Skills": "Diplomacy +61, Hide \u201312, Intimidate +62, Jump +31, Knowledge (any one) +57, Listen +63, Sense Motive +56, Spot +43, Survival +51",
+    "Feats": "Alertness, Endurance, Epic Endurance, Epic Reflexes, Epic Toughness (\u00d74), Epic Weapon Focus (slam), Epic Will, Great Fortitude, Improved Critical (slam), Improved Initiative, Iron Will, Lightning Reflexes, Power Attack, Weapon Focus (slam)",
+    "Environment": "Any forest",
+    "Organization": "Solitary or with grove of treants",
+    "Challenge Rating": "25",
+    "Treasure": "Standard",
+    "Alignment": "Always neutral good",
+    "Advancement": "51\u2013150 HD (Colossal)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "Elder treants speak the language of treants, plus Common and Sylvan."
+  },
+  {
+    "Combate": "Animate Trees (Sp): An elder treant can animate trees within 500 feet at will, controlling up to six trees at a time. It takes a full round for a normal tree to uproot itself. Thereafter it moves and fights as a treant in all physical respects. Animated trees lose their ability to move if the elder treant who animated them is incapacitated or moves out of range.Trample (Ex): An elder treant can trample Gargantuan or smaller creatures for 8d20+40 points of Damage. Opponents who do not make attacks of opportunity against the elder treant can attempt a Reflex save (DC 54) to halve the Damage. The save DC is Strength-based.Triple Damage against Objects (Ex): An elder treant that makes a full attack against an object or structure deals triple Damage.Plant Traits: Immune to poison, sleep, paralysis, stunning, and polymorphing; not subject to critical hits or mind-affecting effects.Skills: Elder treants receive skills as though they were fey. *They have a +24 racial bonus on Hide checks made in forested areas.Spell-Like  At will\u2014animal messenger, command plants, speak with plants, stone tell; 3/day\u2014mass cure light wounds (plants only), plant growth, sunburst, wall of thorns; 1/day\u2014shambler. Caster level 23rd; save DC 22 + spell level. The save DCs are Charisma-based."
+  }
+]

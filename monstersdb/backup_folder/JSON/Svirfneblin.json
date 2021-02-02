@@ -1,0 +1,28 @@
+[
+  {
+    "Monstruo y Nivel": "Svirfneblin, 1st-Level Warrior",
+    "Size/Type": "Small Humanoid (Gnome)",
+    "Hit Dice": "1d8+4 (8 hp)",
+    "Initiative": "+1",
+    "Speed": "15 ft. in banded mail armor (3 squares); base speed 20 ft.",
+    "Armor Class": "23 (+1 size, +1 Dex, +4 dodge, +6 banded mail, +1 buckler), touch 16, flat-footed 18",
+    "Base Attack/Grapple": "+1/\u20133",
+    "Attack": "Heavy pick +2 melee (1d4/x4) or light crossbow +3 ranged (1d6/19\u201320)",
+    "Full Attack": "Heavy pick +2 melee (1d4/x4) or light crossbow +3 ranged (1d6/19\u201320)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Spell-like abilities",
+    "Special Qualities": "Gnome traits, svirfneblin traits, spell resistance 12",
+    "Saves": "Fort +5, Ref +3, Will +2",
+    "Abilities": "Str 11, Dex 13, Con 12, Int 10, Wis 11, Cha 4",
+    "Skills": "Hide +2, Listen +2, Spot +2",
+    "Feats": "Toughness",
+    "Environment": "Underground",
+    "Organization": "Company (2\u20134), squad (11\u201320 plus 1 leader of 3rd\u20136th level and 2 3rd-level lieutenants), or band (30\u201350 plus 1 3rd-level sergeant per 20 adults, 5 5th-level lieutenants, 3 7th-level captains, and 2\u20135 Medium earth elementals)",
+    "Challenge Rating": "1",
+    "Treasure": "Standard",
+    "Alignment": "Usually neutral",
+    "Advancement": "By character class",
+    "Level Adjustment": "+3"
+  },
+  {}
+]

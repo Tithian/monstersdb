@@ -1,0 +1,31 @@
+[
+  {
+    "Nombre": "Devastation beetle"
+  },
+  {
+    "Monstruo y Nivel": "Devastation Beetle",
+    "Size/Type": "Colossal Vermin",
+    "Hit Dice": "128d8+2,304 (2,880 hp)",
+    "Initiative": "+10 (Dex)",
+    "Speed": "70 ft.",
+    "Armor Class": "72 (\u20138 size, +10 Dex, +60 natural), touch 12, flat-footed 60",
+    "Base Attack/Grapple": "+96/+126",
+    "Attack": "Bite +104 (25d10+24) melee",
+    "Full Attack": "Bite +104 (25d10+24) melee",
+    "Space/Reach": "50 ft./40 ft.",
+    "Special Attacks": "Trample 30d10+24, acid cloud",
+    "Special Qualities": "Vermin Traits, Darkvision 300 ft., SR 60, DR 20/\u2013",
+    "Saves": "Fort +82, Ref +52, Will +42",
+    "Abilities": "Str 42, Dex 31, Con 46, Int \u2013, Wis 10, Cha 9",
+    "Skills": "Jump +41, Listen +0, Spot +0",
+    "Feats": "\u2014",
+    "Environment": "Any land",
+    "Organization": "Solitary or cluster (2\u20135)",
+    "Challenge Rating": "50",
+    "Treasure": "None",
+    "Alignment": "Always neutral",
+    "Advancement": "None",
+    "Level Adjustment": "\u2014"
+  },
+  {}
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "Nombre": "Ogre zombie"
+  },
+  {
+    "Monstruo y Nivel": "Ogre Zombie",
+    "Size/Type": "Large Undead",
+    "Hit Dice": "8d12+3 (55 hp)",
+    "Initiative": "\u20132",
+    "Speed": "40 ft. (8 squares; can\u2019t run)",
+    "Armor Class": "15 (\u20131 size, \u20132 Dex, +8 natural), touch 7, flat-footed 15",
+    "Base Attack/Grapple": "+4/+14",
+    "Attack": "greatclub +9 melee (2d8+9) or slam +9 melee (1d8+9) or javelin +1 ranged (1d8+6)",
+    "Full Attack": "greatclub +9 melee (2d8+9) or slam +9 melee (1d8+9) or javelin +1 ranged (1d8+6)",
+    "Space/Reach": "10 ft./10 ft.",
+    "Special Attacks": "\u2014",
+    "Special Qualities": "Single actions only, damage reduction 5/slashing, darkvision 60 ft., undead traits",
+    "Saves": "Fort +2, Ref +0, Will +6",
+    "Abilities": "Str 23, Dex 6, Con \u2014, Int \u2014, Wis 10, Cha 1",
+    "Skills": "\u2014",
+    "Feats": "Toughness",
+    "Environment": "Temperate hills",
+    "Organization": "Any",
+    "Challenge Rating": "3",
+    "Treasure": "None",
+    "Alignment": "Always neutral evil",
+    "Advancement": "None",
+    "Level Adjustment": "\u2014"
+  },
+  {}
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "Nombre": "Crysmal"
+  },
+  {
+    "Size/Type": "Small Elemental (Earth, Psionic)",
+    "Hit Dice": "6d8+6 (33 hp)",
+    "Initiative": "+2",
+    "Speed": "30 ft. (6 squares), burrow 20 ft.",
+    "Armor Class": "21 (+1 size, +2 Dex, +8 natural), touch 13, flat-footed 19",
+    "Base Attack/Grapple": "+4/+2",
+    "Attack": "Sting +7 melee (1d3+3)",
+    "Full Attack": "Sting +7 melee (1d3+3)",
+    "Space/Reach": "5 ft./5 ft.",
+    "Special Attacks": "Psi-like abilities",
+    "Special Qualities": "Damage reduction 5/ bludgeoning, elemental traits, immunity to fire and cold, resistance to electricity 15",
+    "Saves": "Fort +8, Ref +6, Will +2",
+    "Abilities": "Str 15, Dex 14, Con 12, Int 6, Wis 10, Cha 14",
+    "Skills": "Appraise +9, Climb +5, Jump +5, Listen +2, Spot +10",
+    "Feats": "Alertness, Great Fortitude, Lightning Reflexes",
+    "Environment": "Underground",
+    "Organization": "Solitary or facet (2\u20135)",
+    "Challenge Rating": "3",
+    "Treasure": "Double goods (gems only)",
+    "Alignment": "Any lawful",
+    "Advancement": "7\u201312 HD (Medium); 13\u201318 HD (Large)",
+    "Level Adjustment": "\u2014"
+  },
+  {
+    "Descripci\u00f3n": "A conglomerate of stone and crystal, a crysmal above all else seeks to perpetuate its kind.Crysmals transform mundane minerals into juvenile crysmals. Gems are the perfect substance for this reproductive cycle: To make a single juvenile, a crysmal generally needs eight to ten gems, each of 25 gp value or more.Crysmals understand Terran but do not speak."
+  },
+  {
+    "Combate": "Psi-Like Abilities: At will\u2014control object, control sound, detect psionics, empty mind, mind thrust (2d10, DC 13*); 3/day\u2014psionic dimension door. Manifester level 2nd. The save DCs are Charisma-based.*Includes augmentation for the crysmal\u2019s manifester level.Skills: Crysmals have a +8 racial bonus on Appraise checks and Spot checks."
+  }
+]
