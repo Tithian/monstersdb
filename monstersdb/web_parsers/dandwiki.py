@@ -5,6 +5,27 @@ import glob
 from html.parser import HTMLParser
 
 import requests
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.parse_args()
+
+
+class GenericParser():
+    def __init__(self, file_html):
+        self.list_parsers = [NameParser(file_html),
+                             TableParser(file_html),
+                             DescriptionParser(file_html),
+                             CombatParser(file_html)]
+        self.file_html = file_html
+
+    def reset(self):
+        super(GenericParser, self).reset()
+
+
+    def parser(self):
+        for elem in self.list_parsers:
+            print(elem)
 
 
 class NameParser(HTMLParser):
@@ -47,7 +68,7 @@ class NameParser(HTMLParser):
             self.temp_monster_name += data
 
 
-class TableParser(HTMLParser):
+class TableParser(GenericParser):
     def __init__(self, *arg, **kwargs):
         super(TableParser, self).__init__(*arg, **kwargs)
         self.start = False
@@ -125,7 +146,7 @@ class TableParser(HTMLParser):
                 self.temp_value += data
 
 
-class DescriptionParser(HTMLParser):
+class DescriptionParser(GenericParser):
     def __init__(self, *arg, **kwargs):
         super(DescriptionParser, self).__init__(*arg, **kwargs)
         self.start = False
@@ -204,7 +225,7 @@ class DescriptionParser(HTMLParser):
                 self.temp_description += data
 
 
-class CombatParser(HTMLParser):
+class CombatParser(GenericParser):
     def __init__(self, *arg, **kwargs):
         super(CombatParser, self).__init__(*arg, **kwargs)
         self.start = False
@@ -258,9 +279,6 @@ class CombatParser(HTMLParser):
 
                 self.start = False
 
-    def handle_endtag(self, tag):
-        pass
-
     def handle_data(self, data):
         while '  ' in data:
             data = data.replace('  ', ' ')
@@ -269,7 +287,7 @@ class CombatParser(HTMLParser):
             self.temp_combat += data
 
 
-class ListCreaturesHTMLParser(HTMLParser):
+class ListCreaturesHTMLParser(GenericParser):
     def __init__(self, *arg, **kwargs):
         super(ListCreaturesHTMLParser, self).__init__(*arg, **kwargs)
         self.start = False
@@ -294,7 +312,7 @@ def parse_url(parser, url):
         parser.feed(response.text)
 
 
-def dumper_html(folder):
+def download(folder):
     """
     Esta función vuelca el contenido de los html a un directorio
     """
@@ -326,23 +344,61 @@ def dumper_html(folder):
     print('¡Proceso completado!')
 
 
-def html2jsondumper(folder):
+def to_json(folder):
     print('Creando ficheros JSON...')
     for path in glob.glob(os.path.join(folder, '*.html')):
-        parser = CombatParser()
+        parsing = GenericParser(file_html=path)
         with open(path, 'r+', encoding='utf-8') as f1:
-            parser.feed(f1.read())
-            response = json.dumps(parser.combat, indent=2)
-            json_folder = os.path.join(folder, '../JSON')
-            if not os.path.isdir(json_folder):  # Si el directorio pasado como argumento no existe:
-                os.mkdir(json_folder)  # Crea el directorio pasado como argumento
-            filename = os.path.basename(path)
-            filename = os.path.join(json_folder, filename)
-            with open(filename.replace('.html', '.json'), 'w') as f2:
-                print(filename)
-                print(response)
-                # f2.write(response)
-    print('¡Proceso Completado!')
+            parsing.feed(f1.read())
+            break
+        # monster = []
+        # with open(path, 'r+', encoding='utf-8') as f1:
+        #     parser_name.feed(f1.read())
+        #     if parser_name.monster_name:
+        #         monster.append(parser_name.monster_name)
+        #         with open(path, 'r+', encoding='utf-8') as f1:
+        #             parser_table.feed(f1.read())
+        #             if parser_table.total_principal_tables:
+        #                 for elem in parser_table.total_principal_tables:
+        #                     monster.append(elem)
+            # with open(path, 'r+', encoding='utf-8') as f1:
+            #     parser_table.feed(f1.read())
+            #     if parser_table.total_principal_tables:
+            #         for elem in parser_table.total_principal_tables:
+            #             monster.append(elem)
+            #     with open(path, 'r+', encoding='utf-8') as f1:
+            #         parser_description.feed(f1.read())
+            #         if parser_description.description:
+            #             monster.append(parser_description.description)
+        print(monster)
+        monster.clear()
+
+
+    #
+    #         monster = []
+    #         parser_combat.feed(f1.read())
+    #
+    #         #monster.append()
+    #         description = parser_description.description
+    #
+    #
+    #         combat = parser_combat.combat
+    #         #monster.append(name)
+    #
+    #         #temp_response = temp_response.append(description)
+    #         #temp_response = temp_response.append(combat)
+    #         # response = temp_response
+    #         json_folder = os.path.join(folder, '..', 'JSON')
+    #         if not os.path.isdir(json_folder):  # Si el directorio pasado como argumento no existe:
+    #             os.mkdir(json_folder)  # Crea el directorio pasado como argumento
+    #         filename = os.path.basename(path)
+    #         filename = os.path.join(json_folder, filename)
+    #         with open(filename.replace('.html', '.json'), 'w') as f2:
+    #             print(filename)
+    #             # print(response)
+    #             # f2.write(response)
+    #             # json.dumps(parser_name., indent=2)
+    # print('¡Proceso Completado!')
 
 
 #  He tocado aquí, estar atento por si cambia algo
@@ -387,7 +443,7 @@ def excluyendo_ficheros(folder):
                     pass
                 if not found:
                     filename = (os.path.realpath(path))
-                    excluded_folder = os.path.join(folder, '..\EXCLUDED')
+                    excluded_folder = os.path.join(folder, '..', 'EXCLUDED')
                     if not os.path.isdir(excluded_folder):  # Si el directorio pasado como argumento no existe:
                         os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
                     shutil.copy2(filename, excluded_folder)
@@ -517,10 +573,10 @@ def main():
     backup_folder = os.path.join(dir_path, 'raw')
     html_folder = os.path.join(backup_folder, 'HTML')
     json_folder = os.path.join(backup_folder, 'JSON')
-    # PASO 1 - Volcar el contenido Html
-    # dumper_html(backup_folder)
+    #  PASO 1 - Volcar el contenido Html
+    # download(backup_folder)
     # PASO 2 - Transformar el contenido Html a Json
-    html2jsondumper(html_folder)
+    to_json(html_folder)
     # PASO 3 - Excluir los ficheros que no sirven
     # excluyendo_ficheros(json_folder)
     # PASO 4 - Insertando titulos en los ficheros que no tienen
