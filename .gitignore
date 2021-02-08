@@ -132,4 +132,6 @@ dmypy.json
 .idea/
 # Data
 /monstersdb/backup_folder/
-/monstersdb/raw
+/monstersdb/raw/
+raw/
+backup_folder/
