@@ -8,16 +8,15 @@ import requests
 import argparse
 
 
-class NameParser(HTMLParser):
+class BaseParser(HTMLParser):
     def __init__(self, *arg, **kwargs):
-        super(NameParser, self).__init__(*arg, **kwargs)
+        super(BaseParser, self).__init__(*arg, **kwargs)
         self.start = False
         self.final_data = {}
-        self.temp_monster_name = ''
-        self.in_monster_name = False
 
     def reset(self):
-        super(NameParser, self).reset()
+        super(BaseParser, self).reset()
+        self.start = False
         self.final_data = {}
 
     def handle_starttag(self, tag, attrs):
@@ -27,6 +26,19 @@ class NameParser(HTMLParser):
         if tag == 'div' and 'mw-body-content' in css:
             self.start = True
 
+    def handle_endtag(self, tag):
+        if tag == 'hr':
+            self.start = False
+
+
+class NameParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(NameParser, self).__init__(*arg, **kwargs)
+        self.temp_monster_name = ''
+        self.in_monster_name = False
+
+    def handle_starttag(self, tag, attrs):
+        super(NameParser, self).handle_starttag(tag, attrs)
         if self.start:
             if tag == 'h1':
                 if not self.temp_monster_name:
@@ -36,22 +48,16 @@ class NameParser(HTMLParser):
         if self.in_monster_name and tag == 'h1':
             self.final_data['Nombre'] = self.temp_monster_name.capitalize()
             self.in_monster_name = False
-
-        if tag == 'hr':
             self.start = False
 
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
-
         if self.in_monster_name:
             self.temp_monster_name += data
 
 
-class TableParser(HTMLParser):
+class TableParser(BaseParser):
     def __init__(self, *arg, **kwargs):
         super(TableParser, self).__init__(*arg, **kwargs)
-        self.start = False
         # Informacion
         self.final_data = []
         self.table = {}
@@ -64,21 +70,12 @@ class TableParser(HTMLParser):
         self.temp_key = ''
         self.temp_value = ''
 
-    def reset(self):
-        super(TableParser, self).reset()
-        self.table = {}
-        self.in_table = False
-        self.in_key = False
-        self.in_value = False
-
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        css = attrs.get('class', '')
-
-        if tag == 'div' and 'mw-body-content' in css:
-            self.start = True
-
+        super(TableParser, self).handle_starttag(tag, attrs)
         if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
+
             if tag == 'table':
                 if 'monstats' in css:
                     self.temp_table = {}
@@ -93,6 +90,7 @@ class TableParser(HTMLParser):
                     self.in_value = True
 
     def handle_endtag(self, tag):
+        super(TableParser, self).handle_endtag(tag)
         if self.in_table:
             if tag == 'table':
                 self.in_table = False
@@ -112,160 +110,108 @@ class TableParser(HTMLParser):
                 else:
                     self.temp_table['Monstruo y Nivel'] = self.temp_key
 
-        elif tag == 'hr':
-            self.start = False
-
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
         if self.in_table:
-            data = data.replace('\n', '')
             if self.in_key:
                 self.temp_key += data
             elif self.in_value:
                 self.temp_value += data
 
 
-class DescriptionParser(HTMLParser):
+class DescriptionParser(BaseParser):
     def __init__(self, *arg, **kwargs):
         super(DescriptionParser, self).__init__(*arg, **kwargs)
-        self.start = False
-        self.content = {}
-        self.final_data = {}
         self.start_description = False
         self.in_description = False
         self.in_toc = False
-        self.in_h1 = False
-        self.in_h2 = False
+        self.h1_found = False
+        self.h2_found = False
         self.temp_description = ''
 
-    def reset(self):
-        super(DescriptionParser, self).reset()
-        self.content = {}
-        self.final_data = {}
-        self.in_toc = False
-        self.in_h1 = False
-        self.in_h2 = False
-        self.start_description = False
-        self.in_description = False
-
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        css = attrs.get('class', '')
+        super(DescriptionParser, self).handle_starttag(tag, attrs)
 
-        if tag == 'div' and 'mw-body-content' in css:
-            self.start = True
-            self.temp_description = ''
-        if tag == 'div' and 'toc' in css:
-            self.in_toc = True
-        if tag == 'h2':
-            self.in_h2 = True
-        if tag == 'h1':
-            self.in_h1 = True
-        if tag == 'span':
-            self.in_description = False
+        if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
+            if tag == 'div':
+                # Esto es para quitar la tabla de contenido
+                if 'toc' in css:
+                    self.in_toc = True
+            elif tag == 'h2':
+                self.h2_found = True
+            elif tag == 'h1':
+                self.h1_found = True
+            elif tag == 'span':
+                self.in_description = False
 
-        elif self.start:
-            if not self.in_toc or not self.in_h2 or not self.in_h1:
+            if not (self.in_toc and self.h2_found and self.h1_found):
+                # SOLO ENTRA SI alguna es False
                 if tag == 'table':
                     self.in_description = False
-
                 elif tag == 'p':
                     self.in_description = True
-#  He cambiado algo aquí, estar atento por si falla al tomar la descripción
                 elif tag == 'h3':
                     h3_id = attrs.get('id', '')
-                    self.start = False
-                    if 'siteSub' in h3_id:
-                        self.start = True
+                    if 'siteSub' not in h3_id:
+                        self.start = False
 
     def handle_endtag(self, tag):
-        if tag == 'hr':
+        super(DescriptionParser, self).handle_endtag(tag)
+        if tag == 'div' and self.in_toc:
+            self.in_toc = False
+        elif tag == 'hr':
             clean_descr = self.temp_description.replace('\n\n', '')
             if clean_descr:
-                if clean_descr.startswith('\n', 0, 4):
+                if clean_descr.startswith('\n'):
                     self.final_data['Descripción'] = clean_descr.replace('\n', '', 1)
                     self.temp_description = ''
                 else:
                     self.final_data['Descripción'] = clean_descr
                     self.temp_description = ''
-            self.start = False
             self.start_description = False
             self.in_description = False
-        if self.in_toc:
-            if tag == 'div':
-                self.in_toc = False
 
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
-
-        if self.start:
-            if self.in_description:
-                self.temp_description += data
+        if self.start and self.in_description:
+            self.temp_description += data
 
 
-class CombatParser(HTMLParser):
+class CombatParser(BaseParser):
     def __init__(self, *arg, **kwargs):
         super(CombatParser, self).__init__(*arg, **kwargs)
-        self.start = False
-        self.final_data = {}
         self.in_combat = False
         self.temp_combat = ''
 
-    def reset(self):
-        super(CombatParser, self).reset()
-        self.final_data = {}
-        self.in_combat = False
-
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        css = attrs.get('class', '')
-
-        if tag == 'div' and 'mw-body-content' in css:
-            self.start = True
-
+        super(CombatParser, self).handle_starttag(tag, attrs)
         if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
             if tag == 'span' and 'headline' in css:
                 id_span = attrs.get('id', '').capitalize()
-                if 'Combat' in id_span:
+                if 'S' == id_span:
+                    self.in_combat = False
+                elif id_span.startswith('Combat'):
                     self.in_combat = True
-
-                elif 'See' in id_span:
+                elif id_span.startswith('See'):
                     self.in_combat = False
                 elif 'characters' in id_span:
                     self.in_combat = False
-                elif 'S' in id_span:
-                    self.in_combat = False
+                # TODO MIRAR <b>SEE WIKIPEDIA ENTRY:</b>
 
             elif tag == 'hr':
                 while '\n\n\n' in self.temp_combat:
                     self.temp_combat = self.temp_combat.replace('\n\n\n', '\n\n')
                 if self.temp_combat:
-                    self.temp_combat = self.temp_combat.replace('\n\n', '')
-                    if not self.final_data:
-                        if self.temp_combat.startswith('Combat', 0, 6):
-                            clean_comb = self.temp_combat.replace('Combat', '', 1)
-                            if clean_comb.startswith('\n', 0, 2):
-                                clean_comb = clean_comb.replace('\n', '', 1)
-                                self.final_data['Combate'] = clean_comb
-                        elif self.temp_combat.startswith('COMBAT', 0, 6):
-                            clean_comb = self.temp_combat.replace('COMBAT', '', 1)
-                            if clean_comb.startswith('\n', 0, 2):
-                                clean_comb = clean_comb.replace('\n', '', 1)
-                                self.final_data['Combate'] = clean_comb
-                    else:
-                        self.final_data['Combate'] = self.temp_combat
-
-                self.start = False
-
-    def handle_endtag(self, tag):
-        pass
+                    clean_comb = self.temp_combat.replace('\n\n', '')
+                    if clean_comb[:6].upper() == 'COMBAT':
+                        clean_comb = clean_comb[6:]
+                    if clean_comb.startswith('\n'):
+                        clean_comb = clean_comb[1:]
+                    self.final_data['Combate'] = clean_comb
 
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
-
         if self.in_combat:
             self.temp_combat += data
 
@@ -302,13 +248,10 @@ class Agrupation(object):
                 parser.feed(f.read())
                 f.seek(0)
                 if parser.final_data:
-                    check_list = type(parser.final_data) is list
-                    if check_list:
-                        for elem in parser.final_data:
-                            self.data.append(elem)
+                    if isinstance(parser.final_data, list):
+                        self.data.extend(parser.final_data)
                     else:
                         self.data.append(parser.final_data)
-                parser.reset()
 
 
 def parse_url(parser, url):
