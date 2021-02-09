@@ -8,16 +8,15 @@ import requests
 import argparse
 
 
-class NameParser(HTMLParser):
+class BaseParser(HTMLParser):
     def __init__(self, *arg, **kwargs):
-        super(NameParser, self).__init__(*arg, **kwargs)
+        super(BaseParser, self).__init__(*arg, **kwargs)
         self.start = False
         self.final_data = {}
-        self.temp_monster_name = ''
-        self.in_monster_name = False
 
     def reset(self):
-        super(NameParser, self).reset()
+        super(BaseParser, self).reset()
+        self.start = False
         self.final_data = {}
 
     def handle_starttag(self, tag, attrs):
@@ -27,6 +26,19 @@ class NameParser(HTMLParser):
         if tag == 'div' and 'mw-body-content' in css:
             self.start = True
 
+    def handle_endtag(self, tag):
+        if tag == 'hr':
+            self.start = False
+
+
+class NameParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(NameParser, self).__init__(*arg, **kwargs)
+        self.temp_monster_name = ''
+        self.in_monster_name = False
+
+    def handle_starttag(self, tag, attrs):
+        super(NameParser, self).handle_starttag(tag, attrs)
         if self.start:
             if tag == 'h1':
                 if not self.temp_monster_name:
@@ -36,22 +48,16 @@ class NameParser(HTMLParser):
         if self.in_monster_name and tag == 'h1':
             self.final_data['Nombre'] = self.temp_monster_name.capitalize()
             self.in_monster_name = False
-
-        if tag == 'hr':
             self.start = False
 
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
-
         if self.in_monster_name:
             self.temp_monster_name += data
 
 
-class TableParser(HTMLParser):
+class TableParser(BaseParser):
     def __init__(self, *arg, **kwargs):
         super(TableParser, self).__init__(*arg, **kwargs)
-        self.start = False
         # Informacion
         self.final_data = []
         self.table = {}
@@ -64,21 +70,12 @@ class TableParser(HTMLParser):
         self.temp_key = ''
         self.temp_value = ''
 
-    def reset(self):
-        super(TableParser, self).reset()
-        self.table = {}
-        self.in_table = False
-        self.in_key = False
-        self.in_value = False
-
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        css = attrs.get('class', '')
-
-        if tag == 'div' and 'mw-body-content' in css:
-            self.start = True
-
+        super(TableParser, self).handle_starttag(tag, attrs)
         if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
+
             if tag == 'table':
                 if 'monstats' in css:
                     self.temp_table = {}
@@ -93,6 +90,7 @@ class TableParser(HTMLParser):
                     self.in_value = True
 
     def handle_endtag(self, tag):
+        super(TableParser, self).handle_endtag(tag)
         if self.in_table:
             if tag == 'table':
                 self.in_table = False
@@ -112,12 +110,7 @@ class TableParser(HTMLParser):
                 else:
                     self.temp_table['Monstruo y Nivel'] = self.temp_key
 
-        elif tag == 'hr':
-            self.start = False
-
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
         if self.in_table:
             data = data.replace('\n', '')
             if self.in_key:
@@ -126,148 +119,232 @@ class TableParser(HTMLParser):
                 self.temp_value += data
 
 
-class DescriptionParser(HTMLParser):
+class MultiTableParser(BaseParser):
     def __init__(self, *arg, **kwargs):
-        super(DescriptionParser, self).__init__(*arg, **kwargs)
-        self.start = False
-        self.content = {}
-        self.final_data = {}
-        self.start_description = False
-        self.in_description = False
-        self.in_toc = False
-        self.in_h1 = False
-        self.in_h2 = False
-        self.temp_description = ''
-
-    def reset(self):
-        super(DescriptionParser, self).reset()
-        self.content = {}
-        self.final_data = {}
-        self.in_toc = False
-        self.in_h1 = False
-        self.in_h2 = False
-        self.start_description = False
-        self.in_description = False
+        super(MultiTableParser, self).__init__(*arg, **kwargs)
+        # Informacion
+        self.final_data = []
+        self.total_value = ''
+        self.total_key = ''
+        # Flags
+        self.in_table = False
+        self.in_key = False
+        self.in_value = False
+        # Temps
+        self.temp_table = {}
+        self.temp_key = ''
+        self.temp_value = ''
 
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        css = attrs.get('class', '')
+        super(MultiTableParser, self).handle_starttag(tag, attrs)
+        if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
 
-        if tag == 'div' and 'mw-body-content' in css:
-            self.start = True
-            self.temp_description = ''
-        if tag == 'div' and 'toc' in css:
-            self.in_toc = True
-        if tag == 'h2':
-            self.in_h2 = True
-        if tag == 'h1':
-            self.in_h1 = True
-        if tag == 'span':
-            self.in_description = False
+            if tag == 'table':
+                if 'monstats' in css:
+                    self.temp_table = {}
+                    self.in_table = True
 
-        elif self.start:
-            if not self.in_toc or not self.in_h2 or not self.in_h1:
-                if tag == 'table':
-                    self.in_description = False
-
-                elif tag == 'p':
-                    self.in_description = True
-#  He cambiado algo aquí, estar atento por si falla al tomar la descripción
-                elif tag == 'h3':
-                    h3_id = attrs.get('id', '')
-                    self.start = False
-                    if 'siteSub' in h3_id:
-                        self.start = True
+            elif self.in_table:
+                if tag == 'th':
+                    self.temp_key = ''
+                    self.in_key = True
+                if tag == 'td':
+                    self.temp_value = ''
+                    self.in_value = True
 
     def handle_endtag(self, tag):
-        if tag == 'hr':
-            clean_descr = self.temp_description.replace('\n\n', '')
-            if clean_descr:
-                if clean_descr.startswith('\n', 0, 4):
-                    self.final_data['Descripción'] = clean_descr.replace('\n', '', 1)
-                    self.temp_description = ''
+        super(MultiTableParser, self).handle_endtag(tag)
+        if self.in_table:
+            if tag == 'table':
+                self.in_table = False
+                self.final_data.append(self.temp_table)
+                self.temp_table = {}
+            elif self.in_key and tag == 'th':
+                self.in_key = False
+                # Esto hace que si tiene varios valores la tabla, los concadene.
+                if self.total_key:
+                    self.total_key += '//' + self.temp_key
                 else:
-                    self.final_data['Descripción'] = clean_descr
-                    self.temp_description = ''
-            self.start = False
-            self.start_description = False
-            self.in_description = False
-        if self.in_toc:
-            if tag == 'div':
-                self.in_toc = False
+                    self.total_key += self.temp_key
+            elif self.in_value and tag == 'td':
+                self.in_value = False
+                # Lo mismo que el comentario anterior.
+                if self.total_value:
+                    self.total_value += '//' + self.temp_value
+                else:
+                    self.total_value += self.temp_value
+
+            elif tag == 'tr':
+                if self.temp_key.endswith(':'):
+                    self.temp_key = self.temp_key[:-1]
+                    self.temp_table[self.temp_key] = self.total_value
+                    self.temp_key = ''
+                    self.total_value = ''
+                    self.total_key = ''
+                else:
+                    self.temp_table['Monstruo y Nivel'] = self.total_key
+                    self.total_key = ''
 
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
+        if self.in_table:
+            data = data.replace('\n', '')
+            if self.in_key:
+                self.temp_key += data
+            elif self.in_value:
+                self.temp_value += data
+
+
+class DescriptionParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(DescriptionParser, self).__init__(*arg, **kwargs)
+        self.start_description = False
+        self.in_description = False
+        self.in_toc = False
+        self.h1_found = False
+        self.h2_found = False
+        self.temp_description = ''
+
+    def handle_starttag(self, tag, attrs):
+        super(DescriptionParser, self).handle_starttag(tag, attrs)
 
         if self.start:
-            if self.in_description:
-                self.temp_description += data
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
+            if tag == 'div':
+                # Esto es para quitar la tabla de contenido
+                if 'toc' in css:
+                    self.in_toc = True
+            elif tag == 'h2':
+                self.h2_found = True
+            elif tag == 'h1':
+                self.h1_found = True
+            elif tag == 'span':
+                self.in_description = False
+
+            if not (self.in_toc and self.h2_found and self.h1_found):
+                # SOLO ENTRA SI alguna es False
+                if tag == 'table':
+                    self.in_description = False
+                elif tag == 'p':
+                    self.in_description = True
+                elif tag == 'h3':
+                    h3_id = attrs.get('id', '')
+                    if 'siteSub' not in h3_id:
+                        self.start = False
+
+    def handle_endtag(self, tag):
+        super(DescriptionParser, self).handle_endtag(tag)
+        if tag == 'div' and self.in_toc:
+            self.in_toc = False
+        elif tag == 'hr':
+            clean_descr = self.temp_description.replace('\n\n', '')
+            sin_wiki = clean_descr.partition('SEE WIKIPEDIA ENTRY:')
+            sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
+            if sin_cap_wiki[0]:
+                if sin_cap_wiki[0].startswith('\n'):
+                    self.final_data['Descripción'] = sin_cap_wiki[0].replace('\n', '', 1)
+                    self.temp_description = ''
+                else:
+                    self.final_data['Descripción'] = sin_cap_wiki[0]
+                    self.temp_description = ''
+            self.start_description = False
+            self.in_description = False
+
+    def handle_data(self, data):
+        if self.start and self.in_description:
+            self.temp_description += data
 
 
-class CombatParser(HTMLParser):
+class CombatParser(BaseParser):
     def __init__(self, *arg, **kwargs):
         super(CombatParser, self).__init__(*arg, **kwargs)
-        self.start = False
-        self.final_data = {}
         self.in_combat = False
         self.temp_combat = ''
 
-    def reset(self):
-        super(CombatParser, self).reset()
-        self.final_data = {}
-        self.in_combat = False
-
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        css = attrs.get('class', '')
-
-        if tag == 'div' and 'mw-body-content' in css:
-            self.start = True
-
+        super(CombatParser, self).handle_starttag(tag, attrs)
         if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
             if tag == 'span' and 'headline' in css:
                 id_span = attrs.get('id', '').capitalize()
-                if 'Combat' in id_span:
+                if 'S' == id_span:
+                    self.in_combat = False
+                elif id_span.startswith('Combat'):
                     self.in_combat = True
-
-                elif 'See' in id_span:
+                elif id_span.startswith('See'):
                     self.in_combat = False
                 elif 'characters' in id_span:
                     self.in_combat = False
-                elif 'S' in id_span:
-                    self.in_combat = False
+                # TODO MIRAR <b>SEE WIKIPEDIA ENTRY:</b>
 
             elif tag == 'hr':
                 while '\n\n\n' in self.temp_combat:
                     self.temp_combat = self.temp_combat.replace('\n\n\n', '\n\n')
                 if self.temp_combat:
-                    self.temp_combat = self.temp_combat.replace('\n\n', '')
-                    if not self.final_data:
-                        if self.temp_combat.startswith('Combat', 0, 6):
-                            clean_comb = self.temp_combat.replace('Combat', '', 1)
-                            if clean_comb.startswith('\n', 0, 2):
-                                clean_comb = clean_comb.replace('\n', '', 1)
-                                self.final_data['Combate'] = clean_comb
-                        elif self.temp_combat.startswith('COMBAT', 0, 6):
-                            clean_comb = self.temp_combat.replace('COMBAT', '', 1)
-                            if clean_comb.startswith('\n', 0, 2):
-                                clean_comb = clean_comb.replace('\n', '', 1)
-                                self.final_data['Combate'] = clean_comb
-                    else:
-                        self.final_data['Combate'] = self.temp_combat
-
-                self.start = False
-
-    def handle_endtag(self, tag):
-        pass
+                    clean_comb = self.temp_combat.replace('\n\n', '')
+                    if clean_comb[:6].upper() == 'COMBAT':
+                        clean_comb = clean_comb[6:]
+                    if clean_comb.startswith('\n'):
+                        clean_comb = clean_comb[1:]
+                    #Esto lo quita en mayúsculas
+                    sin_wiki = clean_comb.partition('SEE WIKIPEDIA ENTRY:')
+                    #Esto lo quita en unos pocos que está en Capitalize
+                    sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
+                    #Esto lo quita en el true dragon
+                    sin_entries = sin_cap_wiki[0].partition('Wikipedia Entries')
+                    self.final_data['Combate'] = sin_entries[0]
 
     def handle_data(self, data):
-        while '  ' in data:
-            data = data.replace('  ', ' ')
-
         if self.in_combat:
             self.temp_combat += data
+
+
+class AsCharactersParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(AsCharactersParser, self).__init__(*arg, **kwargs)
+        self.in_characters = False
+        self.in_char_key = False
+        self.temp_characters = ''
+        self.temp_char_key = ''
+
+    def handle_starttag(self, tag, attrs):
+        super(AsCharactersParser, self).handle_starttag(tag, attrs)
+        if self.start:
+            attrs = dict(attrs)
+            id_span = attrs.get('id', '')
+            if tag == 'span' and 'CHARACTERS' in id_span.upper():
+                self.in_characters = True
+                self.in_char_key = True
+
+            elif tag == 'hr':
+                while '\n\n\n' in self.temp_characters:
+                    self.temp_characters = self.temp_characters.replace('\n\n\n', '\n\n')
+                if self.temp_characters:
+                    clean_comb = self.temp_characters.replace('\n\n', '')
+                    if clean_comb[:6].upper() == 'COMBAT':
+                        clean_comb = clean_comb[6:]
+                    if clean_comb.startswith('\n'):
+                        clean_comb = clean_comb[1:]
+                    #Esto lo quita en mayúsculas
+                    sin_wiki = clean_comb.partition('SEE WIKIPEDIA ENTRY:')
+                    #Esto lo quita en unos pocos que está en Capitalize
+                    sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
+                    #Esto lo quita en el true dragon
+                    sin_entries = sin_cap_wiki[0].partition('Wikipedia Entries')
+                    self.final_data[self.temp_char_key.capitalize()] = sin_entries[0]
+
+    def handle_endtag(self, tag):
+        if tag == 'span':
+            self.in_char_key = False
+
+    def handle_data(self, data):
+        if self.in_char_key:
+            self.temp_char_key += data
+        elif self.in_characters:
+            self.temp_characters += data
 
 
 class ListCreaturesHTMLParser(HTMLParser):
@@ -292,7 +369,7 @@ class ListCreaturesHTMLParser(HTMLParser):
 class Agrupation(object):
     def __init__(self):
         super(Agrupation, self).__init__()
-        self.parsers = [NameParser, TableParser, DescriptionParser, CombatParser]
+        self.parsers = [NameParser, MultiTableParser, DescriptionParser, CombatParser, AsCharactersParser]
         self.data = []
 
     def parse_all(self, html_file):
@@ -302,13 +379,10 @@ class Agrupation(object):
                 parser.feed(f.read())
                 f.seek(0)
                 if parser.final_data:
-                    check_list = type(parser.final_data) is list
-                    if check_list:
-                        for elem in parser.final_data:
-                            self.data.append(elem)
+                    if isinstance(parser.final_data, list):
+                        self.data.extend(parser.final_data)
                     else:
                         self.data.append(parser.final_data)
-                parser.reset()
 
 
 def parse_url(parser, url):
@@ -399,10 +473,11 @@ class SRD35_JsonClean(object):
                 os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
             shutil.copy2(filename, excluded_folder)
             files_to_exclude.append(filename)
-            print(filename)
             os.remove(filename)
+            if to_print:
+                print(filename)
 
-    def insertando_titulos(self) -> None:
+    def insertando_titulos(self, to_print=False) -> None:
         name_found = False
         enumerated_data = enumerate(self.initial_data)
         for index, elem in enumerated_data:
@@ -416,56 +491,24 @@ class SRD35_JsonClean(object):
                         pass
                 if not name_found:
                     with open(self.json_file, 'w') as f2:
+                        new_index = {}
                         old_name = os.path.basename(self.json_file.replace('.json', ''))
                         new_name = '{}'.format(old_name.replace('_', ' '))
                         new_index['Nombre'] = new_name
-                        data.insert(0, new_index)
-                        response = json.dumps(data, indent=2)
-                        f2.write(response)
+                        self.initial_data.insert(0, new_index)
+                        self.final_data = json.dumps(self.initial_data, indent=2)
+                        f2.write(self.final_data)
+                        if to_print:
+                            print(self.json_file)
 
-    def organizando_tipos(self) -> None:
-        pass  # TODO
-
-    def checking_files(self) -> None:
-        pass  # TODO
-
-
-def insertando_titulos(folder):
-    for path in glob.glob('{}/*.json'.format(folder)):
-        with open(path, 'r+') as f:
-            data = json.load(f)
-            name_found = False
-            enumerated_data = enumerate(data)
-            for index, elem in enumerated_data:
-                if index != 0:
-                    pass
-                if index == 0:
-                    for key, val in elem.items():
-                        if 'Nombre' in key:
-                            name_found = True
-                        else:
-                            pass
-                    if not name_found:
-                        with open(path, 'w') as f2:
-                            new_index = {}
-                            old_name = os.path.basename(path.replace('.json', ''))
-                            new_name = '{}'.format(old_name.replace('_', ' '))
-                            new_index['Nombre'] = new_name
-                            data.insert(0, new_index)
-                            response = json.dumps(data, indent=2)
-                            f2.write(response)
-    print('¡Proceso completado!')
-
-
-def organizando_tipos(folder):
-    print('Los siguientes ficheros son tipos de monstruos. Clasificando...:')
-    files_to_exclude = []
-    tipos_folder = os.path.join(folder, 'TIPOS')
-    dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
-    if not os.path.isdir(dragon_folder):
-        os.makedirs(dragon_folder)
-    for path in glob.glob('{}/*.json'.format(folder)):
-        with open(path, 'r+') as f:
+    def organizando_tipos(self, to_print=False) -> None:
+        files_to_exclude = []
+        filename = (os.path.realpath(self.json_file))
+        tipos_folder = os.path.join(filename, '..', 'TIPOS')
+        dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
+        if not os.path.isdir(dragon_folder):
+            os.makedirs(dragon_folder)
+        with open(self.json_file, 'r+') as f:
             criatura_tipo = False
             data = json.load(f)
             enumerated_data = enumerate(data)
@@ -476,42 +519,44 @@ def organizando_tipos(folder):
                     for key, val in elem.items():
                         if 'Monstruo y Nivel' in key:
                             criatura_tipo = True
-                            # print(val)
                         if 'Size/Type' in key:
                             criatura_tipo = True
                         else:
                             pass
             if not criatura_tipo:
-                filename = (os.path.realpath(path))
                 shutil.copy2(filename, tipos_folder)
                 files_to_exclude.append(filename)
-                print(filename)
+                monster = os.path.basename(filename)
+                if to_print:
+                    print('El archivo ', monster, ' ha sido movido a la carpeta TIPOS')
                 f.close()
                 os.remove(filename)
-    print('Los siguientes archivos son Dragones: ')
-    for path in glob.glob('{}/*.json'.format(tipos_folder)):
-        is_dragon = False
-        with open(path, 'r+') as f:
-            data = json.load(f)
-            enumerated_data = enumerate(data)
-            if 'Celestial_Creature' in path:
-                pass
-            elif 'Ghost' in path:
-                pass
-            elif 'Half-Dragon' in path:
-                pass
-            else:
-                for index, elem in enumerated_data:
-                    for key, val in elem.items():
-                        if 'dragon' in val.lower():
-                            is_dragon = True
-                if is_dragon:
-                    filename = (os.path.realpath(path))
-                    shutil.copy2(filename, dragon_folder)
-                    print(filename)
-                    f.close()
-                    os.remove(filename)
-    print('¡Proceso Completado!')
+        for path in glob.glob('{}/*.json'.format(tipos_folder)):
+            is_dragon = False
+            with open(path, 'r+') as f:
+                data = json.load(f)
+                enumerated_data = enumerate(data)
+                if 'Celestial_Creature' in path:
+                    pass
+                elif 'Ghost' in path:
+                    pass
+                elif 'Half-Dragon' in path:
+                    pass
+                else:
+                    for index, elem in enumerated_data:
+                        for key, val in elem.items():
+                            if 'dragon' in val.lower():
+                                is_dragon = True
+                    if is_dragon:
+                        filename = (os.path.realpath(path))
+                        shutil.copy2(filename, dragon_folder)
+                        if to_print:
+                            print('El archivo ', monster, ' ha sido movido a la carpeta DRAGONES')
+                        f.close()
+                        os.remove(filename)
+
+    def checking_files(self) -> None:
+        pass  # TODO
 
 
 def checking_files(folder):
@@ -521,17 +566,17 @@ def checking_files(folder):
               'Alignment', 'Advancement', 'Level Adjustment'}
     tiene_nombre = False
     vacios = []
+    sin_nombre = []
     for path in glob.glob('{}/*.json'.format(folder)):
         with open(path, 'r') as f:
             data = json.load(f)
             enumerated_data = enumerate(data)
             if not data:
                 vacios.append(path)
-                # tiene_nombre = False
             else:
                 for index, elem in enumerated_data:
                     clean_keys = set()
-                    if index != 0:
+                    if index > 1:
                         pass
                     if index == 0:
                         for key, val in elem.items():
@@ -539,29 +584,26 @@ def checking_files(folder):
                                 tiene_nombre = True
                                 # print('Nombre de la criatura: ', val)
                             else:
-                                tiene_nombre = False
-            if not tiene_nombre:
-                print('Esta criatura no tiene nombre: ', path)
-    print('Los siguientes archivos están vacíos: ')
-    for elem in vacios:
-        print(elem)
-
-
-                # if index > 1:
-                #     pass
-                # if index == 1:
-                #     for key, val in elem.items():
-                #         if val:
-                #             clean_keys.add(key)
-                #     if clean_keys != CLAVES:
-                #         print(os.path.basename(path) + ': No tiene todas las CLAVES')
-                #         claves_de_mas = clean_keys.difference(CLAVES)
-                #         if claves_de_mas:
-                #             print('Tiene las siguientes CLAVES de más: ')
-                #         print('Le faltan las siguientes CLAVES: ')
-                #         print(CLAVES.difference(clean_keys), '\n')
-
-    print('¡Proceso Completado!')
+                                sin_nombre.append(path)
+                    if index == 1:
+                        for key, val in elem.items():
+                            if val:
+                                clean_keys.add(key)
+                        if clean_keys != CLAVES:
+                            print(os.path.basename(path) + ': No tiene todas las CLAVES')
+                            claves_de_mas = clean_keys.difference(CLAVES)
+                            if claves_de_mas:
+                                print('Tiene las siguientes CLAVES de más: ')
+                            print('Le faltan las siguientes CLAVES: ')
+                            print(CLAVES.difference(clean_keys), '\n')
+    if vacios:
+        print('Los siguientes archivos están vacíos: ')
+        for elem in vacios:
+            print(elem)
+    if sin_nombre:
+        print('Las siguientes criaturas no tienen nombre: ')
+        for elem in sin_nombre:
+            print(elem)
 
 
 def main():
@@ -587,7 +629,7 @@ def main():
     args = parser.parse_args()
 
     dir_path = os.path.normpath(os.getcwd())
-    backup_folder = os.path.join(dir_path, 'raw')
+    backup_folder = os.path.join(dir_path, '..', 'raw')
     hfolder = os.path.join(backup_folder, 'HTML')
     jfolder = os.path.join(backup_folder, 'JSON')
 
@@ -632,18 +674,36 @@ def main():
 
     if args.clean:
             if args.quiet:
-                pass
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).excluyendo_ficheros()
+                    SRD35_JsonClean(path).insertando_titulos()
+                    SRD35_JsonClean(path).organizando_tipos()
             elif args.verbose:
                 print('Excluyendo ficheros innecesarios...')
                 for path in glob.glob('{}/*.json'.format(jfolder)):
                     SRD35_JsonClean(path).excluyendo_ficheros(to_print=True)
                 print('¡Proceso completado!')
-                print('Insertando nombre a los siguientes ficheros:')
+                print('Insertando nombre a los siguientes archivos:')
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).insertando_titulos(to_print=True)
+                print('¡Proceso completado!')
+                print('Clasificando monstruos...')
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).organizando_tipos(to_print=True)
+                print('¡Proceso completado!')
             else:
-                pass
+                print('Espere mientras se filtran los archivos...')
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).excluyendo_ficheros()
+                    SRD35_JsonClean(path).insertando_titulos()
+                    SRD35_JsonClean(path).organizando_tipos()
+                print('¡Proceso Completado!')
 
     if args.checking:
+        print('Analizando archivos...')
         checking_files(jfolder)
+        print('¡Proceso Completado!')
+
     # PASO 3 - Excluir los ficheros que no sirven
     # excluyendo_ficheros(json_folder)
     # PASO 4 - Insertando titulos en los ficheros que no tienen
