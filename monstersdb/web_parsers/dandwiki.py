@@ -112,6 +112,84 @@ class TableParser(BaseParser):
 
     def handle_data(self, data):
         if self.in_table:
+            data = data.replace('\n', '')
+            if self.in_key:
+                self.temp_key += data
+            elif self.in_value:
+                self.temp_value += data
+
+
+class MultiTableParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(MultiTableParser, self).__init__(*arg, **kwargs)
+        # Informacion
+        self.final_data = []
+        self.total_value = ''
+        self.total_key = ''
+        # Flags
+        self.in_table = False
+        self.in_key = False
+        self.in_value = False
+        # Temps
+        self.temp_table = {}
+        self.temp_key = ''
+        self.temp_value = ''
+
+    def handle_starttag(self, tag, attrs):
+        super(MultiTableParser, self).handle_starttag(tag, attrs)
+        if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
+
+            if tag == 'table':
+                if 'monstats' in css:
+                    self.temp_table = {}
+                    self.in_table = True
+
+            elif self.in_table:
+                if tag == 'th':
+                    self.temp_key = ''
+                    self.in_key = True
+                if tag == 'td':
+                    self.temp_value = ''
+                    self.in_value = True
+
+    def handle_endtag(self, tag):
+        super(MultiTableParser, self).handle_endtag(tag)
+        if self.in_table:
+            if tag == 'table':
+                self.in_table = False
+                self.final_data.append(self.temp_table)
+                self.temp_table = {}
+            elif self.in_key and tag == 'th':
+                self.in_key = False
+                # Esto hace que si tiene varios valores la tabla, los concadene.
+                if self.total_key:
+                    self.total_key += '//' + self.temp_key
+                else:
+                    self.total_key += self.temp_key
+            elif self.in_value and tag == 'td':
+                self.in_value = False
+                # Lo mismo que el comentario anterior.
+                if self.total_value:
+                    self.total_value += '//' + self.temp_value
+                else:
+                    self.total_value += self.temp_value
+
+            elif tag == 'tr':
+                if self.temp_key.endswith(':'):
+                    self.temp_key = self.temp_key[:-1]
+                    self.temp_table[self.temp_key] = self.total_value
+                    self.temp_key = ''
+                    self.total_value = ''
+                    self.total_key = ''
+                else:
+                    self.temp_table['Monstruo y Nivel'] = self.total_key
+                    self.total_key = ''
+
+    def handle_data(self, data):
+        if self.in_table:
+            data = data.replace('\n', '')
             if self.in_key:
                 self.temp_key += data
             elif self.in_value:
@@ -162,12 +240,14 @@ class DescriptionParser(BaseParser):
             self.in_toc = False
         elif tag == 'hr':
             clean_descr = self.temp_description.replace('\n\n', '')
-            if clean_descr:
-                if clean_descr.startswith('\n'):
-                    self.final_data['Descripción'] = clean_descr.replace('\n', '', 1)
+            sin_wiki = clean_descr.partition('SEE WIKIPEDIA ENTRY:')
+            sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
+            if sin_cap_wiki[0]:
+                if sin_cap_wiki[0].startswith('\n'):
+                    self.final_data['Descripción'] = sin_cap_wiki[0].replace('\n', '', 1)
                     self.temp_description = ''
                 else:
-                    self.final_data['Descripción'] = clean_descr
+                    self.final_data['Descripción'] = sin_cap_wiki[0]
                     self.temp_description = ''
             self.start_description = False
             self.in_description = False
@@ -209,11 +289,62 @@ class CombatParser(BaseParser):
                         clean_comb = clean_comb[6:]
                     if clean_comb.startswith('\n'):
                         clean_comb = clean_comb[1:]
-                    self.final_data['Combate'] = clean_comb
+                    #Esto lo quita en mayúsculas
+                    sin_wiki = clean_comb.partition('SEE WIKIPEDIA ENTRY:')
+                    #Esto lo quita en unos pocos que está en Capitalize
+                    sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
+                    #Esto lo quita en el true dragon
+                    sin_entries = sin_cap_wiki[0].partition('Wikipedia Entries')
+                    self.final_data['Combate'] = sin_entries[0]
 
     def handle_data(self, data):
         if self.in_combat:
             self.temp_combat += data
+
+
+class AsCharactersParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(AsCharactersParser, self).__init__(*arg, **kwargs)
+        self.in_characters = False
+        self.in_char_key = False
+        self.temp_characters = ''
+        self.temp_char_key = ''
+
+    def handle_starttag(self, tag, attrs):
+        super(AsCharactersParser, self).handle_starttag(tag, attrs)
+        if self.start:
+            attrs = dict(attrs)
+            id_span = attrs.get('id', '')
+            if tag == 'span' and 'CHARACTERS' in id_span.upper():
+                self.in_characters = True
+                self.in_char_key = True
+
+            elif tag == 'hr':
+                while '\n\n\n' in self.temp_characters:
+                    self.temp_characters = self.temp_characters.replace('\n\n\n', '\n\n')
+                if self.temp_characters:
+                    clean_comb = self.temp_characters.replace('\n\n', '')
+                    if clean_comb[:6].upper() == 'COMBAT':
+                        clean_comb = clean_comb[6:]
+                    if clean_comb.startswith('\n'):
+                        clean_comb = clean_comb[1:]
+                    #Esto lo quita en mayúsculas
+                    sin_wiki = clean_comb.partition('SEE WIKIPEDIA ENTRY:')
+                    #Esto lo quita en unos pocos que está en Capitalize
+                    sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
+                    #Esto lo quita en el true dragon
+                    sin_entries = sin_cap_wiki[0].partition('Wikipedia Entries')
+                    self.final_data[self.temp_char_key.capitalize()] = sin_entries[0]
+
+    def handle_endtag(self, tag):
+        if tag == 'span':
+            self.in_char_key = False
+
+    def handle_data(self, data):
+        if self.in_char_key:
+            self.temp_char_key += data
+        elif self.in_characters:
+            self.temp_characters += data
 
 
 class ListCreaturesHTMLParser(HTMLParser):
@@ -238,7 +369,7 @@ class ListCreaturesHTMLParser(HTMLParser):
 class Agrupation(object):
     def __init__(self):
         super(Agrupation, self).__init__()
-        self.parsers = [NameParser, TableParser, DescriptionParser, CombatParser]
+        self.parsers = [NameParser, MultiTableParser, DescriptionParser, CombatParser, AsCharactersParser]
         self.data = []
 
     def parse_all(self, html_file):
@@ -342,10 +473,11 @@ class SRD35_JsonClean(object):
                 os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
             shutil.copy2(filename, excluded_folder)
             files_to_exclude.append(filename)
-            print(filename)
             os.remove(filename)
+            if to_print:
+                print(filename)
 
-    def insertando_titulos(self) -> None:
+    def insertando_titulos(self, to_print=False) -> None:
         name_found = False
         enumerated_data = enumerate(self.initial_data)
         for index, elem in enumerated_data:
@@ -359,56 +491,24 @@ class SRD35_JsonClean(object):
                         pass
                 if not name_found:
                     with open(self.json_file, 'w') as f2:
+                        new_index = {}
                         old_name = os.path.basename(self.json_file.replace('.json', ''))
                         new_name = '{}'.format(old_name.replace('_', ' '))
                         new_index['Nombre'] = new_name
-                        data.insert(0, new_index)
-                        response = json.dumps(data, indent=2)
-                        f2.write(response)
+                        self.initial_data.insert(0, new_index)
+                        self.final_data = json.dumps(self.initial_data, indent=2)
+                        f2.write(self.final_data)
+                        if to_print:
+                            print(self.json_file)
 
-    def organizando_tipos(self) -> None:
-        pass  # TODO
-
-    def checking_files(self) -> None:
-        pass  # TODO
-
-
-def insertando_titulos(folder):
-    for path in glob.glob('{}/*.json'.format(folder)):
-        with open(path, 'r+') as f:
-            data = json.load(f)
-            name_found = False
-            enumerated_data = enumerate(data)
-            for index, elem in enumerated_data:
-                if index != 0:
-                    pass
-                if index == 0:
-                    for key, val in elem.items():
-                        if 'Nombre' in key:
-                            name_found = True
-                        else:
-                            pass
-                    if not name_found:
-                        with open(path, 'w') as f2:
-                            new_index = {}
-                            old_name = os.path.basename(path.replace('.json', ''))
-                            new_name = '{}'.format(old_name.replace('_', ' '))
-                            new_index['Nombre'] = new_name
-                            data.insert(0, new_index)
-                            response = json.dumps(data, indent=2)
-                            f2.write(response)
-    print('¡Proceso completado!')
-
-
-def organizando_tipos(folder):
-    print('Los siguientes ficheros son tipos de monstruos. Clasificando...:')
-    files_to_exclude = []
-    tipos_folder = os.path.join(folder, 'TIPOS')
-    dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
-    if not os.path.isdir(dragon_folder):
-        os.makedirs(dragon_folder)
-    for path in glob.glob('{}/*.json'.format(folder)):
-        with open(path, 'r+') as f:
+    def organizando_tipos(self, to_print=False) -> None:
+        files_to_exclude = []
+        filename = (os.path.realpath(self.json_file))
+        tipos_folder = os.path.join(filename, '..', 'TIPOS')
+        dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
+        if not os.path.isdir(dragon_folder):
+            os.makedirs(dragon_folder)
+        with open(self.json_file, 'r+') as f:
             criatura_tipo = False
             data = json.load(f)
             enumerated_data = enumerate(data)
@@ -419,42 +519,44 @@ def organizando_tipos(folder):
                     for key, val in elem.items():
                         if 'Monstruo y Nivel' in key:
                             criatura_tipo = True
-                            # print(val)
                         if 'Size/Type' in key:
                             criatura_tipo = True
                         else:
                             pass
             if not criatura_tipo:
-                filename = (os.path.realpath(path))
                 shutil.copy2(filename, tipos_folder)
                 files_to_exclude.append(filename)
-                print(filename)
+                monster = os.path.basename(filename)
+                if to_print:
+                    print('El archivo ', monster, ' ha sido movido a la carpeta TIPOS')
                 f.close()
                 os.remove(filename)
-    print('Los siguientes archivos son Dragones: ')
-    for path in glob.glob('{}/*.json'.format(tipos_folder)):
-        is_dragon = False
-        with open(path, 'r+') as f:
-            data = json.load(f)
-            enumerated_data = enumerate(data)
-            if 'Celestial_Creature' in path:
-                pass
-            elif 'Ghost' in path:
-                pass
-            elif 'Half-Dragon' in path:
-                pass
-            else:
-                for index, elem in enumerated_data:
-                    for key, val in elem.items():
-                        if 'dragon' in val.lower():
-                            is_dragon = True
-                if is_dragon:
-                    filename = (os.path.realpath(path))
-                    shutil.copy2(filename, dragon_folder)
-                    print(filename)
-                    f.close()
-                    os.remove(filename)
-    print('¡Proceso Completado!')
+        for path in glob.glob('{}/*.json'.format(tipos_folder)):
+            is_dragon = False
+            with open(path, 'r+') as f:
+                data = json.load(f)
+                enumerated_data = enumerate(data)
+                if 'Celestial_Creature' in path:
+                    pass
+                elif 'Ghost' in path:
+                    pass
+                elif 'Half-Dragon' in path:
+                    pass
+                else:
+                    for index, elem in enumerated_data:
+                        for key, val in elem.items():
+                            if 'dragon' in val.lower():
+                                is_dragon = True
+                    if is_dragon:
+                        filename = (os.path.realpath(path))
+                        shutil.copy2(filename, dragon_folder)
+                        if to_print:
+                            print('El archivo ', monster, ' ha sido movido a la carpeta DRAGONES')
+                        f.close()
+                        os.remove(filename)
+
+    def checking_files(self) -> None:
+        pass  # TODO
 
 
 def checking_files(folder):
@@ -464,17 +566,17 @@ def checking_files(folder):
               'Alignment', 'Advancement', 'Level Adjustment'}
     tiene_nombre = False
     vacios = []
+    sin_nombre = []
     for path in glob.glob('{}/*.json'.format(folder)):
         with open(path, 'r') as f:
             data = json.load(f)
             enumerated_data = enumerate(data)
             if not data:
                 vacios.append(path)
-                # tiene_nombre = False
             else:
                 for index, elem in enumerated_data:
                     clean_keys = set()
-                    if index != 0:
+                    if index > 1:
                         pass
                     if index == 0:
                         for key, val in elem.items():
@@ -482,29 +584,26 @@ def checking_files(folder):
                                 tiene_nombre = True
                                 # print('Nombre de la criatura: ', val)
                             else:
-                                tiene_nombre = False
-            if not tiene_nombre:
-                print('Esta criatura no tiene nombre: ', path)
-    print('Los siguientes archivos están vacíos: ')
-    for elem in vacios:
-        print(elem)
-
-
-                # if index > 1:
-                #     pass
-                # if index == 1:
-                #     for key, val in elem.items():
-                #         if val:
-                #             clean_keys.add(key)
-                #     if clean_keys != CLAVES:
-                #         print(os.path.basename(path) + ': No tiene todas las CLAVES')
-                #         claves_de_mas = clean_keys.difference(CLAVES)
-                #         if claves_de_mas:
-                #             print('Tiene las siguientes CLAVES de más: ')
-                #         print('Le faltan las siguientes CLAVES: ')
-                #         print(CLAVES.difference(clean_keys), '\n')
-
-    print('¡Proceso Completado!')
+                                sin_nombre.append(path)
+                    if index == 1:
+                        for key, val in elem.items():
+                            if val:
+                                clean_keys.add(key)
+                        if clean_keys != CLAVES:
+                            print(os.path.basename(path) + ': No tiene todas las CLAVES')
+                            claves_de_mas = clean_keys.difference(CLAVES)
+                            if claves_de_mas:
+                                print('Tiene las siguientes CLAVES de más: ')
+                            print('Le faltan las siguientes CLAVES: ')
+                            print(CLAVES.difference(clean_keys), '\n')
+    if vacios:
+        print('Los siguientes archivos están vacíos: ')
+        for elem in vacios:
+            print(elem)
+    if sin_nombre:
+        print('Las siguientes criaturas no tienen nombre: ')
+        for elem in sin_nombre:
+            print(elem)
 
 
 def main():
@@ -530,7 +629,7 @@ def main():
     args = parser.parse_args()
 
     dir_path = os.path.normpath(os.getcwd())
-    backup_folder = os.path.join(dir_path, 'raw')
+    backup_folder = os.path.join(dir_path, '..', 'raw')
     hfolder = os.path.join(backup_folder, 'HTML')
     jfolder = os.path.join(backup_folder, 'JSON')
 
@@ -575,18 +674,36 @@ def main():
 
     if args.clean:
             if args.quiet:
-                pass
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).excluyendo_ficheros()
+                    SRD35_JsonClean(path).insertando_titulos()
+                    SRD35_JsonClean(path).organizando_tipos()
             elif args.verbose:
                 print('Excluyendo ficheros innecesarios...')
                 for path in glob.glob('{}/*.json'.format(jfolder)):
                     SRD35_JsonClean(path).excluyendo_ficheros(to_print=True)
                 print('¡Proceso completado!')
-                print('Insertando nombre a los siguientes ficheros:')
+                print('Insertando nombre a los siguientes archivos:')
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).insertando_titulos(to_print=True)
+                print('¡Proceso completado!')
+                print('Clasificando monstruos...')
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).organizando_tipos(to_print=True)
+                print('¡Proceso completado!')
             else:
-                pass
+                print('Espere mientras se filtran los archivos...')
+                for path in glob.glob('{}/*.json'.format(jfolder)):
+                    SRD35_JsonClean(path).excluyendo_ficheros()
+                    SRD35_JsonClean(path).insertando_titulos()
+                    SRD35_JsonClean(path).organizando_tipos()
+                print('¡Proceso Completado!')
 
     if args.checking:
+        print('Analizando archivos...')
         checking_files(jfolder)
+        print('¡Proceso Completado!')
+
     # PASO 3 - Excluir los ficheros que no sirven
     # excluyendo_ficheros(json_folder)
     # PASO 4 - Insertando titulos en los ficheros que no tienen
