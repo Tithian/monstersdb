@@ -79,8 +79,11 @@ class MultiTableParser(BaseParser):
 
             if tag == 'table':
                 if 'monstats' in css:
+                    cell = attrs.get('cellpadding')
                     self.temp_table = {}
                     self.in_table = True
+                    if cell == '0': # Es para quitar el conjuro que toma como una tabla en Worm_That_Walks
+                        self.in_table = False
 
             elif self.in_table:
                 if tag == 'th':
@@ -212,6 +215,8 @@ class CombatParser(BaseParser):
                     self.in_combat = True
                 elif id_span.startswith('See'):
                     self.in_combat = False
+                elif id_span.startswith('Creating'): # Esto quita los apartados de creación de criaturas
+                    self.in_combat = False
                 elif 'characters' in id_span:
                     self.in_combat = False
 
@@ -282,6 +287,93 @@ class AsCharactersParser(BaseParser):
             self.temp_characters += data
 
 
+class RareTableParser(BaseParser):
+    def __init__(self, *arg, **kwargs):
+        super(RareTableParser, self).__init__(*arg, **kwargs)
+        # Informacion
+        self.final_data = []
+        self.table_name = ''
+        self.total_values = []
+        self.total_keys = []
+        # Flags
+        self.in_rare_table = False
+        self.in_caption = False
+        self.in_rare_key = False
+        self.in_rare_value = False
+        # Temps
+        self.temp_key = ''
+        self.temp_value = ''
+
+    def handle_starttag(self, tag, attrs):
+        super(RareTableParser, self).handle_starttag(tag, attrs)
+        if self.start:
+            attrs = dict(attrs)
+            css = attrs.get('class', '')
+
+            if tag == 'table':
+                align = attrs.get('style', '')
+                if 'text-align: right' in align:
+                    self.in_rare_table = False
+                elif 'monstats' in css:
+                    cell = attrs.get('cellpadding')
+                    self.in_rare_table = False
+                    if cell == '0': # Es para añadir el conjuro que toma como una tabla en Worm_That_Walks
+                        self.temp_rare_table = {}
+                        self.in_rare_table = True
+                else:
+                    self.in_rare_table = True
+
+            elif self.in_rare_table:
+                if tag == 'caption':
+                    self.table_name = ''
+                    self.in_caption = True
+                if tag == 'th':
+                    self.temp_key = ''
+                    self.in_rare_key = True
+                if tag == 'td':
+                    self.temp_value = ''
+                    self.in_rare_value = True
+
+    def handle_endtag(self, tag):
+        super(RareTableParser, self).handle_endtag(tag)
+        if self.in_rare_table:
+            if tag == 'table':
+                self.in_rare_table = False
+                if self.table_name:
+                    self.final_data.append(self.table_name)
+                if self.total_keys:
+                    self.final_data.append('CLAVES')
+                    self.final_data.append(self.total_keys)
+                if self.total_values:
+                    self.final_data.append('VALORES')
+                    self.final_data.append(self.total_values)
+                self.table_name = ''
+                self.total_keys = []
+                self.total_values = []
+            elif self.in_caption and tag == 'caption':
+                self.in_caption = False
+            elif self.in_rare_key and tag == 'th':
+                self.in_rare_key = False
+                if self.temp_key.endswith(':'):
+                    self.temp_key = self.temp_key[:-1]
+                self.total_keys.append(self.temp_key)
+                self.temp_key = ''
+            elif self.in_rare_value and tag == 'td':
+                self.in_rare_value = False
+                self.total_values.append(self.temp_value)
+                self.temp_value = ''
+
+    def handle_data(self, data):
+        if self.in_rare_table:
+            data = data.replace('\n', '')
+            if self.in_caption:
+                self.table_name += data
+            elif self.in_rare_key:
+                self.temp_key += data
+            elif self.in_rare_value:
+                self.temp_value += data
+
+
 class ListCreaturesHTMLParser(HTMLParser):
     def __init__(self, *arg, **kwargs):
         super(ListCreaturesHTMLParser, self).__init__(*arg, **kwargs)
@@ -304,7 +396,12 @@ class ListCreaturesHTMLParser(HTMLParser):
 class Agrupation(object):
     def __init__(self):
         super(Agrupation, self).__init__()
-        self.parsers = [NameParser, MultiTableParser, DescriptionParser, CombatParser, AsCharactersParser]
+        self.parsers = [NameParser,
+                        MultiTableParser,
+                        DescriptionParser,
+                        CombatParser,
+                        AsCharactersParser,
+                        RareTableParser]
         self.data = []
 
     def parse_all(self, html_file):
@@ -462,13 +559,16 @@ class SRD35_JsonClean(object):
                 if index != 1:
                     pass
                 if index == 1:
-                    for key, val in elem.items():
-                        if 'Monstruo y Nivel' in key:
-                            criatura_tipo = True
-                        if 'Size/Type' in key:
-                            criatura_tipo = True
-                        else:
-                            pass
+                    try:
+                        for key, val in elem.items():
+                            if 'Monstruo y Nivel' in key:
+                                criatura_tipo = True
+                            if 'Size/Type' in key:
+                                criatura_tipo = True
+                            else:
+                                pass
+                    except:
+                        pass
             for elem in to_tipo:
                 if monster == elem:
                     criatura_tipo = False
@@ -492,9 +592,12 @@ class SRD35_JsonClean(object):
                     pass
                 else:
                     for index, elem in enumerated_data:
-                        for key, val in elem.items():
-                            if 'dragon' in val.lower():
-                                is_dragon = True
+                        try:
+                            for key, val in elem.items():
+                                if 'dragon' in val.lower():
+                                    is_dragon = True
+                        except:
+                            pass
                     if is_dragon:
                         filename = (os.path.realpath(path))
                         shutil.copy2(filename, dragon_folder)
@@ -547,8 +650,11 @@ class SRD35_JsonClean(object):
         key_finder = 'Descripción'
 
         for elem in self.initial_data:
-            if elem.get(key_finder) is not None:
-                descr_found = True
+            try:
+                if elem.get(key_finder) is not None:
+                    descr_found = True
+            except:
+                pass
 
         if not descr_found:
             if 'Astral_Construct' in filename:
