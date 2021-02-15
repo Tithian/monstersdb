@@ -242,30 +242,29 @@ class CombatParser(BaseParser):
             self.temp_combat += data
 
 
-class AsCharactersParser(BaseParser):
+class ImportantEntriesParser(BaseParser):
     def __init__(self, *arg, **kwargs):
-        super(AsCharactersParser, self).__init__(*arg, **kwargs)
-        self.in_characters = False
-        self.in_char_key = False
-        self.temp_characters = ''
-        self.temp_char_key = ''
+        super(ImportantEntriesParser, self).__init__(*arg, **kwargs)
+        self.final_data = []
+        self.in_span = False
+        self.important_entry = False
+        self.in_important_key = False
+        self.temp_entry = {}
+        self.temp_entry_val = ''
+        self.temp_entry_key = ''
 
     def handle_starttag(self, tag, attrs):
-        super(AsCharactersParser, self).handle_starttag(tag, attrs)
+        super(ImportantEntriesParser, self).handle_starttag(tag, attrs)
         if self.start:
             attrs = dict(attrs)
             id_span = attrs.get('id', '')
-            if tag == 'span' and 'CHARACTERS' in id_span.upper():
-                self.in_characters = True
-                self.in_char_key = True
-
-            elif tag == 'hr':
-                while '\n\n\n' in self.temp_characters:
-                    self.temp_characters = self.temp_characters.replace('\n\n\n', '\n\n')
-                if self.temp_characters:
-                    clean_comb = self.temp_characters.replace('\n\n', '')
-                    if clean_comb[:6].upper() == 'COMBAT':
-                        clean_comb = clean_comb[6:]
+            if tag == 'table':
+                self.important_entry = False
+            elif tag == 'span':
+                while '\n\n\n' in self.temp_entry_val:
+                    self.temp_entry_val = self.temp_entry_val.replace('\n\n\n', '\n\n')
+                if self.temp_entry_val:
+                    clean_comb = self.temp_entry_val.replace('\n\n', '')
                     if clean_comb.startswith('\n'):
                         clean_comb = clean_comb[1:]
                     # Esto lo quita en mayúsculas
@@ -274,17 +273,37 @@ class AsCharactersParser(BaseParser):
                     sin_cap_wiki = sin_wiki[0].partition('See Wikipedia Entry:')
                     # Esto lo quita en el true dragon
                     sin_entries = sin_cap_wiki[0].partition('Wikipedia Entries')
-                    self.final_data[self.temp_char_key.capitalize()] = sin_entries[0]
+                    self.temp_entry[self.temp_entry_key.capitalize()] = sin_entries[0]
+                    self.final_data.append(self.temp_entry)
+                    self.temp_entry_val = ''
+                    self.temp_entry_key = ''
+                    self.temp_entry = {}
+                self.in_span = True
+                self.important_entry = False
+                self.in_important_key = False
+                things_to_take = ('CHARACTERS', 'TRAITS', 'DEVIL', 'BUILDING', 'DEMON')
+                if 'LIST' in id_span.upper():
+                    self.important_entry = False
+                else:
+                    for elem in things_to_take:
+                        if elem in id_span.upper():
+                            self.important_entry = True
+                            self.in_important_key = True
 
     def handle_endtag(self, tag):
-        if tag == 'span':
-            self.in_char_key = False
+        if self.start:
+            if tag == 'span':
+                self.in_span = False
+                self.in_important_key = False
+
+        elif tag == 'hr':
+            self.important_entry = False
 
     def handle_data(self, data):
-        if self.in_char_key:
-            self.temp_char_key += data
-        elif self.in_characters:
-            self.temp_characters += data
+        if self.in_important_key:
+            self.temp_entry_key += data
+        elif self.important_entry:
+            self.temp_entry_val += data
 
 
 class RareTableParser(BaseParser):
@@ -400,7 +419,7 @@ class Agrupation(object):
                         MultiTableParser,
                         DescriptionParser,
                         CombatParser,
-                        AsCharactersParser,
+                        ImportantEntriesParser,
                         RareTableParser]
         self.data = []
 
@@ -457,7 +476,8 @@ def to_json(html_folder, json_folder, to_print=False):
         parsers.parse_all(path)
         filename = os.path.basename(path)
         filename = os.path.join(json_folder, filename)
-        with open(filename.replace('.html', '.json'), 'w') as f2:
+        filename = filename.replace('.html', '.json')
+        with open(filename, 'w') as f2:
             response = json.dumps(parsers.data, indent=2)
             f2.write(response)
             if to_print:
@@ -472,66 +492,50 @@ class SRD35_JsonClean(object):
         self.final_data: dict = {}
 
     def excluyendo_ficheros(self, to_print=False) -> bool:
-        files_to_exclude = []
+        files_to_exclude = ('Beholder', 'Creatures_by_Type', 'Creatures_by_CR', 'System_Reference_Document')
+        file = os.path.basename(self.json_file)
         found = False
-        if 'Demon' in self.json_file:
+
+        if self.initial_data:
             found = True
-        if 'Devil' in self.json_file:
-            found = True
-        if 'Dire_Animal' in self.json_file:
-            found = True
-        enumerated_data = enumerate(self.initial_data)
-        for index, dictionary in enumerated_data:
-            if index == 0:
-                for key, val in dictionary.items():
-                    if 'Nombre' in key:
-                        found = True
-                        if 'Cr 1/10' in val:
-                            found = False
-                        if 'Creatures by type' in val:
-                            found = False
-                        if 'Creature types and subtypes' in val:
-                            found = False
-                    if 'Monstruo y Nivel' in key:
-                        found = True
-                    if 'Size/Type' in key:
-                        found = True
-            if index != 0:
-                pass
+            if file.replace('.json', '') in files_to_exclude:
+                found = False
+
+        elif not self.initial_data:
+            found = False
+
         if not found:
-            filename = (os.path.realpath(self.json_file))
-            excluded_folder = os.path.join(filename, '..', '..', 'EXCLUDED')
-            if not os.path.isdir(excluded_folder):  # Si el directorio pasado como argumento no existe:
-                os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
-            shutil.copy2(filename, excluded_folder)
-            files_to_exclude.append(filename)
-            os.remove(filename)
-            if to_print:
-                print(filename)
+            if 'Demon' in self.json_file:
+                pass
+            elif 'Devil' in self.json_file:
+                pass
+            else:
+                filename = (os.path.realpath(self.json_file))
+                dir_path = (os.path.dirname(filename))
+                excluded_folder = os.path.join(dir_path, 'EXCLUDED')
+                if not os.path.isdir(excluded_folder):  # Si el directorio pasado como argumento no existe:
+                    os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
+                shutil.copy2(filename, excluded_folder)
+                os.remove(filename)
+                if to_print:
+                    print(filename)
 
     def insertando_titulos(self, to_print=False) -> None:
         name_found = False
-        enumerated_data = enumerate(self.initial_data)
-        for index, elem in enumerated_data:
-            if index != 0:
-                pass
-            if index == 0:
-                for key, val in elem.items():
-                    if 'Nombre' in key:
-                        name_found = True
-                    else:
-                        pass
-                if not name_found:
-                    with open(self.json_file, 'w') as f2:
-                        new_index = {}
-                        old_name = os.path.basename(self.json_file.replace('.json', ''))
-                        new_name = '{}'.format(old_name.replace('_', ' '))
-                        new_index['Nombre'] = new_name
-                        self.initial_data.insert(0, new_index)
-                        self.final_data = json.dumps(self.initial_data, indent=2)
-                        f2.write(self.final_data)
-                        if to_print:
-                            print(self.json_file)
+        for key, val in self.initial_data[0].items():
+            if 'Nombre' in key:
+                name_found = True
+        if not name_found:
+            with open(self.json_file, 'w') as f2:
+                new_index = {}
+                old_name = os.path.basename(self.json_file.replace('.json', ''))
+                new_name = '{}'.format(old_name.replace('_', ' '))
+                new_index['Nombre'] = new_name
+                self.initial_data.insert(0, new_index)
+                self.final_data = json.dumps(self.initial_data, indent=2)
+                f2.write(self.final_data)
+                if to_print:
+                    print(self.json_file)
 
     def organizando_tipos(self, to_print=False) -> None:
         files_to_exclude = []
@@ -544,31 +548,26 @@ class SRD35_JsonClean(object):
                    'Earth_Elemental.json',
                    'Fire_Elemental.json',
                    'Hoary_Hunter.json',
-                   'Water_Elemental.json']
+                   'Water_Elemental.json',
+                   'Devil.json',
+                   'Demon.json',
+                   'Elemental.json'
+                   'Dire_Animal.json']
 
         filename = (os.path.realpath(self.json_file))
         monster = os.path.basename(filename)
-        tipos_folder = os.path.join(filename, '..', 'TIPOS')
+        dir_name = (os.path.dirname(filename))
+        tipos_folder = os.path.join(dir_name, 'TIPOS')
         dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
         if not os.path.isdir(dragon_folder):
             os.makedirs(dragon_folder)
         with open(self.json_file, 'r+') as f:
             data = json.load(f)
-            enumerated_data = enumerate(data)
-            for index, elem in enumerated_data:
-                if index != 1:
-                    pass
-                if index == 1:
-                    try:
-                        for key, val in elem.items():
-                            if 'Monstruo y Nivel' in key:
-                                criatura_tipo = True
-                            if 'Size/Type' in key:
-                                criatura_tipo = True
-                            else:
-                                pass
-                    except:
-                        pass
+            if isinstance(data[1], dict):
+                if 'Monstruo y Nivel' in data[1]:
+                    criatura_tipo = True
+                if 'Size/Type' in data[1]:
+                    criatura_tipo = True
             for elem in to_tipo:
                 if monster == elem:
                     criatura_tipo = False
@@ -576,7 +575,8 @@ class SRD35_JsonClean(object):
                 shutil.copy2(filename, tipos_folder)
                 files_to_exclude.append(filename)
                 if to_print:
-                    print('El archivo ', monster, ' ha sido movido a la carpeta TIPOS')
+                    if not 'Dragon' in monster:
+                        print('El archivo ', monster, ' ha sido movido a la carpeta TIPOS')
                 f.close()
                 os.remove(filename)
         for path in glob.glob('{}/*.json'.format(tipos_folder)):
@@ -609,52 +609,39 @@ class SRD35_JsonClean(object):
     def insertando_claves(self, to_print=False) -> None:
         mon_y_niv_found = False
         filename = os.path.basename(self.json_file)
-        enumerated_data = enumerate(self.initial_data)
-        for index, elem in enumerated_data:
-            if index != 1:
-                pass
-            if index == 1:
-                for key, val in elem.items():
-                    if 'Monstruo y Nivel' in key:
-                        mon_y_niv_found = True
-                    if not val:
-                        if to_print:
-                            print(filename, ' No tiene valor en ', key, '. Se ha añadido un "-"')
-                        elem[key] = '\u2014'
-                        self.final_data = json.dumps(self.initial_data, indent=2)
-                        with open(self.json_file, 'w') as f:
-                            f.write(self.final_data)
-                            if to_print:
-                                print(filename)
-        if not mon_y_niv_found:
-            new_enumerated_data = enumerate(self.initial_data)
-            for index, elem in new_enumerated_data:
-                if index > 1:
-                    pass
-                if index == 0:
-                    for key, val in elem.items():
-                        if 'Nombre' in key:
-                            mon_y_niv_val = val
-                if index == 1:
-                    elem['Monstruo y Nivel'] = mon_y_niv_val
+        if 'Monstruo y Nivel' in self.initial_data[1]:
+            mon_y_niv_found = True
+            for key, val in self.initial_data[1].items():
+                if not val:
+                    if to_print:
+                        print(filename, ' No tiene valor en ', key, '. Se ha añadido un "\u2014"')
+                    dic = self.initial_data[1]
+                    dic[key] = '\u2014'
                     self.final_data = json.dumps(self.initial_data, indent=2)
                     with open(self.json_file, 'w') as f:
                         f.write(self.final_data)
                         if to_print:
                             print(filename)
+        if not mon_y_niv_found:
+            if 'Nombre' in self.initial_data[0].keys():
+                mon_y_niv_val = self.initial_data[0].get('Nombre')
+                dic = self.initial_data[1]
+                dic['Monstruo y Nivel'] = mon_y_niv_val
+                self.final_data = json.dumps(self.initial_data, indent=2)
+                with open(self.json_file, 'w') as f:
+                    f.write(self.final_data)
+                    if to_print:
+                        print(filename)
 
     def insertando_descripciones(self, to_print=False) -> None:
         descr_found = False
-        correct = False
         filename = os.path.basename(self.json_file)
         key_finder = 'Descripción'
 
         for elem in self.initial_data:
-            try:
+            if isinstance(elem, dict):
                 if elem.get(key_finder) is not None:
                     descr_found = True
-            except:
-                pass
 
         if not descr_found:
             if 'Astral_Construct' in filename:
@@ -668,10 +655,7 @@ class SRD35_JsonClean(object):
                                                               'constructs of the same level vary somewhat from each'
                                                               ' other, depending on the whims of their creators.'})
                 self.final_data = self.initial_data
-                correct = True
             if 'Advanced_Mummy' in filename:
-                correct = True
-
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -684,7 +668,6 @@ class SRD35_JsonClean(object):
                                                                              '\nMummies can speak Common, but seldom '
                                                                              'bother to do so.'}]
             if 'Behemoth_Eagle' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -701,7 +684,6 @@ class SRD35_JsonClean(object):
                                           'prey that sometimes associates with good creatures. It stands about 20 feet '
                                           'tall, with a wingspan of up to 80 feet.'}]
             if 'Behemoth_Gorilla' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -717,7 +699,6 @@ class SRD35_JsonClean(object):
                                           'earthbound versions.\nA behemoth gorilla stands 25 feet tall or more and '
                                           'weighs close to 20,000 pounds. It has long claws and sharp teeth.'}]
             if 'Brachyurus' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -736,7 +717,6 @@ class SRD35_JsonClean(object):
                                           'pelts, though more often than not such a hunter becomes the hunted.'
                                           '\nBrachyuruses can speak Common and can communicate with all wolves.'}]
             if 'Centipede_Swarm' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -746,7 +726,6 @@ class SRD35_JsonClean(object):
                     [{'Descripci\u00f3n': 'A centipede swarm is a crawling mass of voracious centipedes that can climb '
                                           'over obstacles to get at prey.\n'}]
             if 'Cerebrilith' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -763,7 +742,6 @@ class SRD35_JsonClean(object):
                                           ', examining them in hopes of prying loose new insights into the mental'
                                           ' arts.'}]
             if 'Flesh_Harrower_Puppeteer' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -779,7 +757,6 @@ class SRD35_JsonClean(object):
                                           'smaller version. Though unendowed with the ability to control the minds of '
                                           'others, a dire puppeteer can often simply slay a threat directly.'}]
             if 'Folugub' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -791,7 +768,6 @@ class SRD35_JsonClean(object):
                                           'Folugubs are the bane of psionically equipped parties, since so many psionic'
                                           ' items contain or are composed completely of crystal.'}]
             if 'Frost_Giant_Jar' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -810,7 +786,6 @@ class SRD35_JsonClean(object):
                                           'giant’s bag is old, worn, dirty, and smelly, making the identification of '
                                           'any valuable items difficult.'}]
             if 'Gray_Glutton' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -831,7 +806,6 @@ class SRD35_JsonClean(object):
                                           ' for all things psionic. The monsters are named not for the color of their'
                                           ' hide, but for the psionic-infused gray matter they crave above all.'}]
             if 'Grimlock' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -847,7 +821,6 @@ class SRD35_JsonClean(object):
                                           ' creature, such as a medusa or a mind flayer.\nGrimlocks speak their own'
                                           ' language and Common.'}]
             if 'Hieracosphinx' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -858,7 +831,6 @@ class SRD35_JsonClean(object):
                                           'always male. They spend much of their time searching for a gynosphinx but '
                                           'are generally just as happy to maul someone.'}]
             if 'Human' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -872,7 +844,6 @@ class SRD35_JsonClean(object):
                                           'communications; larger, more complex brains than other primates; '
                                           'and highly advanced and organized societies.'}]
             if 'Iron_Colossus' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -886,7 +857,6 @@ class SRD35_JsonClean(object):
                                           'weapons in one hand.\nAn iron colossus cannot speak or make any vocal '
                                           'noise.'}]
             if 'Legendary_Bear' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -896,7 +866,6 @@ class SRD35_JsonClean(object):
                     [{'Descripci\u00f3n': 'A legendary bear doesn’t usually attack humans despite its great strength.'
                                           ' Most of the bear’s diet consists of | plants and fish'}]
             if 'Legendary_Tiger' in filename:
-                correct = True
                 insert_at = 2  # Index at which you want to insert item
 
                 self.final_data = self.initial_data[:]  # Created copy of list "a" as "b".
@@ -1192,5 +1161,7 @@ def main():
 # TODO Hacer un parser que recoja todas la tablas raras... otra vez
 # TODO Ver como quitar el conjuro de Worm_That_Walks.json y ponerlo al final
 # TODO Ver como poner todos los apéndices de las criaturas que se pueden construir
+
+#   TODO cambiar archivos html por json
 if __name__ == '__main__':
     main()
