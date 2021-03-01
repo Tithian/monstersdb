@@ -1678,6 +1678,8 @@ def main():
     backup_folder = os.path.join(dir_path, '..', 'raw')
     hfolder = os.path.join(backup_folder, 'HTML')
     jfolder = os.path.join(backup_folder, 'JSON')
+    tipos_folder = os.path.join(jfolder, 'TIPOS')
+    dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
 
     if args.h_folder:
         hfolder = os.path.normpath(args.h_folder)
@@ -1723,7 +1725,10 @@ def main():
                 SRD35_JsonClean(path).eliminando_entradas()
                 SRD35_JsonClean(path).eliminando_back_to_main()
                 SRD35_JsonClean(path).arreglando_tablas()
+            for path in glob.glob('{}/*.json'.format(tipos_folder)):
                 SRD35_JsonClean(path).arreglando_tablas_tipo()
+            for path in glob.glob('{}/*.json'.format(dragon_folder)):
+                SRD35_JsonClean(path).arreglando_tablas_dragones()
 
         elif args.verbose:
             print('Excluyendo ficheros innecesarios...')
@@ -1759,9 +1764,12 @@ def main():
                 SRD35_JsonClean(path).arreglando_tablas(to_print=True)
             print('¡Proceso Completado!' + '\n')
             print('Arreglando tablas en la carpeta TIPOS...')
-            tipos_folder = os.path.join(jfolder, 'TIPOS')
             for path in glob.glob('{}/*.json'.format(tipos_folder)):
                 SRD35_JsonClean(path).arreglando_tablas_tipo(to_print=True)
+            print('¡Proceso Completado!' + '\n')
+            print('Arreglando tablas en la carpeta DRAGONES...')
+            for path in glob.glob('{}/*.json'.format(dragon_folder)):
+                SRD35_JsonClean(path).arreglando_tablas_dragones(to_print=True)
             print('¡Proceso Completado!' + '\n')
 
         else:
@@ -1777,18 +1785,17 @@ def main():
                 SRD35_JsonClean(path).arreglando_tablas()
             for path in glob.glob('{}/*.json'.format(tipos_folder)):
                 SRD35_JsonClean(path).arreglando_tablas_tipo()
+            for path in glob.glob('{}/*.json'.format(dragon_folder)):
+                SRD35_JsonClean(path).arreglando_tablas_dragones()
             print('¡Proceso Completado!' + '\n')
 
     if args.checking:
         print('Analizando archivos...')
-        tipos_folder = os.path.join(jfolder, 'TIPOS')
-        dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
         for path in glob.glob('{}/*.json'.format(dragon_folder)):
-            SRD35_JsonClean(path).arreglando_tablas_dragones(to_print=True)
-        # checking_files(jfolder)
+            checking_files(jfolder)
         print('¡Proceso Completado!' + '\n')
 
-    # checking_files(json_folder)
+
 # TODO Arreglar el Combate del Balor.json... o no...
 
 # TODO Hacer un parser que recoja los conjuros en condiciones
