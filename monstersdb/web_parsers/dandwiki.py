@@ -281,7 +281,8 @@ class ImportantEntriesParser(BaseParser):
                 self.in_span = True
                 self.important_entry = False
                 self.in_important_key = False
-                things_to_take = ('CHARACTERS', 'TRAITS', 'DEVIL', 'BUILDING', 'DEMON')
+                things_to_take = ('CHARACTERS', 'TRAITS', 'DEVIL', 'BUILDING', 'DEMON', 'CONSTRUCTION', 'CREATING',
+                                  'EQUIPMENT')
                 if 'LIST' in id_span.upper():
                     self.important_entry = False
                 else:
@@ -337,7 +338,6 @@ class RareTableParser(BaseParser):
                     cell = attrs.get('cellpadding')
                     self.in_rare_table = False
                     if cell == '0': # Es para añadir el conjuro que toma como una tabla en Worm_That_Walks
-                        self.temp_rare_table = {}
                         self.in_rare_table = True
                 else:
                     self.in_rare_table = True
@@ -488,11 +488,15 @@ class SRD35_JsonClean(object):
     def __init__(self, json_file: str):
         self.json_file: str = json_file
         with open(self.json_file) as f:
-            self.initial_data: dict = json.load(f)
-        self.final_data: dict = {}
+            self.initial_data = json.load(f)
+        self.final_data = []
 
     def excluyendo_ficheros(self, to_print=False) -> bool:
-        files_to_exclude = ('Beholder', 'Creatures_by_Type', 'Creatures_by_CR', 'System_Reference_Document')
+        files_to_exclude = ('Beholder',
+                            'Creatures_by_Type',
+                            'Creatures_by_CR',
+                            'System_Reference_Document',
+                            'Creature_Types')
         file = os.path.basename(self.json_file)
         found = False
 
@@ -589,6 +593,8 @@ class SRD35_JsonClean(object):
                 elif 'Ghost' in path:
                     pass
                 elif 'Half-Dragon' in path:
+                    pass
+                elif 'Fiendish_Creature' in path:
                     pass
                 else:
                     for index, elem in enumerated_data:
@@ -989,6 +995,584 @@ class SRD35_JsonClean(object):
                 if to_print:
                     print('Se ha añadido una Descripción a ', filename)
 
+    def eliminando_entradas(self, to_print=False):
+        filename = os.path.basename(self.json_file)
+        index = len(self.initial_data)
+        if index == 5:
+            inside = self.initial_data[4]
+            if isinstance(inside, dict):
+                for key, val in inside.items():
+                    if not val:
+                        del self.initial_data[4]
+                        with open(self.json_file, 'w') as f:
+                            self.final_data = json.dumps(self.initial_data, indent=2)
+                            f.write(self.final_data)
+                            if to_print:
+                                print(
+                                    'El archivo', filename, 'tenía la siguiente entrada innecesaria:'
+                                    , inside, '. Ha sido eliminada')
+
+    def eliminando_back_to_main(self, to_print=False):
+        filename = os.path.basename(self.json_file)
+        index = len(self.initial_data)
+        fix = False
+        if index == 5:
+            inside = self.initial_data[4]
+            for key, val in inside.items():
+                if 'Back to' in val:
+                    fix = True
+                    pos = val.find('Back to Main Page')
+                    change = val[:pos]
+                    inside[key] = change
+        if fix:
+            with open(self.json_file, 'w') as f:
+                self.final_data = json.dumps(self.initial_data, indent=2)
+                f.write(self.final_data)
+                if to_print:
+                    print(
+                        'Se ha eliminado "Back to Main Page" de', filename)
+
+    def arreglando_tablas(self, to_print=False) -> None:
+        filename = os.path.basename(self.json_file)
+        indexes = len(self.initial_data)
+        enumerated_data = enumerate(self.initial_data)
+        tables = []
+        vermins = ['Colossal_Monstrous_Centipede',
+                   'Colossal_Monstrous_Scorpion',
+                   'Gargantuan_Monstrous_Centipede',
+                   'Gargantuan_Monstrous_Scorpion',
+                   'Huge_Monstrous_Centipede',
+                   'Huge_Monstrous_Scorpion',
+                   'Large_Monstrous_Centipede',
+                   'Large_Monstrous_Scorpion',
+                   'Medium_Monstrous_Centipede',
+                   'Medium_Monstrous_Scorpion',
+                   'Small_Monstrous_Centipede',
+                   'Small_Monstrous_Scorpion',
+                   'Tiny_Monstrous_Centipede',
+                   'Tiny_Monstrous_Scorpion']
+        air_water = ['Air', 'Water']
+        drag_chim = ['Force_Dragon', 'Chimera', 'Prismatic_Dragon']
+
+        if filename.replace('.json', '') in vermins:
+            for index, elem in enumerated_data:
+                tabla = {}
+                if isinstance(elem, str):
+                    if elem == 'CLAVES':
+                        en_claves = True
+                    elif elem == 'VALORES':
+                        en_valor = True
+                if isinstance(elem, list):
+                    if en_claves:
+                        claves = elem
+                        en_claves = False
+                    elif en_valor:
+                        valores = elem
+                        if len(claves) != len(valores):
+                            raise ValueError('Las claves no concuerdan')
+                        for index, elem in enumerate(claves):
+                            tabla[elem] = valores[index]
+                            en_valor = False
+                if tabla:
+                    tables.append(tabla)
+            if isinstance(self.initial_data[3], str):
+                del self.initial_data[3:]
+                for elem in tables:
+                    self.initial_data.append(elem)
+                with open(self.json_file, 'w') as f:
+                    self.final_data = json.dumps(self.initial_data, indent=2)
+                    f.write(self.final_data)
+                    if to_print:
+                        print('Se han arreglado las tablas de:', filename)
+        elif filename.replace('.json', '') in drag_chim:
+            for index, elem in enumerated_data:
+                tabla = {}
+                if isinstance(elem, str):
+                    if elem == 'CLAVES':
+                        en_claves = True
+                    elif elem == 'VALORES':
+                        en_valor = True
+                    else:
+                        tabla['Table Name'] = str(elem)
+                if isinstance(elem, list):
+                    if en_claves:
+                        claves = elem
+                        en_claves = False
+                    elif en_valor:
+                        valores = elem
+                        start = 0
+                        number = len(claves)
+                        if isinstance(self.initial_data[4], str):
+                            for index, elem in enumerate(claves):
+                                tabla[elem] = valores[start::number]
+                                start += 1
+                if tabla:
+                    tables.append(tabla)
+        else:
+            if indexes >= 8:
+                over = False
+                for index, elem in enumerated_data:
+                    tabla = {}
+                    if isinstance(elem, str):
+                        if elem == 'CLAVES':
+                            en_claves = True
+                        elif elem == 'VALORES':
+                            en_valor = True
+                        else:
+                            if elem == 'GATHERING OF MAGGOTS':
+                                elem = elem.replace('GATHERING OF MAGGOTS', 'Gathering Of Maggots')
+                            tabla['Table Name'] = str(elem).replace('Whirlwind', 'Sizes')
+                            tables.append(tabla)
+                    elif isinstance(elem, list):
+                        if en_claves:
+                            claves = elem
+                            en_claves = False
+                        elif en_valor:
+                            valores = elem
+                            if len(claves) != len(valores):
+                                over = True
+                            if not over:
+                                if 'Spider' in filename:
+                                    if isinstance(self.initial_data[3], str):
+                                        do_it = True
+                                else:
+                                    if isinstance(self.initial_data[4], str):
+                                        do_it = True
+                                if do_it:
+                                    for index, elem in enumerate(claves):
+                                        tabla[elem] = valores[index]
+                                        en_valor = False
+                                    if tabla:
+                                        tables.append(tabla)
+                                    if 'Spider' in filename:
+                                        del self.initial_data[3:indexes]
+                                    else:
+                                        del self.initial_data[4:indexes]
+                                    do_it = False
+                            if over:
+                                if 'Fire' in filename:
+                                    if isinstance(self.initial_data[4], str):
+                                        table_name = {}
+                                        table_name['Table Name'] = claves[0]
+                                        tables.append(table_name)
+                                        for index, elem in enumerate(claves[1:]):
+                                            tabla[elem] = valores[index]
+                                            en_valor = False
+                                    del self.initial_data[4:indexes]
+                                if 'Worm_That_Walks' in filename:
+                                    if isinstance(self.initial_data[6], str):
+                                        for index, elem in enumerate(claves):
+                                            tabla['Escuela'] = valores[0]
+                                            tabla[elem] = valores[index + 1]
+                                    del self.initial_data[6:indexes]
+                                for elem in air_water:
+                                    if elem in filename:
+                                        if '' in self.initial_data[6]:
+                                            hab_esp = ''
+                                            for index, elem in enumerate(claves):
+                                                if '—––——' in elem:
+                                                    hab_esp = str(elem.replace('—', '')).replace('–', '')
+                                                elif 'Whirlwind' in elem:
+                                                    hab_esp = elem + ' '
+                                                elif index < 3:
+                                                    pass
+                                                elif index > 6:
+                                                    tabla[hab_esp + elem] = valores[index - 4]
+                                                else:
+                                                    tabla[elem] = valores[index - 4]
+                                                en_valor = False
+                                        del self.initial_data[4:indexes]
+
+                                if tabla:
+                                    tables.append(tabla)
+
+                if tables:
+                    for elem in tables:
+                        self.initial_data.append(elem)
+                    with open(self.json_file, 'w') as f:
+                        self.final_data = json.dumps(self.initial_data, indent=2)
+                        f.write(self.final_data)
+                        if to_print:
+                            print('Se han arreglado las tablas de:', filename)
+
+    def arreglando_tablas_tipo(self, to_print=False) -> None:
+        filename = os.path.basename(self.json_file)
+        indexes = len(self.initial_data)
+        enumerated_data = enumerate(self.initial_data)
+        tables = []
+        tabla = {}
+        num_clave = 0
+        t_name = ''
+        zomb_esk = ['Zombie.json', 'Skeleton.json', 'Vampire.json', 'Fiendish_Creature.json']
+
+        if 'Phrenic' in filename:
+            if isinstance(self.initial_data[3], str):
+                for index, elem in enumerated_data:
+                    if isinstance(elem, str):
+                        if elem == 'VALORES':
+                            en_valor = True
+                    if isinstance(elem, list):
+                        if en_valor:
+                            valores = elem
+                            hd = []
+                            abilities = []
+                            for index, elem in enumerate(valores):
+                                if index > 2:
+                                    if index%2:
+                                        abilities.append(elem)
+                                    else:
+                                        hd.append(elem)
+                                en_valor = False
+                        tabla['HD'] = hd
+                        tabla['Abilities'] = abilities
+                del self.initial_data[3:indexes]
+                self.initial_data.append(tabla)
+                with open(self.json_file, 'w') as f:
+                    self.final_data = json.dumps(self.initial_data, indent=2)
+                    f.write(self.final_data)
+                    if to_print:
+                        print('Se han arreglado las tablas de:', filename)
+
+        if 'Monstrous' in filename:
+            if isinstance(self.initial_data[2], str):
+                for index, elem in enumerated_data:
+                    tabla = {}
+                    num = 0
+                    if isinstance(elem, str):
+                        if elem == 'CLAVES':
+                            num += 1
+                            en_claves = True
+                        elif elem == 'VALORES':
+                            en_valor = True
+                    if isinstance(elem, list):
+                        if en_claves:
+                            claves = elem
+                            en_claves = False
+                        elif en_valor:
+                            valores = elem
+                            if 'Spider' in filename:
+                                    for index, elem in enumerate(claves):
+                                        if num == 1:
+                                            tabla[elem] = valores[index - 3:21:3]
+                                        else:
+                                            tabla[elem] = valores[index::4]
+                            else:
+                                for index, elem in enumerate(claves):
+                                    tabla[elem] = valores[index - 3:21:3]
+                            en_valor = False
+                    if tabla:
+                        tables.append(tabla)
+
+                del self.initial_data[2:indexes]
+                for elem in tables:
+                    self.initial_data.append(elem)
+                with open(self.json_file, 'w') as f:
+                    self.final_data = json.dumps(self.initial_data, indent=2)
+                    f.write(self.final_data)
+                    if to_print:
+                        print(
+                            'Se han arreglado las tablas de:', filename)
+        if indexes == 7:
+            if isinstance(self.initial_data[3], str):
+                for index, elem in enumerated_data:
+                    if isinstance(elem, str):
+                        if elem == 'CLAVES':
+                            en_claves = True
+                        elif elem == 'VALORES':
+                            en_valor = True
+                    if isinstance(elem, list):
+                        if en_claves:
+                            claves = elem
+                            en_claves = False
+                        elif en_valor:
+                            valores = elem
+                            for index, elem in enumerate(claves):
+                                    tabla[elem] = valores[index::len(claves)]
+                            en_valor = False
+                    if tabla:
+                        tables.append(tabla)
+
+                del self.initial_data[3:indexes]
+                for elem in tables:
+                    self.initial_data.append(elem)
+                with open(self.json_file, 'w') as f:
+                    self.final_data = json.dumps(self.initial_data, indent=2)
+                    f.write(self.final_data)
+                    if to_print:
+                        print('Se han arreglado las tablas de:', filename)
+        if indexes >= 8:
+            if filename in zomb_esk:
+                if isinstance(self.initial_data[3], str):
+                    en_claves = False
+                    val_count = 0
+                    rdict = {}
+                    zkey = ''
+                    for index, elem in enumerated_data:
+                        if isinstance(elem, str):
+                            if elem == 'CLAVES':
+                                en_claves = True
+                            elif elem == 'VALORES':
+                                en_valor = True
+                                val_count += 1
+                        if isinstance(elem, list):
+                            if en_claves:
+                                claves = elem
+                                en_claves = False
+                            elif en_valor:
+                                valores = elem
+                                if val_count < 3:
+                                    for index, elem in enumerate(valores):
+                                        if index%2 == 0:
+                                            zkey = elem
+                                        else:
+                                            lelem = []
+                                            lelem.append(elem)
+                                            rdict[zkey] = lelem
+                                else:
+                                    for index, elem in enumerate(claves):
+                                        tabla[elem] = valores[index::len(claves)]
+                                        if index == indexes:
+                                            del self.initial_data[3:indexes]
+                        if rdict:
+                            tables.append(rdict)
+                            rdict = {}
+                    if tabla:
+                        tables.append(tabla)
+                del self.initial_data[3:indexes]
+            else:
+                for index, elem in enumerated_data:
+                    if isinstance(elem, str):
+                        if elem == 'CLAVES':
+                            en_claves = True
+                        elif elem == 'VALORES':
+                            en_valor = True
+                        else:
+                            t_name = elem
+                    if isinstance(elem, list):
+                        if en_claves:
+                            claves = elem
+                            num_clave += 1
+                            en_claves = False
+                        elif en_valor:
+                            valores = elem
+                            en_valor = False
+                            if isinstance(self.initial_data[9], str):
+                                if 'Fire' in filename:
+                                    if num_clave == 1:
+                                        table_name = {'Table Name': claves[0]}
+                                        tables.append(table_name)
+                                        for index, elem in enumerate(claves[1:]):
+                                            tabla[elem] = valores[index::len(claves)-1]
+                                    del self.initial_data[9:indexes]
+                                elif 'Air' in filename:
+                                    if num_clave == 1:
+                                        if '' in self.initial_data[11]:
+                                            hab_esp = ''
+                                            if t_name:
+                                                table_name = {'Table Name': t_name}
+                                                tables.append(table_name)
+                                            for index, elem in enumerate(claves):
+                                                if '—––——' in elem:
+                                                    hab_esp = str(elem.replace('—', '')).replace('–', '')
+                                                elif 'Whirlwind' in elem:
+                                                    hab_esp = elem + ' '
+                                                elif index < 3:
+                                                    pass
+                                                elif index > 6:
+                                                    tabla[hab_esp + elem] = valores[index - 4::len(claves)-4]
+                                                else:
+                                                    tabla[elem] = valores[index - 4::len(claves)-4]
+                                                en_valor = False
+                                    del self.initial_data[9:indexes]
+                                elif 'Earth' in filename:
+                                    if num_clave == 1:
+                                        if t_name:
+                                            table_name = {'Table Name': t_name}
+                                            tables.append(table_name)
+                                        for index, elem in enumerate(claves):
+                                            tabla[elem] = valores[index-3::len(claves)-3]
+                                    del self.initial_data[9:indexes]
+                                elif 'Half' in filename:
+                                    if num_clave == 3:
+                                        for index, elem in enumerate(claves):
+                                            tabla[elem] = valores[index-2::len(claves) - 2]
+                                        del self.initial_data[3:indexes]
+                                    else:
+                                        for index, elem in enumerate(claves):
+                                            tabla[elem] = valores[index::len(claves)]
+                                        if 'Fiend' in filename:
+                                            if num_clave == 2:
+                                                del self.initial_data[3:indexes]
+                                elif 'Lycanthrope' in filename:
+                                    if t_name:
+                                        table_name = {'Table Name': t_name}
+                                        tables.append(table_name)
+                                    for index, elem in enumerate(claves):
+                                        tabla[elem] = valores[index::len(claves)]
+                                        if index == 3:
+                                            del self.initial_data[5:indexes]
+                                elif 'Water' in filename:
+                                    if num_clave == 1:
+                                        if '' in self.initial_data[11]:
+                                            hab_esp = ''
+                                            if t_name:
+                                                table_name = {'Table Name': t_name}
+                                                tables.append(table_name)
+                                            for index, elem in enumerate(claves):
+                                                if '—––——' in elem:
+                                                    hab_esp = str(elem.replace('—', '')).replace('–', '')
+                                                elif 'Vortex' in elem:
+                                                    hab_esp = elem + ' '
+                                                elif index < 3:
+                                                    pass
+                                                elif index > 6:
+                                                    tabla[hab_esp + elem] = valores[index - 4::len(claves) - 4]
+                                                else:
+                                                    tabla[elem] = valores[index - 4::len(claves) - 4]
+                                                en_valor = False
+                                    del self.initial_data[9:indexes]
+                    if tabla:
+                        tables.append(tabla)
+                        tabla = {}
+        if tables:
+            for elem in tables:
+                self.initial_data.append(elem)
+                with open(self.json_file, 'w') as f:
+                    self.final_data = json.dumps(self.initial_data, indent=2)
+                    f.write(self.final_data)
+                    if to_print:
+                        print('Se han arreglado las tablas de:', filename)
+
+    def arreglando_tablas_dragones(self, to_print=False) -> None:
+        filename = os.path.basename(self.json_file)
+        indexes = len(self.initial_data)
+        enumerated_data = enumerate(self.initial_data)
+        tables = []
+        notes = []
+        num_clave = 0
+
+        if 'True' in filename:
+            for index, elem in enumerated_data:
+                tname = {}
+                tabla = {}
+                if isinstance(elem, str):
+                    if elem == 'CLAVES':
+                        en_claves = True
+                    elif elem == 'VALORES':
+                        en_valor = True
+                    else:
+                        tabla['Table Name'] = str(elem)
+                if isinstance(elem, list):
+                    if en_claves:
+                        claves = elem
+                        num_clave += 1
+                        en_claves = False
+                    elif en_valor:
+                        valores = elem
+                        en_valor = False
+                        if isinstance(self.initial_data[3], str):
+                            if num_clave == 1:
+                                notes.append(valores[21:23])
+                                del valores[21:23]
+                                for index, elem in enumerate(claves):
+                                        tabla[elem] = valores[index::len(claves)]
+                            elif num_clave == 3:
+                                notes.append(valores[56])
+                                del valores[56]
+                                for index, elem in enumerate(claves):
+                                    tabla[elem] = valores[index::len(claves)]
+                            elif num_clave == 4:
+                                while '' in claves:
+                                    claves.remove('')
+                                while '' in valores:
+                                    valores.remove('')
+                                tabla[str(claves[0]).replace('————— ', '').replace(' —————', '')] = claves[1:5]
+                                tabla[valores[0] + ' ' + valores[1]] = valores[2:6]
+                                tabla[valores[0] + ' ' + valores[6]] = valores[7:11]
+                                tabla[valores[11] + ' ' + valores[12]] = valores[13:17]
+                            elif num_clave == 5:
+                                tname['Table Name'] = 'Epic Dragon Age Categories'
+                                tables.append(tname)
+                                for index, elem in enumerate(claves):
+                                    if elem == '':
+                                        pass
+                                    else:
+                                        tabla[elem] = valores[index::len(claves)]
+                            elif num_clave == 6:
+                                tname['Table Name'] = 'Epic Dragon Space and Reach'
+                                tables.append(tname)
+                                for index, elem in enumerate(claves):
+                                    tabla[str(elem).replace(' ', '')] = valores[index::len(claves)]
+                            elif num_clave == 7:
+                                tname['Table Name'] = 'Epic Dragon Attacks'
+                                tables.append(tname)
+                                for index, elem in enumerate(claves):
+                                    clean_elem = str(elem).replace(' ', '').replace('1', '1 ').replace('2', '2 ')
+                                    tabla[clean_elem] = valores[index::len(claves)]
+                            elif num_clave == 8:
+                                tname['Table Name'] = 'Epic Dragon Breath Weapons'
+                                tables.append(tname)
+                                notes.append(valores[8])
+                                del valores[8]
+                                for index, elem in enumerate(claves):
+                                    tabla[elem] = valores[index::len(claves)]
+                            elif num_clave == 9:
+                                tname['Table Name'] = 'Epic Dragon Overland Flying Speeds'
+                                tables.append(tname)
+                                while '' in claves:
+                                    claves.remove('')
+                                while '' in valores:
+                                    valores.remove('')
+                                tabla[str(claves[0]).replace('————— ', '').replace(' —————', '')] = claves[1:4]
+                                tabla[claves[4] + valores[0]] = valores[1:4]
+                                tabla[claves[4] + valores[4]] = valores[5:8]
+                                tabla[claves[5] + valores[8]] = valores[9:12]
+                            else:
+                                for index, elem in enumerate(claves):
+                                    tabla[elem] = valores[index::len(claves)]
+
+                if tabla:
+                    tables.append(tabla)
+                    if notes:
+                        notas = {}
+                        for elem in notes:
+                            notas['Notas'] = elem
+                        tables.append(notas)
+                        notes = []
+        else:
+            for index, elem in enumerated_data:
+                tabla = {}
+                if isinstance(elem, str):
+                    if elem == 'CLAVES':
+                        en_claves = True
+                    elif elem == 'VALORES':
+                        en_valor = True
+                    else:
+                        tabla['Table Name'] = str(elem)
+                if isinstance(elem, list):
+                    if en_claves:
+                        claves = elem
+                        num_clave += 1
+                        en_claves = False
+                    elif en_valor:
+                        valores = elem
+                        en_valor = False
+                        if isinstance(self.initial_data[3], str):
+                            for index, elem in enumerate(claves):
+                                tabla[elem] = valores[index::len(claves)]
+                if tabla:
+                    tables.append(tabla)
+
+        if tables:
+            del self.initial_data[3:indexes]
+            for elem in tables:
+                self.initial_data.append(elem)
+            with open(self.json_file, 'w') as f:
+                self.final_data = json.dumps(self.initial_data, indent=2)
+                f.write(self.final_data)
+                if to_print:
+                    print('Se han arreglado las tablas de:', filename)
+
 
 def checking_files(folder):
     CLAVES = {'Monstruo y Nivel', 'Size/Type', 'Hit Dice', 'Initiative', 'Speed', 'Armor Class',
@@ -998,6 +1582,7 @@ def checking_files(folder):
     vacios = []
     sin_nombre = []
     sin_valor = []
+    creatures = []
     sin_descripcion = []
     sv = {}
     for path in glob.glob('{}/*.json'.format(folder)):
@@ -1010,8 +1595,6 @@ def checking_files(folder):
             else:
                 for index, elem in enumerated_data:
                     clean_keys = set()
-                    if index > 2:
-                        pass
                     if index == 0:
                         for key, val in elem.items():
                             if 'Nombre' in key:
@@ -1039,6 +1622,19 @@ def checking_files(folder):
                                     print(filename)
                             else:
                                 print('Mira este: ', filename)
+                    if index == 3:
+                        if isinstance(elem, str):
+                            creatures.append(filename)
+                        else:
+                            pass
+                    if index == 4:
+                        if isinstance(elem, str):
+                            print(filename, elem)
+                        else:
+                            pass
+                    if index > 4:
+                        pass
+
     if vacios:
         print('Los siguientes archivos están vacíos: ')
         for elem in vacios:
@@ -1051,7 +1647,10 @@ def checking_files(folder):
         print('Las siguientes criaturas no tienen valor en estas claves:')
         for elem in sin_valor:
             print(elem)
-
+    if creatures:
+        print('Las siguientes criaturas tienen el combate como descripción: ')
+        for elem in creatures:
+            print(elem)
 
 def main():
     parser = argparse.ArgumentParser(description='Analiza los archivos html de dandwiki, y pasa las criaturas de '
@@ -1121,6 +1720,11 @@ def main():
                 SRD35_JsonClean(path).organizando_tipos()
                 SRD35_JsonClean(path).insertando_claves()
                 SRD35_JsonClean(path).insertando_descripciones()
+                SRD35_JsonClean(path).eliminando_entradas()
+                SRD35_JsonClean(path).eliminando_back_to_main()
+                SRD35_JsonClean(path).arreglando_tablas()
+                SRD35_JsonClean(path).arreglando_tablas_tipo()
+
         elif args.verbose:
             print('Excluyendo ficheros innecesarios...')
             for path in glob.glob('{}/*.json'.format(jfolder)):
@@ -1142,6 +1746,24 @@ def main():
             for path in glob.glob('{}/*.json'.format(jfolder)):
                 SRD35_JsonClean(path).insertando_descripciones(to_print=True)
             print('¡Proceso completado!' + '\n')
+            print('Eliminando algunas entradas que están vacías...')
+            for path in glob.glob('{}/*.json'.format(jfolder)):
+                SRD35_JsonClean(path).eliminando_entradas(to_print=True)
+            print('¡Proceso completado!' + '\n')
+            print('Retocando algunas entradas...')
+            for path in glob.glob('{}/*.json'.format(jfolder)):
+                SRD35_JsonClean(path).eliminando_back_to_main(to_print=True)
+            print('¡Proceso completado!' + '\n')
+            print('Arreglando tablas...')
+            for path in glob.glob('{}/*.json'.format(jfolder)):
+                SRD35_JsonClean(path).arreglando_tablas(to_print=True)
+            print('¡Proceso Completado!' + '\n')
+            print('Arreglando tablas en la carpeta TIPOS...')
+            tipos_folder = os.path.join(jfolder, 'TIPOS')
+            for path in glob.glob('{}/*.json'.format(tipos_folder)):
+                SRD35_JsonClean(path).arreglando_tablas_tipo(to_print=True)
+            print('¡Proceso Completado!' + '\n')
+
         else:
             print('Espere mientras se filtran y reeditan los archivos...')
             for path in glob.glob('{}/*.json'.format(jfolder)):
@@ -1150,18 +1772,31 @@ def main():
                 SRD35_JsonClean(path).organizando_tipos()
                 SRD35_JsonClean(path).insertando_claves()
                 SRD35_JsonClean(path).insertando_descripciones()
+                SRD35_JsonClean(path).eliminando_entradas()
+                SRD35_JsonClean(path).eliminando_back_to_main()
+                SRD35_JsonClean(path).arreglando_tablas()
+            for path in glob.glob('{}/*.json'.format(tipos_folder)):
+                SRD35_JsonClean(path).arreglando_tablas_tipo()
             print('¡Proceso Completado!' + '\n')
 
     if args.checking:
         print('Analizando archivos...')
-        checking_files(jfolder)
+        tipos_folder = os.path.join(jfolder, 'TIPOS')
+        dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
+        for path in glob.glob('{}/*.json'.format(dragon_folder)):
+            SRD35_JsonClean(path).arreglando_tablas_dragones(to_print=True)
+        # checking_files(jfolder)
         print('¡Proceso Completado!' + '\n')
 
-    # checking_files(json_folder)  #TODO PASO 6 - Chequear todos las claves y valores de las tablas
-# TODO Hacer un parser que recoja todas la tablas raras... otra vez
-# TODO Ver como quitar el conjuro de Worm_That_Walks.json y ponerlo al final
-# TODO Ver como poner todos los apéndices de las criaturas que se pueden construir
+    # checking_files(json_folder)
+# TODO Arreglar el Combate del Balor.json... o no...
 
-#   TODO cambiar archivos html por json
+# TODO Hacer un parser que recoja los conjuros en condiciones
+
+# TODO Arreglar las tablas extra en TIPOS y DRAGONES
+
+# TODO Cambiar el Duergar.json y los cambiaformas para que recoga el valor del diccionario como una tabla
+
+# TODO Traducir todas las claves
 if __name__ == '__main__':
     main()
