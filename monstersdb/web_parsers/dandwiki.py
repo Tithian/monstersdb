@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 
 import requests
 import argparse
+import logging
 
 
 class BaseParser(HTMLParser):
@@ -82,7 +83,7 @@ class MultiTableParser(BaseParser):
                     cell = attrs.get('cellpadding')
                     self.temp_table = {}
                     self.in_table = True
-                    if cell == '0': # Es para quitar el conjuro que toma como una tabla en Worm_That_Walks
+                    if cell == '0':  # Es para quitar el conjuro que toma como una tabla en Worm_That_Walks
                         self.in_table = False
 
             elif self.in_table:
@@ -215,7 +216,7 @@ class CombatParser(BaseParser):
                     self.in_combat = True
                 elif id_span.startswith('See'):
                     self.in_combat = False
-                elif id_span.startswith('Creating'): # Esto quita los apartados de creación de criaturas
+                elif id_span.startswith('Creating'):  # Esto quita los apartados de creación de criaturas
                     self.in_combat = False
                 elif 'characters' in id_span:
                     self.in_combat = False
@@ -337,7 +338,7 @@ class RareTableParser(BaseParser):
                 elif 'monstats' in css:
                     cell = attrs.get('cellpadding')
                     self.in_rare_table = False
-                    if cell == '0': # Es para añadir el conjuro que toma como una tabla en Worm_That_Walks
+                    if cell == '0':  # Es para añadir el conjuro que toma como una tabla en Worm_That_Walks
                         self.in_rare_table = True
                 else:
                     self.in_rare_table = True
@@ -457,7 +458,7 @@ def dumper_html(folder, to_print=False):
     parse_url(parser, url)
     # Por cada enlace que tenga el parser: Hace que el nombre sea igual a la dirección, pero solo a partir de los ':'
     for path in parser.list_creatures:
-        name = path[path.rfind(':')+1:]
+        name = path[path.rfind(':') + 1:]
         # Le da formato al interior del placeholder {} con unacadena fuyo formato es igual a la variable nombre
         # reemplazando los espacios por guiones bajos
         filename = '{}.html'.format(name.replace(' ', '_'))
@@ -484,12 +485,26 @@ def to_json(html_folder, json_folder, to_print=False):
                 print(filename)
 
 
+def save_file(json_file, data):
+    with open(json_file, 'w') as f:
+        json.dump(data, f, indent=2)
+
+
 class SRD35_JsonClean(object):
     def __init__(self, json_file: str):
         self.json_file: str = json_file
         with open(self.json_file) as f:
             self.initial_data = json.load(f)
+
         self.final_data = []
+        self.tables = []
+        self.tabla = {}
+        self.num_clave = 0
+        self.num_valor = 0
+
+        self.filename = os.path.basename(self.json_file)
+        self.indexes = len(self.initial_data)
+        self.enumerated_data = enumerate(self.initial_data)
 
     def excluyendo_ficheros(self, to_print=False) -> bool:
         files_to_exclude = ('Beholder',
@@ -497,12 +512,11 @@ class SRD35_JsonClean(object):
                             'Creatures_by_CR',
                             'System_Reference_Document',
                             'Creature_Types')
-        file = os.path.basename(self.json_file)
         found = False
 
         if self.initial_data:
             found = True
-            if file.replace('.json', '') in files_to_exclude:
+            if self.filename.replace('.json', '') in files_to_exclude:
                 found = False
 
         elif not self.initial_data:
@@ -514,13 +528,12 @@ class SRD35_JsonClean(object):
             elif 'Devil' in self.json_file:
                 pass
             else:
-                filename = (os.path.realpath(self.json_file))
+                file = (os.path.realpath(self.json_file))
                 dir_path = (os.path.dirname(filename))
                 excluded_folder = os.path.join(dir_path, 'EXCLUDED')
                 if not os.path.isdir(excluded_folder):  # Si el directorio pasado como argumento no existe:
                     os.mkdir(excluded_folder)  # Crea el directorio pasado como argumento
-                shutil.copy2(filename, excluded_folder)
-                os.remove(filename)
+                shutil.move(file, excluded_folder)
                 if to_print:
                     print(filename)
 
@@ -598,7 +611,7 @@ class SRD35_JsonClean(object):
                     pass
                 else:
                     for index, elem in enumerated_data:
-                        try:
+                        try:  # TODO arreglar esto
                             for key, val in elem.items():
                                 if 'dragon' in val.lower():
                                     is_dragon = True
@@ -1033,415 +1046,209 @@ class SRD35_JsonClean(object):
                         'Se ha eliminado "Back to Main Page" de', filename)
 
     def arreglando_tablas(self, to_print=False) -> None:
-        filename = os.path.basename(self.json_file)
-        indexes = len(self.initial_data)
-        enumerated_data = enumerate(self.initial_data)
-        tables = []
-        vermins = ['Colossal_Monstrous_Centipede',
-                   'Colossal_Monstrous_Scorpion',
-                   'Gargantuan_Monstrous_Centipede',
-                   'Gargantuan_Monstrous_Scorpion',
-                   'Huge_Monstrous_Centipede',
-                   'Huge_Monstrous_Scorpion',
-                   'Large_Monstrous_Centipede',
-                   'Large_Monstrous_Scorpion',
-                   'Medium_Monstrous_Centipede',
-                   'Medium_Monstrous_Scorpion',
-                   'Small_Monstrous_Centipede',
-                   'Small_Monstrous_Scorpion',
-                   'Tiny_Monstrous_Centipede',
-                   'Tiny_Monstrous_Scorpion']
-        air_water = ['Air', 'Water']
-        drag_chim = ['Force_Dragon', 'Chimera', 'Prismatic_Dragon']
+        en_claves = False
+        en_valores = False
+        t_name = {}
+        claves = ''
+        keys = 0
+        self.tables = []
 
-        if filename.replace('.json', '') in vermins:
-            for index, elem in enumerated_data:
-                tabla = {}
-                if isinstance(elem, str):
-                    if elem == 'CLAVES':
-                        en_claves = True
-                    elif elem == 'VALORES':
-                        en_valor = True
-                if isinstance(elem, list):
-                    if en_claves:
-                        claves = elem
-                        en_claves = False
-                    elif en_valor:
-                        valores = elem
-                        if len(claves) != len(valores):
-                            raise ValueError('Las claves no concuerdan')
-                        for index, elem in enumerate(claves):
-                            tabla[elem] = valores[index]
-                            en_valor = False
-                if tabla:
-                    tables.append(tabla)
-            if isinstance(self.initial_data[3], str):
-                del self.initial_data[3:]
-                for elem in tables:
-                    self.initial_data.append(elem)
-                with open(self.json_file, 'w') as f:
-                    self.final_data = json.dumps(self.initial_data, indent=2)
-                    f.write(self.final_data)
-                    if to_print:
-                        print('Se han arreglado las tablas de:', filename)
-        elif filename.replace('.json', '') in drag_chim:
-            for index, elem in enumerated_data:
-                tabla = {}
-                if isinstance(elem, str):
-                    if elem == 'CLAVES':
-                        en_claves = True
-                    elif elem == 'VALORES':
-                        en_valor = True
+        for index, elem in self.enumerated_data:
+            if isinstance(elem, str):
+                if elem == 'CLAVES':
+                    en_claves = True
+                elif elem == 'VALORES':
+                    en_valores = True
+                else:
+                    t_list = []
+                    t_list.append(elem)
+                    if 'Air' in self.filename:
+                        t_name['Table Name'] = ['Air Elemental Sizes']
+                    elif 'Worm_That_Walks' in self.filename:
+                        t_name['Table Name'] = ['Gathering Of Maggots']
                     else:
-                        tabla['Table Name'] = str(elem)
-                if isinstance(elem, list):
-                    if en_claves:
-                        claves = elem
-                        en_claves = False
-                    elif en_valor:
-                        valores = elem
-                        start = 0
-                        number = len(claves)
-                        if isinstance(self.initial_data[4], str):
-                            for index, elem in enumerate(claves):
-                                tabla[elem] = valores[start::number]
-                                start += 1
-                if tabla:
-                    tables.append(tabla)
-        else:
-            if indexes >= 8:
-                over = False
-                for index, elem in enumerated_data:
-                    tabla = {}
-                    if isinstance(elem, str):
-                        if elem == 'CLAVES':
-                            en_claves = True
-                        elif elem == 'VALORES':
-                            en_valor = True
-                        else:
-                            if elem == 'GATHERING OF MAGGOTS':
-                                elem = elem.replace('GATHERING OF MAGGOTS', 'Gathering Of Maggots')
-                            tabla['Table Name'] = str(elem).replace('Whirlwind', 'Sizes')
-                            tables.append(tabla)
-                    elif isinstance(elem, list):
-                        if en_claves:
-                            claves = elem
-                            en_claves = False
-                        elif en_valor:
-                            valores = elem
-                            if len(claves) != len(valores):
-                                over = True
-                            if not over:
-                                if 'Spider' in filename:
-                                    if isinstance(self.initial_data[3], str):
-                                        do_it = True
-                                else:
-                                    if isinstance(self.initial_data[4], str):
-                                        do_it = True
-                                if do_it:
-                                    for index, elem in enumerate(claves):
-                                        tabla[elem] = valores[index]
-                                        en_valor = False
-                                    if tabla:
-                                        tables.append(tabla)
-                                    if 'Spider' in filename:
-                                        del self.initial_data[3:indexes]
-                                    else:
-                                        del self.initial_data[4:indexes]
-                                    do_it = False
-                            if over:
-                                if 'Fire' in filename:
-                                    if isinstance(self.initial_data[4], str):
-                                        table_name = {}
-                                        table_name['Table Name'] = claves[0]
-                                        tables.append(table_name)
-                                        for index, elem in enumerate(claves[1:]):
-                                            tabla[elem] = valores[index]
-                                            en_valor = False
-                                    del self.initial_data[4:indexes]
-                                if 'Worm_That_Walks' in filename:
-                                    if isinstance(self.initial_data[6], str):
-                                        for index, elem in enumerate(claves):
-                                            tabla['Escuela'] = valores[0]
-                                            tabla[elem] = valores[index + 1]
-                                    del self.initial_data[6:indexes]
-                                for elem in air_water:
-                                    if elem in filename:
-                                        if '' in self.initial_data[6]:
-                                            hab_esp = ''
-                                            for index, elem in enumerate(claves):
-                                                if '—––——' in elem:
-                                                    hab_esp = str(elem.replace('—', '')).replace('–', '')
-                                                elif 'Whirlwind' in elem:
-                                                    hab_esp = elem + ' '
-                                                elif index < 3:
-                                                    pass
-                                                elif index > 6:
-                                                    tabla[hab_esp + elem] = valores[index - 4]
-                                                else:
-                                                    tabla[elem] = valores[index - 4]
-                                                en_valor = False
-                                        del self.initial_data[4:indexes]
+                        t_name['Table Name'] = t_list[0:]
+            elif isinstance(elem, list):
+                if en_claves:
+                    claves = elem
+                    en_claves = False
+                    keys = len(claves)
+                elif en_valores:
+                    valores = elem
+                    en_valores = False
+                    if 'Air' in self.filename:
+                        hab_esp = []
+                        for index, elem in enumerate(claves):
+                            if '—––—— ' in elem:
+                                hab_esp = str(elem.replace('—––—— ', '')).replace(' ——––—', '')
+                            elif index < 3:
+                                pass
+                            elif index > 6:
+                                self.tabla[hab_esp + ' ' + elem] = valores[index - 4::keys]
+                            else:
+                                self.tabla[elem] = valores[index - 4::keys]
+                    elif 'Fire' in self.filename:
+                        t_name['Table Name'] = claves[0:1]
+                        for index, elem in enumerate(claves[1:]):
+                            self.tabla[elem] = valores[index::keys]
+                    elif 'Water' in self.filename:
+                        hab_esp = []
+                        for index, elem in enumerate(claves):
+                            if '––—––—— ' in elem:
+                                hab_esp = str(elem.replace('––—––—— ', '')).replace(' ——––––—', '')
+                            elif index < 3:
+                                pass
+                            elif index > 6:
+                                self.tabla[hab_esp + ' ' + elem] = valores[index - 4::keys]
+                            else:
+                                self.tabla[elem] = valores[index - 4::keys]
+                    elif 'Worm_That_Walks' in self.filename:
+                        for index, elem in enumerate(claves):
+                            self.tabla['Escuela'] = valores[0]
+                            self.tabla[elem] = valores[index + 1::keys]
+                    else:
+                        for index, elem in enumerate(claves):
+                            self.tabla[elem] = valores[index::keys]
+            else:
+                self.final_data.append(elem)
+            if t_name:
+                self.tables.append(t_name)
+                t_name = {}
 
-                                if tabla:
-                                    tables.append(tabla)
+            if self.tabla:  # Aquí si pongo un elif en los Fire Elemental no me coge la tabla
+                self.tables.append(self.tabla)
+                self.tabla = {}
 
-                if tables:
-                    for elem in tables:
-                        self.initial_data.append(elem)
-                    with open(self.json_file, 'w') as f:
-                        self.final_data = json.dumps(self.initial_data, indent=2)
-                        f.write(self.final_data)
-                        if to_print:
-                            print('Se han arreglado las tablas de:', filename)
+        if self.tables:
+            print(self.filename)
+            for elem in self.tables:
+                print(elem)
+                self.final_data.append(elem)
+            print('\n')
+            save_file(self.json_file, self.final_data)
+            if to_print:
+                print('Se han arreglado las tablas de:', self.filename)
 
     def arreglando_tablas_tipo(self, to_print=False) -> None:
-        filename = os.path.basename(self.json_file)
-        indexes = len(self.initial_data)
-        enumerated_data = enumerate(self.initial_data)
-        tables = []
-        tabla = {}
-        num_clave = 0
-        t_name = ''
         zomb_esk = ['Zombie.json', 'Skeleton.json', 'Vampire.json', 'Fiendish_Creature.json']
+        en_claves = False
+        en_valores = False
+        t_name = {}
+        claves = ''
+        keys = 0
+        self.tables = []
 
-        if 'Phrenic' in filename:
-            if isinstance(self.initial_data[3], str):
-                for index, elem in enumerated_data:
-                    if isinstance(elem, str):
-                        if elem == 'VALORES':
-                            en_valor = True
-                    if isinstance(elem, list):
-                        if en_valor:
-                            valores = elem
-                            hd = []
-                            abilities = []
-                            for index, elem in enumerate(valores):
-                                if index > 2:
-                                    if index%2:
-                                        abilities.append(elem)
-                                    else:
-                                        hd.append(elem)
-                                en_valor = False
-                        tabla['HD'] = hd
-                        tabla['Abilities'] = abilities
-                del self.initial_data[3:indexes]
-                self.initial_data.append(tabla)
-                with open(self.json_file, 'w') as f:
-                    self.final_data = json.dumps(self.initial_data, indent=2)
-                    f.write(self.final_data)
-                    if to_print:
-                        print('Se han arreglado las tablas de:', filename)
-
-        if 'Monstrous' in filename:
-            if isinstance(self.initial_data[2], str):
-                for index, elem in enumerated_data:
-                    tabla = {}
-                    num = 0
-                    if isinstance(elem, str):
-                        if elem == 'CLAVES':
-                            num += 1
-                            en_claves = True
-                        elif elem == 'VALORES':
-                            en_valor = True
-                    if isinstance(elem, list):
-                        if en_claves:
-                            claves = elem
-                            en_claves = False
-                        elif en_valor:
-                            valores = elem
-                            if 'Spider' in filename:
-                                    for index, elem in enumerate(claves):
-                                        if num == 1:
-                                            tabla[elem] = valores[index - 3:21:3]
-                                        else:
-                                            tabla[elem] = valores[index::4]
-                            else:
-                                for index, elem in enumerate(claves):
-                                    tabla[elem] = valores[index - 3:21:3]
-                            en_valor = False
-                    if tabla:
-                        tables.append(tabla)
-
-                del self.initial_data[2:indexes]
-                for elem in tables:
-                    self.initial_data.append(elem)
-                with open(self.json_file, 'w') as f:
-                    self.final_data = json.dumps(self.initial_data, indent=2)
-                    f.write(self.final_data)
-                    if to_print:
-                        print(
-                            'Se han arreglado las tablas de:', filename)
-        if indexes == 7:
-            if isinstance(self.initial_data[3], str):
-                for index, elem in enumerated_data:
-                    if isinstance(elem, str):
-                        if elem == 'CLAVES':
-                            en_claves = True
-                        elif elem == 'VALORES':
-                            en_valor = True
-                    if isinstance(elem, list):
-                        if en_claves:
-                            claves = elem
-                            en_claves = False
-                        elif en_valor:
-                            valores = elem
-                            for index, elem in enumerate(claves):
-                                    tabla[elem] = valores[index::len(claves)]
-                            en_valor = False
-                    if tabla:
-                        tables.append(tabla)
-
-                del self.initial_data[3:indexes]
-                for elem in tables:
-                    self.initial_data.append(elem)
-                with open(self.json_file, 'w') as f:
-                    self.final_data = json.dumps(self.initial_data, indent=2)
-                    f.write(self.final_data)
-                    if to_print:
-                        print('Se han arreglado las tablas de:', filename)
-        if indexes >= 8:
-            if filename in zomb_esk:
-                if isinstance(self.initial_data[3], str):
+        for index, elem in self.enumerated_data:
+            if isinstance(elem, str):
+                if elem == 'CLAVES':
+                    en_claves = True
+                    self.num_clave += 1
+                elif elem == 'VALORES':
+                    en_valores = True
+                    self.num_valor += 1
+                else:
+                    t_list = []
+                    t_list.append(elem)
+                    if 'Air' in self.filename:
+                        if self.num_clave == 0:  # Añade solo el nombre para la tabla de todos los tamaños
+                            t_name['Table Name'] = ['Air Elemental Sizes']
+                    elif 'Earth' in self.filename:
+                        if self.num_clave == 0:
+                            t_name['Table Name'] = t_list[0:]
+                    elif 'Water' in self.filename:
+                        if self.num_clave == 0:
+                            t_name['Table Name'] = t_list[0:]
+                    else:
+                        t_name['Table Name'] = t_list[0:]
+            elif isinstance(elem, list):
+                if en_claves:
+                    claves = elem
                     en_claves = False
-                    val_count = 0
-                    rdict = {}
-                    zkey = ''
-                    for index, elem in enumerated_data:
-                        if isinstance(elem, str):
-                            if elem == 'CLAVES':
-                                en_claves = True
-                            elif elem == 'VALORES':
-                                en_valor = True
-                                val_count += 1
-                        if isinstance(elem, list):
-                            if en_claves:
-                                claves = elem
-                                en_claves = False
-                            elif en_valor:
-                                valores = elem
-                                if val_count < 3:
-                                    for index, elem in enumerate(valores):
-                                        if index%2 == 0:
-                                            zkey = elem
-                                        else:
-                                            lelem = []
-                                            lelem.append(elem)
-                                            rdict[zkey] = lelem
+                    keys = len(claves)
+                elif en_valores:
+
+                    valores = elem
+                    en_valores = False
+                    if 'Air' in self.filename:
+                        hab_esp = []
+                        # Coge la tabla de todos los tamaños y excluye las individuales
+                        if self.num_clave == 1:
+                            for index, elem in enumerate(claves):
+                                if '—––—— ' in elem:
+                                    hab_esp = str(elem.replace('—––—— ', '')).replace(' ——––—', '')
+                                elif index < 3:
+                                    pass
+                                elif index > 6:
+                                    self.tabla[hab_esp + ' ' + elem] = valores[index - 4::keys - 4]
                                 else:
-                                    for index, elem in enumerate(claves):
-                                        tabla[elem] = valores[index::len(claves)]
-                                        if index == indexes:
-                                            del self.initial_data[3:indexes]
-                        if rdict:
-                            tables.append(rdict)
-                            rdict = {}
-                    if tabla:
-                        tables.append(tabla)
-                del self.initial_data[3:indexes]
-            else:
-                for index, elem in enumerated_data:
-                    if isinstance(elem, str):
-                        if elem == 'CLAVES':
-                            en_claves = True
-                        elif elem == 'VALORES':
-                            en_valor = True
+                                    self.tabla[elem] = valores[index - 4::keys - 4]
+                    elif 'Earth' in self.filename:
+                        if self.num_clave == 1:
+                            for index, elem in enumerate(claves):
+                                self.tabla[elem] = valores[index::keys]
+                    elif 'Fire' in self.filename:
+                        if self.num_clave == 1:
+                            t_name['Table Name'] = claves[0:1]
+                            for index, elem in enumerate(claves[1:]):
+                                self.tabla[elem] = valores[index::keys]
+                    elif 'Water' in self.filename:
+                        hab_esp = []
+                        if self.num_clave == 1:  # ver comentario en if 'Air'
+                            for index, elem in enumerate(claves):
+                                if '––—––—— ' in elem:
+                                    hab_esp = str(elem.replace('––—––—— ', '')).replace(' ——––––—', '')
+                                elif index < 3:
+                                    pass
+                                elif index > 6:
+                                    self.tabla[hab_esp + ' ' + elem] = valores[index - 4::keys - 4]
+                                else:
+                                    self.tabla[elem] = valores[index - 4::keys - 4]
+                    elif 'Monstrous' in self.filename:
+                        if self.num_clave == 1:
+                            for index, elem in enumerate(claves):
+                                self.tabla[elem] = valores[index - 3:-3:keys - 3]
                         else:
-                            t_name = elem
-                    if isinstance(elem, list):
-                        if en_claves:
-                            claves = elem
-                            num_clave += 1
-                            en_claves = False
-                        elif en_valor:
-                            valores = elem
-                            en_valor = False
-                            if isinstance(self.initial_data[9], str):
-                                if 'Fire' in filename:
-                                    if num_clave == 1:
-                                        table_name = {'Table Name': claves[0]}
-                                        tables.append(table_name)
-                                        for index, elem in enumerate(claves[1:]):
-                                            tabla[elem] = valores[index::len(claves)-1]
-                                    del self.initial_data[9:indexes]
-                                elif 'Air' in filename:
-                                    if num_clave == 1:
-                                        if '' in self.initial_data[11]:
-                                            hab_esp = ''
-                                            if t_name:
-                                                table_name = {'Table Name': t_name}
-                                                tables.append(table_name)
-                                            for index, elem in enumerate(claves):
-                                                if '—––——' in elem:
-                                                    hab_esp = str(elem.replace('—', '')).replace('–', '')
-                                                elif 'Whirlwind' in elem:
-                                                    hab_esp = elem + ' '
-                                                elif index < 3:
-                                                    pass
-                                                elif index > 6:
-                                                    tabla[hab_esp + elem] = valores[index - 4::len(claves)-4]
-                                                else:
-                                                    tabla[elem] = valores[index - 4::len(claves)-4]
-                                                en_valor = False
-                                    del self.initial_data[9:indexes]
-                                elif 'Earth' in filename:
-                                    if num_clave == 1:
-                                        if t_name:
-                                            table_name = {'Table Name': t_name}
-                                            tables.append(table_name)
-                                        for index, elem in enumerate(claves):
-                                            tabla[elem] = valores[index-3::len(claves)-3]
-                                    del self.initial_data[9:indexes]
-                                elif 'Half' in filename:
-                                    if num_clave == 3:
-                                        for index, elem in enumerate(claves):
-                                            tabla[elem] = valores[index-2::len(claves) - 2]
-                                        del self.initial_data[3:indexes]
-                                    else:
-                                        for index, elem in enumerate(claves):
-                                            tabla[elem] = valores[index::len(claves)]
-                                        if 'Fiend' in filename:
-                                            if num_clave == 2:
-                                                del self.initial_data[3:indexes]
-                                elif 'Lycanthrope' in filename:
-                                    if t_name:
-                                        table_name = {'Table Name': t_name}
-                                        tables.append(table_name)
-                                    for index, elem in enumerate(claves):
-                                        tabla[elem] = valores[index::len(claves)]
-                                        if index == 3:
-                                            del self.initial_data[5:indexes]
-                                elif 'Water' in filename:
-                                    if num_clave == 1:
-                                        if '' in self.initial_data[11]:
-                                            hab_esp = ''
-                                            if t_name:
-                                                table_name = {'Table Name': t_name}
-                                                tables.append(table_name)
-                                            for index, elem in enumerate(claves):
-                                                if '—––——' in elem:
-                                                    hab_esp = str(elem.replace('—', '')).replace('–', '')
-                                                elif 'Vortex' in elem:
-                                                    hab_esp = elem + ' '
-                                                elif index < 3:
-                                                    pass
-                                                elif index > 6:
-                                                    tabla[hab_esp + elem] = valores[index - 4::len(claves) - 4]
-                                                else:
-                                                    tabla[elem] = valores[index - 4::len(claves) - 4]
-                                                en_valor = False
-                                    del self.initial_data[9:indexes]
-                    if tabla:
-                        tables.append(tabla)
-                        tabla = {}
-        if tables:
-            for elem in tables:
-                self.initial_data.append(elem)
-                with open(self.json_file, 'w') as f:
-                    self.final_data = json.dumps(self.initial_data, indent=2)
-                    f.write(self.final_data)
-                    if to_print:
-                        print('Se han arreglado las tablas de:', filename)
+                            for index, elem in enumerate(claves):
+                                self.tabla[elem] = valores[index::keys]
+                    elif self.num_clave == 0:  # Esto es para las tablas que no tienen CLAVES definidas
+                        if 'Phrenic_Creature.json' == self.filename:
+                            self.tabla[valores[0]] = valores[2::2]
+                            self.tabla[valores[1]] = valores[3::2]
+                        elif 'Skeleton.json' == self.filename:
+                            if self.num_valor == 1:
+                                t_name['Table Name'] = ['Armor Class Bonus']
+                            elif self.num_valor == 2:
+                                t_name['Table Name'] = ['Damage by Size']
+                            keys = valores[::2]
+                            values = valores[1::2]
+                            self.tabla = {keys[i]: values[i] for i in range(len(keys))}
+                        elif 'Zombie.json' == self.filename:
+                            if self.num_valor == 1:
+                                t_name['Table Name'] = ['Armor Class Bonus']
+                            elif self.num_valor == 2:
+                                t_name['Table Name'] = ['Damage by Size']
+                            keys = valores[::2]
+                            values = valores[1::2]
+                            self.tabla = {keys[i]: values[i] for i in range(len(keys))}
+                    else:
+                        for index, elem in enumerate(claves):
+                            self.tabla[elem] = valores[index::keys]
+            else:
+                self.final_data.append(elem)
+            if t_name:
+                self.tables.append(t_name)
+                t_name = {}
+
+            if self.tabla:  # Aquí si pongo un elif en los Fire Elemental no me coge la tabla
+                self.tables.append(self.tabla)
+                self.tabla = {}
+
+        if self.tables:
+            for elem in self.tables:
+                self.final_data.append(elem)
+            save_file(self.json_file, self.final_data)
+            if to_print:
+                print('Se han arreglado las tablas de:', self.filename)
 
     def arreglando_tablas_dragones(self, to_print=False) -> None:
         filename = os.path.basename(self.json_file)
@@ -1475,7 +1282,7 @@ class SRD35_JsonClean(object):
                                 notes.append(valores[21:23])
                                 del valores[21:23]
                                 for index, elem in enumerate(claves):
-                                        tabla[elem] = valores[index::len(claves)]
+                                    tabla[elem] = valores[index::len(claves)]
                             elif num_clave == 3:
                                 notes.append(valores[56])
                                 del valores[56]
@@ -1567,11 +1374,6 @@ class SRD35_JsonClean(object):
             del self.initial_data[3:indexes]
             for elem in tables:
                 self.initial_data.append(elem)
-            with open(self.json_file, 'w') as f:
-                self.final_data = json.dumps(self.initial_data, indent=2)
-                f.write(self.final_data)
-                if to_print:
-                    print('Se han arreglado las tablas de:', filename)
 
 
 def checking_files(folder):
@@ -1652,6 +1454,7 @@ def checking_files(folder):
         for elem in creatures:
             print(elem)
 
+
 def main():
     parser = argparse.ArgumentParser(description='Analiza los archivos html de dandwiki, y pasa las criaturas de '
                                                  '3.5 a archivos JSON.')
@@ -1677,14 +1480,13 @@ def main():
     dir_path = os.path.normpath(os.getcwd())
     backup_folder = os.path.join(dir_path, '..', 'raw')
     hfolder = os.path.join(backup_folder, 'HTML')
-    jfolder = os.path.join(backup_folder, 'JSON')
-    tipos_folder = os.path.join(jfolder, 'TIPOS')
-    dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
-
     if args.h_folder:
         hfolder = os.path.normpath(args.h_folder)
+    jfolder = os.path.join(backup_folder, 'JSON')
     if args.j_folder:
         jfolder = os.path.normpath(args.j_folder)
+    tipos_folder = os.path.join(jfolder, 'TIPOS')
+    dragon_folder = os.path.join(tipos_folder, 'DRAGONES')
 
     if args.download:
         if not os.path.isdir(hfolder):
@@ -1715,20 +1517,21 @@ def main():
             print('¡Proceso completado!' + '\n')
 
     if args.clean:
-        if args.quiet:
-            for path in glob.glob('{}/*.json'.format(jfolder)):
-                SRD35_JsonClean(path).excluyendo_ficheros()
-                SRD35_JsonClean(path).insertando_titulos()
-                SRD35_JsonClean(path).organizando_tipos()
-                SRD35_JsonClean(path).insertando_claves()
-                SRD35_JsonClean(path).insertando_descripciones()
-                SRD35_JsonClean(path).eliminando_entradas()
-                SRD35_JsonClean(path).eliminando_back_to_main()
-                SRD35_JsonClean(path).arreglando_tablas()
-            for path in glob.glob('{}/*.json'.format(tipos_folder)):
-                SRD35_JsonClean(path).arreglando_tablas_tipo()
-            for path in glob.glob('{}/*.json'.format(dragon_folder)):
-                SRD35_JsonClean(path).arreglando_tablas_dragones()
+        if not args.quiet:
+        for path in glob.glob('{}/*.json'.format(jfolder)):
+            cleaner = SRD35_JsonClean(path)
+            cleaner.excluyendo_ficheros()
+            cleaner.insertando_titulos()
+            cleaner.organizando_tipos()
+            cleaner.insertando_claves()
+            cleaner.insertando_descripciones()
+            cleaner.eliminando_entradas()
+            cleaner.eliminando_back_to_main()
+            cleaner.arreglando_tablas()
+        for path in glob.glob('{}/*.json'.format(tipos_folder)):
+            cleaner.arreglando_tablas_tipo()
+        for path in glob.glob('{}/*.json'.format(dragon_folder)):
+            cleaner.arreglando_tablas_dragones()
 
         elif args.verbose:
             print('Excluyendo ficheros innecesarios...')
@@ -1759,18 +1562,18 @@ def main():
             for path in glob.glob('{}/*.json'.format(jfolder)):
                 SRD35_JsonClean(path).eliminando_back_to_main(to_print=True)
             print('¡Proceso completado!' + '\n')
-            print('Arreglando tablas...')
-            for path in glob.glob('{}/*.json'.format(jfolder)):
-                SRD35_JsonClean(path).arreglando_tablas(to_print=True)
-            print('¡Proceso Completado!' + '\n')
-            print('Arreglando tablas en la carpeta TIPOS...')
-            for path in glob.glob('{}/*.json'.format(tipos_folder)):
-                SRD35_JsonClean(path).arreglando_tablas_tipo(to_print=True)
-            print('¡Proceso Completado!' + '\n')
-            print('Arreglando tablas en la carpeta DRAGONES...')
-            for path in glob.glob('{}/*.json'.format(dragon_folder)):
-                SRD35_JsonClean(path).arreglando_tablas_dragones(to_print=True)
-            print('¡Proceso Completado!' + '\n')
+            # print('Arreglando tablas...')
+            # for path in glob.glob('{}/*.json'.format(jfolder)):
+            #     SRD35_JsonClean(path).arreglando_tablas(to_print=True)
+            # print('¡Proceso Completado!' + '\n')
+            # print('Arreglando tablas en la carpeta TIPOS...')
+            # for path in glob.glob('{}/*.json'.format(tipos_folder)):
+            #     SRD35_JsonClean(path).arreglando_tablas_tipo(to_print=True)
+            # print('¡Proceso Completado!' + '\n')
+            # print('Arreglando tablas en la carpeta DRAGONES...')
+            # for path in glob.glob('{}/*.json'.format(dragon_folder)):
+            #     SRD35_JsonClean(path).arreglando_tablas_dragones(to_print=True)
+            # print('¡Proceso Completado!' + '\n')
 
         else:
             print('Espere mientras se filtran y reeditan los archivos...')
@@ -1791,8 +1594,8 @@ def main():
 
     if args.checking:
         print('Analizando archivos...')
-        for path in glob.glob('{}/*.json'.format(dragon_folder)):
-            checking_files(jfolder)
+        for path in glob.glob('{}/*.json'.format(tipos_folder)):
+            SRD35_JsonClean(path).arreglando_tablas_tipo()
         print('¡Proceso Completado!' + '\n')
 
 
